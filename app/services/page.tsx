@@ -1,3 +1,10 @@
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import Image from "next/image";
 
 type Service = {
@@ -5,29 +12,58 @@ type Service = {
   title: string;
   description: string;
   image: string;
+  points: string[];
 };
 
 const SERVICES: Service[] = [
   {
-    id: "promenade",
-    title: "Promenades Canines",
-    description:
-      "Offrez à votre chien l'exercice et la stimulation dont il a besoin. Je propose des promenades individuelles ou en petit groupe, adaptées au rythme et à l'énergie de votre compagnon. Que ce soit pour une balade détente ou une sortie sportive, je m'assure qu'il rentre comblé et serein.",
-    image: "/vercel.svg",
-  },
-  {
     id: "visite",
     title: "Visites à Domicile",
     description:
-      "Partez l'esprit tranquille. Je viens rendre visite à vos animaux (chats, chiens, NAC) directement chez vous. Au programme : nourrissage, soins, jeux et beaucoup de câlins. Idéal pour ne pas perturber leurs habitudes tout en leur garantissant une présence bienveillante.",
+      "Je me déplace chez vous pour veiller sur vos compagnons dans leur environnement habituel, afin de leur éviter le stress du transport ou de la pension.",
     image: "/vercel.svg",
+    points: [
+      "Alimentation et eau fraîche : respect strict de leur régime alimentaire.",
+      "Hygiène : nettoyage des litières, cages.",
+      "Bien-être : séances de jeux, brossage et câlins à volonté.",
+      "Suivi de santé : administration de traitements médicaux (uniquement sur ordonnance) et surveillance attentive.",
+    ],
   },
   {
-    id: "garde",
-    title: "Garde à Domicile",
+    id: "promenade",
+    title: "Promenades Canines",
     description:
-      "Pour des absences plus longues, je m'installe chez vous pour veiller sur vos animaux nuit et jour. Ils conservent leurs repères et vous retrouvez votre maison habitée et sécurisée. Une solution confort pour eux et rassurante pour vous.",
+      "Pour les chiens qui ont besoin de se dégourdir les pattes pendant vos journées de travail ou vos absences.",
     image: "/vercel.svg",
+    points: [
+      "Sorties de quartier ou en pleine nature : adaptées à l’âge et au dynamisme de votre chien.",
+      "Hygiène et exercice : un moment privilégié pour se dépenser et explorer.",
+      "Éducation positive : respect des ordres de base et des règles de sécurité.",
+    ],
+  },
+  {
+    id: "lesplus",
+    title: 'Les "Petits Plus" de Nathalie',
+    description:
+      "En me confiant votre compagnon, vous bénéficiez de garanties supplémentaires :",
+    image: "/vercel.svg",
+    points: [
+      "Communication constante : vous recevez des nouvelles, des photos ou des vidéos après chaque visite ou promenade.",
+      "Sécurité &amp; Secourisme : Formée aux premiers secours, je sais réagir avec calme et efficacité en cas d'urgence.",
+      "Rigueur administrative : contrat de garde clair, respect des consignes et discrétion absolue concernant votre domicile.",
+      "Services de maison : je peux également relever votre courrier, arroser vos plantes et ouvrir/fermer les volets en cas d’absence prolongée",
+    ],
+  },
+  {
+    id: "taxi",
+    title: "Taxi Animalier",
+    description:
+      "Vous manquez de temps ou vous n'êtes pas véhiculé ? A vos papattes by Nathalie s'occupe du transport de vos boules de poils pour leurs rendez-vous essentiels.",
+    image: "/vercel.svg",
+    points: [
+      "Les visites chez le vétérinaire : je conduis votre animal à la clinique pour ses soins, vaccins ou examens de suivi. Je peux, selon vos besoins, assurer l'attente et vous faire un compte-rendu détaillé de la consultation.",
+      "Les rendez-vous de toilettage : offrez-lui une séance beauté sans stress ! Je dépose votre compagnon au salon et le ramène à votre domicile une fois qu'il est tout beau et tout propre",
+    ],
   },
 ];
 
@@ -71,6 +107,29 @@ export default function ServicesPage() {
                   {service.description}
                 </p>
               </div>
+
+              {/* Points Section */}
+              <Dialog>
+                <DialogTrigger className="mt-4 underline text-primary">
+                  Voir les détails
+                </DialogTrigger>
+                <DialogContent className="max-w-lg mx-auto">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl font-bold">
+                      {service.title} - Détails
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="mt-4">
+                    <ul className="list-disc list-inside space-y-2">
+                      {service.points.map((point, idx) => (
+                        <li key={idx} className="text-muted-foreground">
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
           );
         })}
