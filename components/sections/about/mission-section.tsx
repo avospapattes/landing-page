@@ -1,11 +1,10 @@
 import Image from "next/image";
-import { Target } from "lucide-react";
 
 export function MissionSection() {
   return (
-    <section className="w-full py-16 px-4 md:px-8 bg-background">
+    <section className="w-full py-16 px-4 md:px-8 bg-white">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-12 flex items-center justify-center gap-3">
+        <h2 className="text-7xl font-bold text-center mb-12 flex items-center justify-center gap-3">
           Mon objectif ?
         </h2>
         <div className="flex flex-col md:flex-row gap-12 items-center">
@@ -25,20 +24,20 @@ export function MissionSection() {
               <strong>présence aimante et sécurisante</strong>.
             </p>
           </div>
-          <div className="shrink-0 flex gap-4">
+          <div className="shrink-0 flex flex-col mt-8">
             <Image
-              src="vercel.svg"
+              src="/aribo.jpg"
               alt="Mon objectif"
-              width={100}
-              height={100}
-              className="border-4 border-foreground rounded-lg"
+              width={200}
+              height={200}
+              className="ml-0 neo-shadow z-10 relative"
             />
             <Image
-              src="vercel.svg"
+              src="/hemy.jpg"
               alt="Mon objectif"
-              width={100}
-              height={100}
-              className="border-4 border-foreground rounded-lg"
+              width={200}
+              height={200}
+              className="ml-45 -mt-60 neo-shadow z-20 relative"
             />
           </div>
         </div>

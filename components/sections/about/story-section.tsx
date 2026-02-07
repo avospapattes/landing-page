@@ -2,11 +2,9 @@ import Image from "next/image";
 
 export function StorySection() {
   return (
-    <section className="w-full py-16 px-4 md:px-8 bg-background text-foreground">
+    <section className="w-full py-16 px-4 md:px-8 bg-white text-foreground">
       <div className="max-w-5xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-12 flex items-center justify-center gap-3">
-          Mon histoire
-        </h1>
+        <h1 className="text-7xl text-center mb-12">Mon histoire</h1>
         <div className="flex flex-col md:flex-row gap-12 items-center">
           <div className="flex-1 space-y-6 text-lg leading-relaxed">
             <h2 className="text-3xl font-bold mb-8">Bonjour,</h2>
@@ -28,11 +26,11 @@ export function StorySection() {
           </div>
           <div className="shrink-0">
             <Image
-              src="vercel.svg"
+              src="/nathalie&alfy.jpg"
               alt="Nathalie avec un chien"
               width={350}
               height={350}
-              className="border-4 border-foreground rounded-lg"
+              className="neo-shadow"
             />
           </div>
         </div>

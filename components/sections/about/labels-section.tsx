@@ -2,13 +2,13 @@ import Image from "next/image";
 
 export function LabelsSection() {
   return (
-    <section className="w-full py-16 px-4 md:px-8 bg-primary/10">
+    <section className="w-full py-16 px-4 md:px-8 bg-foreground text-white">
       <div className="grid grid-cols-3 items-center max-w-5xl mx-auto">
         <Image
-          src="vercel.svg"
+          src="acaced.svg"
           alt="Label Pet Sitter Professionnelle"
-          width={100}
-          height={100}
+          width={300}
+          height={300}
           className="col-span-1 border-2 border-foreground"
         />
 
