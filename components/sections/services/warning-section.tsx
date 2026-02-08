@@ -2,7 +2,7 @@ import { TriangleAlert } from "lucide-react";
 
 export function WarningSection() {
   return (
-    <section className="w-full flex flex-col items-center justify-center space-y-4 py-16 bg-background">
+    <section className="w-full flex flex-col items-center justify-center pb-8 bg-background">
       <TriangleAlert className="w-16 h-16 text-white" />
       <div className="text-center space-y-2">
         <p className="text-3xl font-bold text-white">

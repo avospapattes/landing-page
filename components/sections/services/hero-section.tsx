@@ -2,7 +2,7 @@
 
 export function HeroSection() {
   return (
-    <section className="w-full pt-16 pb-12 px-4 md:px-8 bg-background">
+    <section className="w-full p-4 md:p-8 bg-background">
       <div className="container mx-auto text-center space-y-4">
         <h1 className="text-7xl font-bold text-stroke-title">Mes Services</h1>
         <p className="text-white text-lg max-w-2xl mx-auto">

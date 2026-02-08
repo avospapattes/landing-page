@@ -3,6 +3,7 @@ import { ServicesListSection } from "@/components/sections/services/services-lis
 import { WarningSection } from "@/components/sections/services/warning-section";
 import { ZoneSection } from "@/components/sections/services/zone-section";
 import { PricingSection } from "@/components/sections/services/pricing-section";
+import { BookingProcessSection } from "@/components/sections/services/booking-process-section";
 
 export default function ServicesPage() {
   return (
@@ -11,6 +12,7 @@ export default function ServicesPage() {
       <ServicesListSection />
       <WarningSection />
       <PricingSection />
+      <BookingProcessSection />
       <ZoneSection />
     </main>
   );

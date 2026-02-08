@@ -23,7 +23,7 @@ const SERVICES: Service[] = [
     title: "Visites à Domicile",
     description:
       "Je me déplace chez vous pour veiller sur vos compagnons dans leur environnement habituel, afin de leur éviter le stress du transport ou de la pension.",
-    image: "/rd1.png",
+    image: "/rd1.jpg",
     points: [
       "Alimentation et eau fraîche : respect strict de leur régime alimentaire.",
       "Hygiène : nettoyage des litières, cages.",
@@ -48,7 +48,7 @@ const SERVICES: Service[] = [
     title: 'Les "Petits Plus" de Nathalie',
     description:
       "En me confiant votre compagnon, vous bénéficiez de garanties supplémentaires :",
-    image: "/rd3.png",
+    image: "/rd3.jpg",
     points: [
       "Communication constante : vous recevez des nouvelles, des photos ou des vidéos après chaque visite ou promenade.",
       "Sécurité &amp; Secourisme : Formée aux premiers secours, je sais réagir avec calme et efficacité en cas d'urgence.",
@@ -71,20 +71,20 @@ const SERVICES: Service[] = [
 
 export function ServicesListSection() {
   return (
-    <section className="w-full pt-12 pb-16 px-4 md:px-8 bg-background">
+    <section className="w-full pb-16 px-4 md:px-8 bg-background">
       <div className="container mx-auto">
-        <div className="flex flex-col gap-20">
+        <div className="flex flex-col gap-10">
           {SERVICES.map((service, index) => {
             const isEven = index % 2 === 0;
             return (
               <div
                 key={service.id}
-                className={`flex flex-col md:flex-row neo-shadow rounded-2xl overflow-hidden bg-foreground ${
+                className={`flex flex-col md:flex-row neo-shadow rounded-2xl overflow-hidden bg-foreground max-w-5xl mx-auto ${
                   !isEven ? "md:flex-row-reverse" : ""
                 }`}
               >
                 {/* Image Section */}
-                <div className="w-full md:w-1/2 relative h-64 md:h-auto min-h-[300px]">
+                <div className="w-full md:w-1/2 relative h-64 md:h-auto min-h-75">
                   <Image
                     src={service.image}
                     alt={service.title}
