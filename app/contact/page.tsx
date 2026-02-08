@@ -1,5 +1,5 @@
 "use client";
-import { Controller, useForm, SubmitHandler } from "react-hook-form";
+import { Controller, useForm, SubmitHandler, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import * as z from "zod";
@@ -77,7 +77,8 @@ export default function PetSittingForm() {
     } as FormValues,
   });
 
-  const animalType = form.watch("animaux");
+  const animalType = useWatch({ control: form.control, name: "animaux" });
+  const dateDebut = useWatch({ control: form.control, name: "dateDebut" });
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const SERVICE_ID =
@@ -389,7 +390,7 @@ export default function PetSittingForm() {
                     <Input
                       {...field}
                       type="datetime-local"
-                      min={form.watch("dateDebut") || now}
+                      min={dateDebut || now}
                       className="w-full text-sm"
                     />
                     {fieldState.error && (
