@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 
 export function WelcomeSection() {
   return (
-    <section className="flex flex-col bg-background mx-auto max-w-360 h-full text-foreground">
-      <div className="flex flex-row flex-start m-5">
+    <section className="flex flex-col bg-background h-full text-foreground">
+      <div className="flex flex-row max-w-360 mx-auto flex-start m-5">
         <div className="flex flex-col justify-center items-start">
           <h1 className="mb-4 text-7xl text-left text-stroke-title">
             Nathalie, <br />
@@ -66,29 +66,6 @@ export function WelcomeSection() {
             height={250}
             className="z-30 relative neo-shadow -mt-80 ml-115"
           />
-        </div>
-      </div>
-      {/* Stats Section */}
-      <div className="flex flex-row justify-around bg-foreground mt-auto p-4 text-white text-2xl">
-        <div className="ml-4 text-center">
-          <strong>10+</strong>
-          <br />
-          Clients satisfaits
-        </div>
-        <div className="ml-4 text-center">
-          <strong>2+</strong>
-          <br />
-          Labels
-        </div>
-        <div className="ml-4 text-center">
-          <strong>5+</strong>
-          <br />
-          Services
-        </div>
-        <div className="ml-4 text-center">
-          <strong>Strasbourg</strong>
-          <br />
-          Lieu de travail
         </div>
       </div>
     </section>
