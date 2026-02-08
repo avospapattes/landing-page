@@ -235,7 +235,7 @@ export default function PetSittingForm() {
                   control={form.control}
                   render={({ field, fieldState }) => (
                     <Field>
-                      <FieldLabel>Précisez l'espèce</FieldLabel>
+                      <FieldLabel>Précisez l&apos;espèce</FieldLabel>
                       <Input
                         {...field}
                         placeholder="Ex: Lapin..."
@@ -411,7 +411,7 @@ export default function PetSittingForm() {
                   <InputGroupTextarea
                     {...field}
                     placeholder="Besoins spécifiques, habitudes..."
-                    className="border rounded-md min-h-[120px] text-sm"
+                    className="border rounded-md min-h-30 text-sm"
                   />
                 </Field>
               )}

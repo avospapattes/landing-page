@@ -6,10 +6,10 @@ import { Button } from "@/components/ui/button";
 export default function Home() {
   return (
     <>
-      <main className="flex flex-col bg-background mx-auto max-w-[1440px] h-full text-foreground">
+      <main className="flex flex-col bg-background mx-auto max-w-360 h-full text-foreground">
         <div className="flex flex-row flex-start m-5">
           <div className="flex flex-col justify-center items-start">
-            <h1 className="mb-4 text-7xl text-left">
+            <h1 className="mb-4 text-7xl text-left text-stroke-title">
               Nathalie, <br />
               votre Pet Sitter <br />
               professionnelle

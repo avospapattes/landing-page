@@ -4,10 +4,14 @@ export function StorySection() {
   return (
     <section className="w-full py-16 px-4 md:px-8 bg-white text-foreground">
       <div className="max-w-5xl mx-auto">
-        <h1 className="text-7xl text-center mb-12">Mon histoire</h1>
+        <h1 className="text-7xl text-center mb-12 text-stroke-title">
+          Mon histoire
+        </h1>
         <div className="flex flex-col md:flex-row gap-12 items-center">
           <div className="flex-1 space-y-6 text-lg leading-relaxed">
-            <h2 className="text-3xl font-bold mb-8">Bonjour,</h2>
+            <h2 className="text-3xl font-bold mb-8 text-stroke-title">
+              Bonjour,
+            </h2>
             <p>
               Je m’appelle <strong>Nathalie</strong>. Après 25 ans de carrière
               dans le secteur financier, j&apos;ai choisi de me consacrer

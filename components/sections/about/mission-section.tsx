@@ -4,7 +4,7 @@ export function MissionSection() {
   return (
     <section className="w-full py-16 px-4 md:px-8 bg-white">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-7xl font-bold text-center mb-12 flex items-center justify-center gap-3">
+        <h2 className="text-7xl font-bold text-center mb-12 flex items-center justify-center gap-3 text-stroke-title">
           Mon objectif ?
         </h2>
         <div className="flex flex-col md:flex-row gap-12 items-center">
