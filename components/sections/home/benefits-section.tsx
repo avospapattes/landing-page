@@ -61,19 +61,18 @@ const features = [
 
 export function BenefitsSection() {
   return (
-    <section className="w-full py-20 px-4 md:px-8 bg-foreground text-white">
+    <section className="w-full py-20 px-4 md:px-8 bg-background text-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl font-bold">
+          <h2 className="text-4xl md:text-5xl text-stroke-title">
             Pourquoi choisir une Pet Sitter pro ?
           </h2>
-          <p className="text-xl text-white/80 max-w-2xl mx-auto">
+          <p className="text-xl text-foreground max-w-2xl mx-auto">
             Faire appel à une professionnelle, c&apos;est l&apos;assurance de
             partir l&apos;esprit tranquille en sachant votre animal entre de
             bonnes mains.
           </p>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {features.map((feature, index) => (
             <Card

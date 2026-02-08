@@ -177,12 +177,11 @@ const FAQ_ITEMS = [
 
 export function FaqSection() {
   return (
-    <section className="w-full py-16 px-4 md:px-8 bg-background" id="faq">
+    <section className="w-full py-16 px-4 md:px-8 bg-foreground" id="faq">
       <div className="container mx-auto max-w-6xl">
         <h2 className="text-4xl md:text-5xl text-center mb-12 text-stroke-title">
           Questions Fréquentes
         </h2>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
           <div className="md:col-span-2">
             <Accordion

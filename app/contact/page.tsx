@@ -407,7 +407,7 @@ export default function PetSittingForm() {
                     <FieldLabel>Du (début)</FieldLabel>
                     <Input
                       {...field}
-                      type="datetime-local"
+                      type="date"
                       min={now}
                       className="w-full text-sm"
                     />
@@ -427,7 +427,7 @@ export default function PetSittingForm() {
                     <FieldLabel>Au (fin)</FieldLabel>
                     <Input
                       {...field}
-                      type="datetime-local"
+                      type="date"
                       min={dateDebut || now}
                       className="w-full text-sm"
                     />
