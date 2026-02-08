@@ -142,24 +142,28 @@ export default function PetSittingForm() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center bg-foreground p-4 min-h-screen">
-      <div className="mb-8 text-center">
-        <h1 className="mb-4 font-extrabold text-white text-4xl md:text-8xl tracking-tight">
+    <div className="w-fulloverflow-x-hidden flex flex-col justify-center items-center bg-foreground p-4 md:p-8">
+      <div className="mb-8 md:mb-12 max-w-4xl text-center">
+        <h1 className="mb-4 px-2 font-extrabold text-white text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tight">
           Contactez-moi
         </h1>
-        <p className="text-white/80 text-xl">
+        <p className="px-4 text-white/80 text-base md:text-xl">
           Complétez le formulaire pour une réponse rapide
         </p>
       </div>
 
       <Card className="bg-white neo-shadow shadow-xl mx-auto border-0 rounded-xl w-full max-w-2xl">
-        <CardHeader>
-          <CardTitle className="font-bold text-2xl md:text-left text-center">
-            Détails de la garde
+        <CardHeader className="p-5 md:p-8">
+          <CardTitle className="font-bold text-xl md:text-2xl md:text-left text-center">
+            Demande de garde
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+
+        <CardContent className="p-5 md:p-8 pt-0 md:pt-0">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-5 md:space-y-6"
+          >
             <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
               <Controller
                 name="nom"
@@ -201,7 +205,7 @@ export default function PetSittingForm() {
               />
             </div>
 
-            <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
+            <div className="items-start gap-4 grid grid-cols-1 md:grid-cols-2">
               <Controller
                 name="animaux"
                 control={form.control}
@@ -210,7 +214,7 @@ export default function PetSittingForm() {
                     <FieldLabel>Animal</FieldLabel>
                     <select
                       {...field}
-                      className="flex px-3 py-2 border border-input rounded-md focus:ring-2 focus:ring-primary w-full h-10 text-sm"
+                      className="flex bg-white px-3 py-2 border border-input rounded-md focus:ring-2 focus:ring-primary w-full h-10 text-sm appearance-none"
                     >
                       <option value="">Choisir...</option>
                       <option value="Chien">Chien</option>
@@ -225,31 +229,30 @@ export default function PetSittingForm() {
                   </Field>
                 )}
               />
+              {animalType === "Autre" && (
+                <Controller
+                  name="autreAnimal"
+                  control={form.control}
+                  render={({ field, fieldState }) => (
+                    <Field>
+                      <FieldLabel>Précisez l'espèce</FieldLabel>
+                      <Input
+                        {...field}
+                        placeholder="Ex: Lapin..."
+                        className={fieldState.error ? "border-destructive" : ""}
+                      />
+                      {fieldState.error && (
+                        <FieldError
+                          errors={[{ message: fieldState.error.message }]}
+                        />
+                      )}
+                    </Field>
+                  )}
+                />
+              )}
             </div>
 
-            {animalType === "Autre" && (
-              <Controller
-                name="autreAnimal"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field>
-                    <FieldLabel>Précisez l&apos;animal</FieldLabel>
-                    <Input
-                      {...field}
-                      placeholder="Ex: Lapin, Furet..."
-                      className={fieldState.error ? "border-destructive" : ""}
-                    />
-                    {fieldState.error && (
-                      <FieldError
-                        errors={[{ message: fieldState.error.message }]}
-                      />
-                    )}
-                  </Field>
-                )}
-              />
-            )}
-
-            <div className="space-y-4 bg-slate-50 p-4 border rounded-lg">
+            <div className="space-y-4 bg-slate-50 p-4 md:p-6 border rounded-xl">
               <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
                 <Controller
                   name="serviceType"
@@ -286,8 +289,9 @@ export default function PetSittingForm() {
                   )}
                 />
               </div>
-              <div className="gap-4 grid grid-cols-1 md:grid-cols-2 pt-2">
-                <label className="flex items-center gap-2 text-sm cursor-pointer">
+
+              <div className="flex md:flex-row flex-col gap-4 pt-2">
+                <label className="flex items-center gap-3 text-sm cursor-pointer select-none">
                   <Controller
                     name="transportToilettage"
                     control={form.control}
@@ -295,12 +299,13 @@ export default function PetSittingForm() {
                       <Checkbox
                         checked={field.value}
                         onCheckedChange={field.onChange}
+                        className="w-5 h-5"
                       />
                     )}
                   />
-                  Transport Toilettage
+                  <span>Transport Toilettage</span>
                 </label>
-                <label className="flex items-center gap-2 text-sm cursor-pointer">
+                <label className="flex items-center gap-3 text-sm cursor-pointer select-none">
                   <Controller
                     name="transportVeto"
                     control={form.control}
@@ -308,10 +313,11 @@ export default function PetSittingForm() {
                       <Checkbox
                         checked={field.value}
                         onCheckedChange={field.onChange}
+                        className="w-5 h-5"
                       />
                     )}
                   />
-                  Transport Vétérinaire
+                  <span>Transport Vétérinaire</span>
                 </label>
               </div>
             </div>
@@ -360,7 +366,12 @@ export default function PetSittingForm() {
                 render={({ field, fieldState }) => (
                   <Field>
                     <FieldLabel>Du (début)</FieldLabel>
-                    <Input {...field} type="datetime-local" min={now} />
+                    <Input
+                      {...field}
+                      type="datetime-local"
+                      min={now}
+                      className="w-full text-sm"
+                    />
                     {fieldState.error && (
                       <FieldError
                         errors={[{ message: fieldState.error.message }]}
@@ -379,6 +390,7 @@ export default function PetSittingForm() {
                       {...field}
                       type="datetime-local"
                       min={form.watch("dateDebut") || now}
+                      className="w-full text-sm"
                     />
                     {fieldState.error && (
                       <FieldError
@@ -399,7 +411,7 @@ export default function PetSittingForm() {
                   <InputGroupTextarea
                     {...field}
                     placeholder="Besoins spécifiques, habitudes..."
-                    className="px-3 py-2 border border-input rounded-md w-full min-h-32 text-sm"
+                    className="border rounded-md min-h-[120px] text-sm"
                   />
                 </Field>
               )}
@@ -408,7 +420,7 @@ export default function PetSittingForm() {
             <Button
               type="submit"
               disabled={form.formState.isSubmitting}
-              className="flex items-center bg-primary disabled:bg-slate-400 hover:opacity-90 py-6 w-full font-bold text-lg transition-all"
+              className="shadow-lg py-7 w-full font-bold text-lg active:scale-[0.98] transition-all"
             >
               {form.formState.isSubmitting ? "Envoi..." : "Envoyer ma demande"}
               <ArrowRight className="ml-2 w-5 h-5" />
