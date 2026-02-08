@@ -61,25 +61,25 @@
   --radius: 0.625rem;
   --background: rgba(239, 191, 46, 1);
   --foreground: rgba(75, 51, 28, 1);
-  
+
   --card: rgba(239, 191, 46, 1);
   --card-foreground: rgba(75, 51, 28, 1);
-  
+
   --popover: rgba(239, 191, 46, 1);
   --popover-foreground: rgba(75, 51, 28, 1);
-  
+
   --primary: rgba(75, 51, 28, 1);
   --primary-foreground: rgba(239, 191, 46, 1);
-  
+
   --secondary: rgba(75, 51, 28, 1);
   --secondary-foreground: rgba(239, 191, 46, 1);
-  
+
   --muted: rgba(75, 51, 28, 0.1);
   --muted-foreground: rgba(75, 51, 28, 1);
-  
+
   --accent: rgba(75, 51, 28, 0.1);
   --accent-foreground: rgba(75, 51, 28, 1);
-  
+
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
 
@@ -140,10 +140,10 @@
 
 @layer base {
   h1 {
-    @apply text-white text-stroke-title font-opensans font-extrabold;
+    @apply text-white font-opensans font-extrabold;
   }
   h2 {
-    @apply text-white text-stroke-title font-opensans font-extrabold;
+    @apply text-white font-opensans font-extrabold;
   }
   * {
     @apply border-border outline-ring/50;
