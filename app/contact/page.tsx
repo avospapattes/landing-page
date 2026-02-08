@@ -1,5 +1,11 @@
 "use client";
-import { Controller, useForm, SubmitHandler, useWatch } from "react-hook-form";
+import {
+  Controller,
+  useForm,
+  SubmitHandler,
+  useWatch,
+  useFieldArray,
+} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import * as z from "zod";
@@ -10,7 +16,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field, FieldLabel, FieldError } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { InputGroupTextarea } from "@/components/ui/input-group";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Plus, Trash2 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 
 const formSchema = z
@@ -24,34 +30,28 @@ const formSchema = z
     telephone: z
       .string()
       .min(10, "Le numéro doit contenir au moins 10 chiffres"),
-    animaux: z.string().min(1, "Veuillez sélectionner un animal"),
-    autreAnimal: z.string().optional(),
+    animauxList: z
+      .array(
+        z.object({
+          type: z.string().min(1, "Requis"),
+          autrePrecisez: z.string().optional(),
+          quantite: z.number().min(1, "Doit être au moins 1"),
+        }),
+      )
+      .min(1, "Ajoutez au moins un animal"),
 
     serviceType: z.string().min(1, "Requis"),
     frequence: z.string().min(1, "Requis"),
-
     transportToilettage: z.boolean(),
     transportVeto: z.boolean(),
-
     dateDebut: z.string().min(1, "Date de début requise"),
     dateFin: z.string().min(1, "Date de fin requise"),
     message: z.string().optional(),
   })
-  .refine((data) => new Date(data.dateFin) > new Date(data.dateDebut), {
-    message: "La date de fin doit être après la date de début",
+  .refine((data) => new Date(data.dateFin) >= new Date(data.dateDebut), {
+    message: "La date de fin doit être égale ou après la date de début",
     path: ["dateFin"],
-  })
-  .refine(
-    (data) => {
-      if (data.animaux === "Autre")
-        return !!data.autreAnimal && data.autreAnimal.length > 1;
-      return true;
-    },
-    {
-      message: "Veuillez préciser l'espèce",
-      path: ["autreAnimal"],
-    },
-  );
+  });
 
 type FormValues = z.infer<typeof formSchema>;
 
@@ -65,8 +65,7 @@ export default function PetSittingForm() {
       prenom: "",
       email: "",
       telephone: "",
-      animaux: "",
-      autreAnimal: "",
+      animauxList: [{ type: "", quantite: 1, autrePrecisez: "" }],
       serviceType: "30min",
       frequence: "1",
       transportToilettage: false,
@@ -74,11 +73,15 @@ export default function PetSittingForm() {
       dateDebut: "",
       dateFin: "",
       message: "",
-    } as FormValues,
+    },
   });
 
-  const animalType = useWatch({ control: form.control, name: "animaux" });
+  const { fields, append, remove } = useFieldArray({
+    control: form.control,
+    name: "animauxList",
+  });
   const dateDebut = useWatch({ control: form.control, name: "dateDebut" });
+  const animauxList = useWatch({ control: form.control, name: "animauxList" });
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const SERVICE_ID =
@@ -94,15 +97,19 @@ export default function PetSittingForm() {
     }
 
     const formatDate = (dateStr: string) => {
-      return new Date(dateStr).toLocaleString("fr-FR", {
+      return new Date(dateStr).toLocaleDateString("fr-FR", {
         weekday: "long",
         year: "numeric",
         month: "long",
         day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
       });
     };
+    const animauxString = data.animauxList
+      .map(
+        (a) =>
+          `${a.quantite}x ${a.type === "Autre" ? a.autrePrecisez : a.type}`,
+      )
+      .join(", ");
 
     const serviceLabels: Record<string, string> = {
       "30min": "Visite de 30 minutes",
@@ -115,7 +122,7 @@ export default function PetSittingForm() {
       prenom: data.prenom,
       email: data.email,
       telephone: data.telephone,
-      animaux: data.animaux === "Autre" ? data.autreAnimal : data.animaux,
+      animaux: animauxString,
       serviceType: serviceLabels[data.serviceType] || data.serviceType,
       frequence: data.frequence,
       transportToilettage: data.transportToilettage ? "Oui" : "Non",
@@ -143,7 +150,7 @@ export default function PetSittingForm() {
   };
 
   return (
-    <div className="w-fulloverflow-x-hidden flex flex-col justify-center items-center bg-foreground p-4 md:p-8">
+    <div className="flex flex-col justify-center items-center bg-foreground p-4 md:p-8 w-full">
       <div className="mb-8 md:mb-12 max-w-4xl text-center">
         <h1 className="mb-4 px-2 font-extrabold text-white text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tight">
           Contactez-moi
@@ -206,50 +213,81 @@ export default function PetSittingForm() {
               />
             </div>
 
-            <div className="items-start gap-4 grid grid-cols-1 md:grid-cols-2">
-              <Controller
-                name="animaux"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field>
-                    <FieldLabel>Animal</FieldLabel>
-                    <select
-                      {...field}
-                      className="flex bg-white px-3 py-2 border border-input rounded-md focus:ring-2 focus:ring-primary w-full h-10 text-sm appearance-none"
-                    >
-                      <option value="">Choisir...</option>
-                      <option value="Chien">Chien</option>
-                      <option value="Chat">Chat</option>
-                      <option value="Autre">Autre</option>
-                    </select>
-                    {fieldState.error && (
-                      <FieldError
-                        errors={[{ message: fieldState.error.message }]}
-                      />
-                    )}
-                  </Field>
-                )}
-              />
-              {animalType === "Autre" && (
-                <Controller
-                  name="autreAnimal"
-                  control={form.control}
-                  render={({ field, fieldState }) => (
-                    <Field>
-                      <FieldLabel>Précisez l&apos;espèce</FieldLabel>
+            <div className="space-y-4 py-4 border-y">
+              <div className="flex justify-between items-center">
+                <FieldLabel className="font-semibold text-lg">
+                  Vos animaux
+                </FieldLabel>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() =>
+                    append({ type: "", quantite: 1, autrePrecisez: "" })
+                  }
+                  className="h-8"
+                >
+                  <Plus className="mr-1 w-4 h-4" /> Ajouter
+                </Button>
+              </div>
+
+              {fields.map((field, index) => (
+                <div
+                  key={field.id}
+                  className="relative flex flex-col gap-3 bg-slate-50 p-3 border rounded-lg"
+                >
+                  <div className="items-end gap-3 grid grid-cols-12">
+                    <div className="col-span-7 md:col-span-8">
+                      <FieldLabel className="mb-2 text-slate-500 text-xs uppercase">
+                        Espèce
+                      </FieldLabel>
+                      <select
+                        {...form.register(`animauxList.${index}.type`)}
+                        className="bg-white px-3 border rounded-md w-full h-10 text-sm"
+                      >
+                        <option value="">Choisir...</option>
+                        <option value="Chien">Chien</option>
+                        <option value="Chat">Chat</option>
+                        <option value="Autre">Autre</option>
+                      </select>
+                    </div>
+                    <div className="col-span-3 md:col-span-3">
+                      <FieldLabel className="mb-2 text-slate-500 text-xs uppercase">
+                        Nombre
+                      </FieldLabel>
                       <Input
-                        {...field}
-                        placeholder="Ex: Lapin..."
-                        className={fieldState.error ? "border-destructive" : ""}
+                        type="number"
+                        {...form.register(`animauxList.${index}.quantite`)}
+                        className="bg-white"
                       />
-                      {fieldState.error && (
-                        <FieldError
-                          errors={[{ message: fieldState.error.message }]}
-                        />
-                      )}
-                    </Field>
+                    </div>
+                    <div className="flex justify-center col-span-2 md:col-span-1">
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => remove(index)}
+                        disabled={fields.length === 1}
+                        className="text-destructive"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+
+                  {animauxList[index]?.type === "Autre" && (
+                    <Input
+                      {...form.register(`animauxList.${index}.autrePrecisez`)}
+                      placeholder="Précisez (Lapin, furet...)"
+                      className="bg-white"
+                    />
                   )}
-                />
+                </div>
+              ))}
+              {form.formState.errors.animauxList && (
+                <p className="text-destructive text-sm italic">
+                  Ajoutez au moins un animal.
+                </p>
               )}
             </div>
 
