@@ -30,9 +30,11 @@ const STEPS = [
     icon: FileText,
     title: "2. Devis personnalisé",
     content: (
-      <div className="flex-1 flex flex-col items-center justify-center">
-        <p className="text-muted-foreground leading-relaxed text-center">
-          Je vous adresse un devis <strong>personnalisé et gratuit</strong>.
+      <div className="space-y-4">
+        <p className="text-muted-foreground leading-relaxed text-sm">
+          Je vous contacte si j&apos;ai besoin de plus d&apos;informations pour
+          vous établir un devis personnalisé et gratuit. Puis vous recevrez par
+          mail une proposition tarifaire détaillée répondant à votre demande.
         </p>
       </div>
     ),

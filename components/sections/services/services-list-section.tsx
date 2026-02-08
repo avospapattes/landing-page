@@ -51,7 +51,7 @@ const SERVICES: Service[] = [
     image: "/rd3.jpg",
     points: [
       "Communication constante : vous recevez des nouvelles, des photos ou des vidéos après chaque visite ou promenade.",
-      "Sécurité &amp; Secourisme : Formée aux premiers secours, je sais réagir avec calme et efficacité en cas d'urgence.",
+      "Sécurité & Secourisme : Formée aux premiers secours, je sais réagir avec calme et efficacité en cas d'urgence.",
       "Rigueur administrative : contrat de garde clair, respect des consignes et discrétion absolue concernant votre domicile.",
       "Services de maison : je peux également relever votre courrier, arroser vos plantes et ouvrir/fermer les volets en cas d’absence prolongée",
     ],
