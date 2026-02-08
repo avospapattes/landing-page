@@ -1,5 +1,5 @@
 "use client";
-import { User, PawPrint, Euro, Mail } from "lucide-react";
+import { User, PawPrint, Mail } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -7,8 +7,7 @@ import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/about", label: "Mon histoire", icon: User },
-  { href: "/services", label: "Services", icon: PawPrint },
-  { href: "/prices", label: "Tarifs", icon: Euro },
+  { href: "/services", label: "Services & Tarifs", icon: PawPrint },
   { href: "/contact", label: "Contact", icon: Mail },
 ];
 
