@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
-import Navbar from "./ui/navbar";
+import Navbar from "@/components/ui/navbar";
+import Footer from "@/components/ui/footer";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -22,11 +23,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${openSans.variable} font-sans h-screen flex flex-col`}>
+      <body
+        className={`${openSans.variable} font-sans min-h-screen flex flex-col`}
+      >
         <header>
           <Navbar />
         </header>
-        {children}
+        <div className="flex-1">{children}</div>
+        <Footer />
         <Toaster />
       </body>
     </html>
