@@ -14,6 +14,9 @@ const openSans = Open_Sans({
 export const metadata: Metadata = {
   title: "À vos papattes",
   description: "À vos papattes by Nath",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({

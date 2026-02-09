@@ -22,7 +22,7 @@ export function LabelsSection() {
             Parce que <strong>l&apos;amour des animaux</strong> ne suffit pas
             pour en garantir la <strong>sécurité</strong>, j’ai tenu à
             professionnaliser ma passion. <br />
-            Pour leur offrir le meilleur, je suis aujourd&apos;hui titulaire de
+            Pour leur offrir le meilleur, je suis aujourd&apos;hui titulaire de{" "}
             <strong>l&apos;ACACED complet (Chien/Chat/NAC)</strong> et formée
             aux Gestes de premiers secours canins ainsi qu&apos;au{" "}
             <strong>Métier de Pet-Sitter</strong>.

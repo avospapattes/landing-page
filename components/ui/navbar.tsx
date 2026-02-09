@@ -48,8 +48,8 @@ export default function Navbar() {
                   className={cn(
                     "flex items-center space-x-2 px-6 h-full transition-colors",
                     isActive
-                      ? "bg-primary text-primary-foreground"
-                      : "text-foreground/80 hover:text-foreground",
+                      ? "bg-primary text-white"
+                      : "text-foreground hover:underline",
                   )}
                 >
                   {LinkIcon && <LinkIcon className="h-5 w-5" />}

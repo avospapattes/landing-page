@@ -9,7 +9,7 @@ import {
 
 const features = [
   {
-    image: "/acaced.svg",
+    image: "/acaced.png",
     title: "ACACED complet (chien-chat-NAC)",
     subtitle: "N°2025/b58a-64dc ",
     description:
