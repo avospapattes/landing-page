@@ -6,6 +6,7 @@ import {
   useWatch,
   useFieldArray,
 } from "react-hook-form";
+import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import * as z from "zod";
@@ -16,6 +17,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field, FieldLabel, FieldError } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { InputGroupTextarea } from "@/components/ui/input-group";
+import { Separator } from "@/components/ui/separator";
 import { ArrowRight, Plus, Trash2 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 
@@ -152,7 +154,7 @@ export default function PetSittingForm() {
   return (
     <div className="flex flex-col justify-center items-center bg-foreground p-4 md:p-8 w-full">
       <div className="mb-8 md:mb-12 max-w-4xl text-center">
-        <h1 className="mb-4 px-2 font-extrabold text-white text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tight">
+        <h1 className="mb-4 px-2 font-extrabold text-white text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tight text-stroke-title">
           Contactez-moi
         </h1>
         <p className="px-4 text-white/80 text-base md:text-xl">
@@ -161,12 +163,14 @@ export default function PetSittingForm() {
       </div>
 
       <Card className="bg-white neo-shadow shadow-xl mx-auto border-0 rounded-xl w-full max-w-2xl">
-        <CardHeader className="p-5 md:p-8">
+        <CardHeader className="px-5 md:px-8">
           <CardTitle className="font-bold text-xl md:text-2xl md:text-left text-center">
             Demande de garde
           </CardTitle>
         </CardHeader>
-
+        <div className="px-5 md:px-8">
+          <Separator />
+        </div>
         <CardContent className="p-5 md:p-8 pt-0 md:pt-0">
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -213,19 +217,17 @@ export default function PetSittingForm() {
               />
             </div>
 
-            <div className="space-y-4 py-4 border-y">
+            <div className="space-y-4 py-6 border-t font-medium">
               <div className="flex justify-between items-center">
-                <FieldLabel className="font-semibold text-lg">
+                <FieldLabel className="font-bold text-xl">
                   Vos animaux
                 </FieldLabel>
                 <Button
                   type="button"
-                  variant="outline"
-                  size="sm"
                   onClick={() =>
                     append({ type: "", quantite: 1, autrePrecisez: "" })
                   }
-                  className="h-8"
+                  className="h-8 bg-primary text-white hover:bg-primary/90"
                 >
                   <Plus className="mr-1 w-4 h-4" /> Ajouter
                 </Button>
@@ -234,16 +236,16 @@ export default function PetSittingForm() {
               {fields.map((field, index) => (
                 <div
                   key={field.id}
-                  className="relative flex flex-col gap-3 bg-slate-50 p-3 border rounded-lg"
+                  className="relative flex flex-col gap-3 p-4 border border-muted-foreground rounded-xl transition-colors"
                 >
-                  <div className="items-end gap-3 grid grid-cols-12">
-                    <div className="col-span-7 md:col-span-8">
-                      <FieldLabel className="mb-2 text-slate-500 text-xs uppercase">
+                  <div className="items-end gap-3 grid grid-cols-1 md:grid-cols-12">
+                    <div className="col-span-1 md:col-span-8">
+                      <FieldLabel className="mb-2 text-muted-foreground text-xs uppercase font-bold tracking-wide">
                         Espèce
                       </FieldLabel>
                       <select
                         {...form.register(`animauxList.${index}.type`)}
-                        className="bg-white px-3 border rounded-md w-full h-10 text-sm"
+                        className="bg-white px-3 border rounded-md w-full h-10 text-sm focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                       >
                         <option value="">Choisir...</option>
                         <option value="Chien">Chien</option>
@@ -251,8 +253,8 @@ export default function PetSittingForm() {
                         <option value="Autre">Autre</option>
                       </select>
                     </div>
-                    <div className="col-span-3 md:col-span-3">
-                      <FieldLabel className="mb-2 text-slate-500 text-xs uppercase">
+                    <div className="col-span-1 md:col-span-3">
+                      <FieldLabel className="mb-2 text-muted-foreground text-xs uppercase font-bold tracking-wide">
                         Nombre
                       </FieldLabel>
                       <Input
@@ -261,16 +263,19 @@ export default function PetSittingForm() {
                         className="bg-white"
                       />
                     </div>
-                    <div className="flex justify-center col-span-2 md:col-span-1">
+                    <div className="flex justify-end md:justify-center col-span-1 md:col-span-1">
                       <Button
                         type="button"
                         variant="ghost"
                         size="icon"
                         onClick={() => remove(index)}
                         disabled={fields.length === 1}
-                        className="text-destructive"
+                        className={cn(
+                          "text-muted-foreground transition-colors hover:text-foreground",
+                          fields.length === 1 && "invisible",
+                        )}
                       >
-                        <Trash2 className="w-4 h-4" />
+                        <Trash2 className="w-5 h-5" />
                       </Button>
                     </div>
                   </div>
@@ -285,23 +290,25 @@ export default function PetSittingForm() {
                 </div>
               ))}
               {form.formState.errors.animauxList && (
-                <p className="text-destructive text-sm italic">
+                <p className="text-destructive text-sm italic font-medium">
                   Ajoutez au moins un animal.
                 </p>
               )}
             </div>
 
-            <div className="space-y-4 bg-slate-50 p-4 md:p-6 border rounded-xl">
-              <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
+            <div className="space-y-6 pt-6 border-t">
+              <div className="gap-6 grid grid-cols-1 md:grid-cols-2">
                 <Controller
                   name="serviceType"
                   control={form.control}
                   render={({ field }) => (
                     <Field>
-                      <FieldLabel>Durée visite</FieldLabel>
+                      <FieldLabel className="font-bold">
+                        Durée visite
+                      </FieldLabel>
                       <select
                         {...field}
-                        className="bg-white px-3 border rounded-md w-full h-10 text-sm"
+                        className="bg-white px-3 border rounded-md w-full h-11 text-sm focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                       >
                         <option value="30min">Visite 30 min</option>
                         <option value="45min">Visite 45 min</option>
@@ -315,10 +322,12 @@ export default function PetSittingForm() {
                   control={form.control}
                   render={({ field }) => (
                     <Field>
-                      <FieldLabel>Passages / jour</FieldLabel>
+                      <FieldLabel className="font-bold">
+                        Passages / jour
+                      </FieldLabel>
                       <select
                         {...field}
-                        className="bg-white px-3 border rounded-md w-full h-10 text-sm"
+                        className="bg-white px-3 border rounded-md w-full h-11 text-sm focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                       >
                         <option value="1">1 fois par jour</option>
                         <option value="2">2 fois par jour</option>
@@ -329,8 +338,8 @@ export default function PetSittingForm() {
                 />
               </div>
 
-              <div className="flex md:flex-row flex-col gap-4 pt-2">
-                <label className="flex items-center gap-3 text-sm cursor-pointer select-none">
+              <div className="flex flex-col sm:flex-row gap-6 pt-2">
+                <label className="flex items-center gap-3 p-3 border rounded-lg hover:border-primary/50 cursor-pointer transition-all hover:bg-primary/5">
                   <Controller
                     name="transportToilettage"
                     control={form.control}
@@ -342,9 +351,9 @@ export default function PetSittingForm() {
                       />
                     )}
                   />
-                  <span>Transport Toilettage</span>
+                  <span className="font-medium">Transport Toilettage</span>
                 </label>
-                <label className="flex items-center gap-3 text-sm cursor-pointer select-none">
+                <label className="flex items-center gap-3 p-3 border rounded-lg hover:border-primary/50 cursor-pointer transition-all hover:bg-primary/5">
                   <Controller
                     name="transportVeto"
                     control={form.control}
@@ -356,7 +365,7 @@ export default function PetSittingForm() {
                       />
                     )}
                   />
-                  <span>Transport Vétérinaire</span>
+                  <span className="font-medium">Transport Vétérinaire</span>
                 </label>
               </div>
             </div>

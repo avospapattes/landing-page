@@ -62,12 +62,12 @@ const features = [
 export function BenefitsSection() {
   return (
     <section className="w-full py-20 px-4 md:px-8 bg-background text-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl md:text-5xl text-stroke-title">
+      <div className="container mx-auto max-w-7xl">
+        <div className="text-center mb-12 md:mb-16 space-y-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl text-stroke-title font-extrabold px-2">
             Pourquoi choisir une Pet Sitter pro ?
           </h2>
-          <p className="text-xl text-foreground max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-foreground max-w-2xl mx-auto px-4">
             Faire appel à une professionnelle, c&apos;est l&apos;assurance de
             partir l&apos;esprit tranquille en sachant votre animal entre de
             bonnes mains.

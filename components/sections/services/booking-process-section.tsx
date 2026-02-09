@@ -64,7 +64,7 @@ export function BookingProcessSection() {
   return (
     <section className="w-full py-16 px-4 md:px-8 bg-background" id="booking">
       <div className="container mx-auto max-w-6xl">
-        <h2 className="text-4xl md:text-5xl text-stroke-title text-center mb-12">
+        <h2 className="text-3xl md:text-5xl text-stroke-title text-center mb-8 md:mb-12">
           Déroulement d’une réservation
         </h2>
 

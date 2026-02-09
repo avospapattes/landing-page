@@ -3,13 +3,13 @@ import Image from "next/image";
 export function StorySection() {
   return (
     <section className="w-full py-16 px-4 md:px-8 bg-white text-foreground">
-      <div className="max-w-5xl mx-auto">
-        <h1 className="text-7xl text-center mb-12 text-stroke-title">
+      <div className="container mx-auto max-w-7xl">
+        <h1 className="text-4xl md:text-5xl lg:text-7xl text-center mb-8 md:mb-12 text-stroke-title font-extrabold">
           Mon histoire
         </h1>
-        <div className="flex flex-col md:flex-row gap-12 items-center">
-          <div className="flex-1 space-y-6 text-lg leading-relaxed">
-            <h2 className="text-3xl font-bold mb-8 text-stroke-title">
+        <div className="flex flex-col-reverse md:flex-row gap-8 md:gap-12 items-center">
+          <div className="flex-1 space-y-4 md:space-y-6 text-base md:text-lg leading-relaxed text-center md:text-left">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-8 text-stroke-title">
               Bonjour,
             </h2>
             <p>
@@ -28,13 +28,13 @@ export function StorySection() {
               évidence dans notre foyer.
             </p>
           </div>
-          <div className="shrink-0">
+          <div className="shrink-0 w-full md:w-auto flex justify-center">
             <Image
               src="/nathalie&alfy.jpg"
               alt="Nathalie avec un chien"
               width={350}
               height={350}
-              className="neo-shadow"
+              className="neo-shadow w-[250px] md:w-[350px] h-auto object-cover"
             />
           </div>
         </div>

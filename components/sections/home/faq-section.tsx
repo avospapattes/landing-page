@@ -179,11 +179,11 @@ export function FaqSection() {
   return (
     <section className="w-full py-16 px-4 md:px-8 bg-foreground" id="faq">
       <div className="container mx-auto max-w-6xl">
-        <h2 className="text-4xl md:text-5xl text-center mb-12 text-stroke-title">
+        <h2 className="text-3xl md:text-5xl text-center mb-8 md:mb-12 text-stroke-title font-extrabold">
           Questions Fréquentes
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-          <div className="md:col-span-2">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          <div className="lg:col-span-2">
             <Accordion
               type="single"
               collapsible
@@ -191,10 +191,10 @@ export function FaqSection() {
             >
               {FAQ_ITEMS.map((item, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-lg font-bold cursor-pointer text-left">
+                  <AccordionTrigger className="text-base md:text-lg font-bold cursor-pointer text-left">
                     {item.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-base text-muted-foreground leading-relaxed">
+                  <AccordionContent className="text-sm md:text-base text-muted-foreground leading-relaxed">
                     {item.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -202,7 +202,7 @@ export function FaqSection() {
             </Accordion>
           </div>
 
-          <div className="md:col-span-1 sticky top-24">
+          <div className="lg:col-span-1 mb-8 lg:mb-0">
             <Card className="bg-white neo-shadow border-4 border-white">
               <CardHeader className="text-center pb-2">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">

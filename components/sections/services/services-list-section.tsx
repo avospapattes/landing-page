@@ -84,7 +84,7 @@ export function ServicesListSection() {
                 }`}
               >
                 {/* Image Section */}
-                <div className="w-full md:w-1/2 relative h-64 md:h-auto min-h-75">
+                <div className="w-full md:w-1/2 relative h-[250px] md:h-auto min-h-[250px] md:min-h-[400px]">
                   <Image
                     src={service.image}
                     alt={service.title}
@@ -94,11 +94,11 @@ export function ServicesListSection() {
                 </div>
 
                 {/* Text Section */}
-                <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center space-y-6">
-                  <h2 className="text-3xl font-bold text-white">
+                <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-center space-y-4 md:space-y-6">
+                  <h2 className="text-2xl md:text-3xl font-bold text-white">
                     {service.title}
                   </h2>
-                  <p className="text-lg leading-relaxed text-white">
+                  <p className="text-base md:text-lg leading-relaxed text-white">
                     {service.description}
                   </p>
 
@@ -107,26 +107,26 @@ export function ServicesListSection() {
                     <DialogTrigger asChild>
                       <Button
                         variant="outline"
-                        className="w-fit mt-4 cursor-pointer"
+                        className="w-fit mt-2 md:mt-4 cursor-pointer"
                       >
                         Voir les détails
                       </Button>
                     </DialogTrigger>
-                    <DialogContent className="w-full sm:max-w-4xl mx-auto bg-white border border-gray-200 shadow-sm rounded-2xl p-8">
+                    <DialogContent className="w-[95%] sm:max-w-4xl mx-auto bg-white border border-gray-200 shadow-sm rounded-2xl p-6 md:p-8 max-h-[90vh] overflow-y-auto">
                       <DialogHeader>
-                        <DialogTitle className="text-2xl font-bold text-primary mb-4">
+                        <DialogTitle className="text-xl md:text-2xl font-bold text-primary mb-4">
                           {service.title}
                         </DialogTitle>
                       </DialogHeader>
                       <div className="mt-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                           {service.points.map((point, idx) => {
                             const parts = point.split(" : ");
                             const hasKey = parts.length > 1;
                             return (
                               <div key={idx} className="flex items-start gap-3">
                                 <PawPrint className="w-5 h-5 text-primary shrink-0 mt-1" />
-                                <div className="text-muted-foreground text-lg">
+                                <div className="text-muted-foreground text-sm md:text-lg">
                                   {hasKey ? (
                                     <>
                                       <span className="font-bold text-foreground">
