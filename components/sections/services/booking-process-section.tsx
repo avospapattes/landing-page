@@ -33,8 +33,9 @@ const STEPS = [
       <div className="space-y-4">
         <p className="text-muted-foreground leading-relaxed text-sm">
           Je vous contacte si j&apos;ai besoin de plus d&apos;informations pour
-          vous établir un devis personnalisé et gratuit. Puis vous recevrez par
-          mail une proposition tarifaire détaillée répondant à votre demande.
+          vous établir un devis personnalisé et gratuit. <br />
+          Puis vous recevrez par mail une proposition tarifaire détaillée
+          répondant à votre demande.
         </p>
       </div>
     ),
@@ -82,7 +83,7 @@ export function BookingProcessSection() {
                   {step.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 flex-1 flex flex-col">
+              <CardContent className="text-justify space-y-4 flex-1 flex flex-col">
                 {step.content}
               </CardContent>
             </Card>

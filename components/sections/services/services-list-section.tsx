@@ -84,7 +84,7 @@ export function ServicesListSection() {
                 }`}
               >
                 {/* Image Section */}
-                <div className="w-full md:w-1/2 relative h-[250px] md:h-auto min-h-[250px] md:min-h-[400px]">
+                <div className="w-full md:w-1/2 relative h-62.5 md:h-auto min-h-62.5 md:min-h-100">
                   <Image
                     src={service.image}
                     alt={service.title}
@@ -98,7 +98,7 @@ export function ServicesListSection() {
                   <h2 className="text-2xl md:text-3xl font-bold text-white">
                     {service.title}
                   </h2>
-                  <p className="text-base md:text-lg leading-relaxed text-white">
+                  <p className="text-base text-justify md:text-lg leading-relaxed text-white">
                     {service.description}
                   </p>
 
@@ -131,7 +131,7 @@ export function ServicesListSection() {
                                     <>
                                       <span className="font-bold text-foreground">
                                         {parts[0]}
-                                      </span>{" "}
+                                      </span>
                                       : {parts.slice(1).join(" : ")}
                                     </>
                                   ) : (

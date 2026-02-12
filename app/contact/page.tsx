@@ -185,7 +185,6 @@ export default function PetSittingForm() {
                     <FieldLabel>Nom</FieldLabel>
                     <Input
                       {...field}
-                      placeholder="Doe"
                       className={fieldState.error ? "border-destructive" : ""}
                     />
                     {fieldState.error && (
@@ -204,7 +203,6 @@ export default function PetSittingForm() {
                     <FieldLabel>Prénom</FieldLabel>
                     <Input
                       {...field}
-                      placeholder="John"
                       className={fieldState.error ? "border-destructive" : ""}
                     />
                     {fieldState.error && (
@@ -377,11 +375,7 @@ export default function PetSittingForm() {
                 render={({ field, fieldState }) => (
                   <Field>
                     <FieldLabel>Email</FieldLabel>
-                    <Input
-                      {...field}
-                      type="email"
-                      placeholder="john@example.com"
-                    />
+                    <Input {...field} type="email" />
                     {fieldState.error && (
                       <FieldError
                         errors={[{ message: fieldState.error.message }]}
@@ -396,7 +390,7 @@ export default function PetSittingForm() {
                 render={({ field, fieldState }) => (
                   <Field>
                     <FieldLabel>Téléphone</FieldLabel>
-                    <Input {...field} placeholder="06 12 34 56 78" />
+                    <Input {...field} />
                     {fieldState.error && (
                       <FieldError
                         errors={[{ message: fieldState.error.message }]}
@@ -458,7 +452,6 @@ export default function PetSittingForm() {
                   <FieldLabel>Précisions (Facultatif)</FieldLabel>
                   <InputGroupTextarea
                     {...field}
-                    placeholder="Besoins spécifiques, habitudes..."
                     className="border rounded-md min-h-30 text-sm"
                   />
                 </Field>

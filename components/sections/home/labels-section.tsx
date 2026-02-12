@@ -10,7 +10,7 @@ export function LabelsSection() {
             alt="Label Pet Sitter Professionnelle"
             width={300}
             height={300}
-            className="border-2 border-foreground w-[200px] md:w-[300px] h-auto"
+            className="border-2 border-foreground w-50 md:w-75 h-auto"
           />
         </div>
 
@@ -18,7 +18,7 @@ export function LabelsSection() {
           <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-stroke-title">
             Cependant,
           </h2>
-          <p className="text-lg md:text-xl mb-6 md:mb-8 leading-relaxed">
+          <p className="text-lg text-justify md:text-xl mb-6 md:mb-8 leading-relaxed">
             Parce que <strong>l&apos;amour des animaux</strong> ne suffit pas
             pour en garantir la <strong>sécurité</strong>, j’ai tenu à
             professionnaliser ma passion. <br />

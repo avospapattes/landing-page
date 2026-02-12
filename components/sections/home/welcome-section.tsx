@@ -16,7 +16,7 @@ export function WelcomeSection() {
           </h1>
           <p className="mb-8 max-w-2xl text-lg md:text-xl lg:text-2xl leading-relaxed">
             <strong>déclarée</strong> et <strong>assurée</strong>, qui garde vos
-            animaux à votre <strong>domicile</strong> ! <br />
+            animaux à votre <strong>domicile</strong>. <br />
             Confiez-moi vos précieux compagnons en toute{" "}
             <strong>sécurité</strong> ! <br />
             J&apos;assure leur quotidien avec bienveillance, tendresse et
@@ -47,29 +47,29 @@ export function WelcomeSection() {
         </div>
 
         {/* Image Gallery */}
-        <div className="relative w-full xl:w-1/2 flex justify-center xl:justify-end min-h-[300px] md:min-h-[400px] xl:h-auto mt-8 xl:mt-0">
+        <div className="relative w-full xl:w-1/2 flex justify-center xl:justify-end min-h-75 md:min-h-100 xl:h-auto mt-8 xl:mt-0">
           {/* Container for images to control relative positioning context */}
-          <div className="relative w-full max-w-[500px] xl:max-w-none ml-auto mr-auto xl:mr-0 aspect-square sm:aspect-video xl:aspect-auto">
+          <div className="relative w-full max-w-125 xl:max-w-none ml-auto mr-auto xl:mr-0 aspect-square sm:aspect-video xl:aspect-auto">
             <Image
               src="/alfy.jpeg"
               alt="Alfy"
               width={250}
               height={250}
-              className="absolute top-0 left-0 w-1/2 sm:w-[250px] z-10 neo-shadow object-cover object-top aspect-square"
+              className="absolute top-0 left-0 w-1/2 sm:w-62.5 z-10 neo-shadow object-cover object-top aspect-square"
             />
             <Image
               src="/hemy&co.jpg"
               alt="Hemy & Co"
               width={300}
               height={300}
-              className="absolute top-[20%] right-[10%] sm:top-[40px] sm:right-[20px] xl:top-[60px] xl:right-[100px] w-[55%] sm:w-[300px] z-20 neo-shadow object-cover object-top aspect-square"
+              className="absolute top-[20%] right-[10%] sm:top-10 sm:right-5 xl:top-15 xl:right-25 w-[55%] sm:w-75 z-20 neo-shadow object-cover object-top aspect-square"
             />
             <Image
               src="/wifille.jpeg"
               alt="Wifille"
               width={250}
               height={250}
-              className="absolute bottom-0 left-[10%] sm:bottom-[-20px] sm:left-[100px] xl:bottom-[-40px] xl:left-[150px] w-1/2 sm:w-[250px] z-30 neo-shadow object-cover object-top aspect-square"
+              className="absolute bottom-0 left-[10%] sm:-bottom-5 sm:left-25 xl:-bottom-10 xl:left-37.5 w-1/2 sm:w-62.5 z-30 neo-shadow object-cover object-top aspect-square"
             />
           </div>
         </div>

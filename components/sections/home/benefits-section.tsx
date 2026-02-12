@@ -18,7 +18,7 @@ const features = [
   {
     image: "/gouv.svg",
     title: "Entreprise Individuelle Déclarée",
-    subtitle: "N° 99922677200013",
+    subtitle: "N° Siret 99922677200013",
     description:
       "Cette immatriculation officielle confirme l'existence légale de mon activité auprès des autorités françaises et assure la transparence totale de mes prestations et de ma facturation.",
   },
@@ -48,12 +48,12 @@ const features = [
     title: "Initiation au secourisme canin",
     subtitle: "JLC 67 2026",
     description:
-      "Une compétence essentielle qui me permet de maîtriser les gestes d’urgence et les réflexes de survie. En cas d'imprévu, je suis capable d'intervenir avec calme et efficacité pour assurer la sécurité de votre chien.",
+      "Une compétence essentielle qui me permet de maîtriser les gestes d’urgence et les réflexes de survie. En cas d'imprévu, je suis capable d'intervenir avec calme et efficacité pour assurer la sécurité de votre compagnon.",
   },
   {
     image: "/acaced.svg",
     title: "Membre de l’Association France Petsitters",
-    subtitle: "XXXXXXXXXXXXXXXXXXXX",
+    subtitle: "N° 01202667-3B529EE0",
     description:
       "L'adhésion à ce réseau national de référence témoigne de mon engagement envers une charte de qualité stricte. C'est pour vous l'assurance d'un service sérieux, passionné et ancré dans une communauté de professionnels du bien-être animal.",
   },
@@ -96,7 +96,7 @@ export function BenefitsSection() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground leading-relaxed text-sm">
+                <p className="text-muted-foreground text-justify leading-relaxed text-sm">
                   {feature.description}
                 </p>
               </CardContent>

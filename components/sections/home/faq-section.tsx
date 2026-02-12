@@ -90,8 +90,8 @@ const FAQ_ITEMS = [
         <p className="mt-2">
           La signature d’un devis, du contrat de service et de la remise des
           clés se fera de façon électronique : un mail vous invitera à signer
-          les documents, via un code unique transmis par SMS). Pas de papier,
-          tout est dématérialisé (sauf refus de votre part).
+          les documents. Pas de papier, tout est dématérialisé (sauf refus de
+          votre part).
         </p>
       </>
     ),
@@ -194,7 +194,7 @@ export function FaqSection() {
                   <AccordionTrigger className="text-base md:text-lg font-bold cursor-pointer text-left">
                     {item.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                  <AccordionContent className="text-sm text-justify md:text-base text-muted-foreground leading-relaxed">
                     {item.answer}
                   </AccordionContent>
                 </AccordionItem>
