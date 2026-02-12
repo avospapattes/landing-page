@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import Link from "next/link";
 import { Info } from "lucide-react";
@@ -5,7 +6,12 @@ import { Button } from "@/components/ui/button";
 
 export function WelcomeSection() {
   return (
-    <section className="flex flex-col bg-background text-foreground py-10 xl:py-20 overflow-hidden">
+    <section className="flex flex-col bg-background text-foreground py-10 xl:py-20 overflow-hidden relative">
+      <img
+        src="/grid.png"
+        alt="Background"
+        className="absolute inset-0 w-8/10 left-1/8 h-full object-cover z-0"
+      />
       <div className="container mx-auto flex flex-col xl:flex-row items-center xl:items-start gap-12 xl:gap-8 px-4">
         {/* Text Content */}
         <div className="flex flex-col justify-center items-center xl:items-start text-center xl:text-left w-full xl:w-1/2 z-40">
