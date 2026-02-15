@@ -23,7 +23,7 @@ export function ZoneSection() {
         <div className="space-y-4 max-w-3xl text-center px-4">
           <p className="font-light text-lg md:text-2xl">
             J’interviens sans frais supplémentaires dans la zone indiquée en
-            vert d&apos;Oberhausbergen.
+            vert autour d&apos;Oberhausbergen.
           </p>
           <p className="text-neutral-400 text-xs md:text-sm">
             Au-delà, un tarif de <strong>0,50€ / km</strong> supplémentaire est
