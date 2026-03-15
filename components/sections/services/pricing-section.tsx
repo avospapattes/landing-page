@@ -165,7 +165,7 @@ export function PricingSection() {
               <p className="font-medium text-sm md:text-base">
                 À partir du 3ème animal :
                 <span className="block text-lg font-bold text-primary mt-1">
-                  + 2€ / visite
+                  + 3€ / visite
                 </span>
               </p>
             </div>
