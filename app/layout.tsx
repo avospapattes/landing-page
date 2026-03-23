@@ -17,6 +17,25 @@ export const metadata: Metadata = {
   icons: {
     icon: "/icon.svg",
   },
+  metadataBase: new URL("https://avospapattes.fr"),
+  openGraph: {
+    title: "À vos papattes",
+    description: "À vos papattes by Nath",
+    images: [
+      {
+        url: "/icon.png",
+        width: 1200,
+        height: 630,
+        alt: "À vos papattes",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "À vos papattes",
+    description: "À vos papattes by Nath",
+    images: ["/icon.png"],
+  },
 };
 
 export default function RootLayout({
