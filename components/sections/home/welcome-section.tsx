@@ -3,8 +3,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import { PawPrint } from "lucide-react";
 export function WelcomeSection() {
+
+  const PAW_PATH = [
+    { top: "65%", left: "5%", rotate: "-15deg", scale: 1 },
+    { top: "87%", left: "15%", rotate: "10deg", scale: 0.9 },
+    { top: "64%", left: "25%", rotate: "-5deg", scale: 1.1 },
+    { top: "68%", left: "35%", rotate: "20deg", scale: 0.8 },
+    { top: "85%", left: "45%", rotate: "0deg", scale: 1 },
+    { top: "87%", left: "55%", rotate: "-10deg", scale: 0.9 },
+    { top: "64%", left: "65%", rotate: "15deg", scale: 1.1 },
+    { top: "88%", left: "75%", rotate: "-20deg", scale: 0.8 },
+    { top: "85%", left: "85%", rotate: "5deg", scale: 1 },
+  ];
   return (
     <section className="flex flex-col bg-background text-foreground py-10 xl:py-20 overflow-hidden relative">
       <img
@@ -28,7 +40,7 @@ export function WelcomeSection() {
             J&apos;assure leur quotidien avec bienveillance, tendresse et
             professionnalisme.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto ">
             <Button
               asChild
               size="lg"
@@ -53,9 +65,9 @@ export function WelcomeSection() {
         </div>
 
         {/* Image Gallery */}
-        <div className="relative w-full xl:w-1/2 flex justify-center xl:justify-end min-h-75 md:min-h-100 xl:h-auto mt-8 xl:mt-0">
+        <div className="relative w-full xl:w-1/2 flex justify-center xl:justify-end min-h-75 md:min-h-100 xl:h-auto mt-8 xl:mt-0 ">
           {/* Container for images to control relative positioning context */}
-          <div className="relative w-full max-w-125 xl:max-w-none ml-auto mr-auto xl:mr-0 aspect-square sm:aspect-video xl:aspect-auto">
+          <div className="relative w-full max-w-125 xl:max-w-none ml-auto mr-auto xl:mr-0 aspect-square sm:aspect-video xl:aspect-auto mb-20 ">
             <Image
               src="/alfy.jpeg"
               alt="Alfy"
@@ -78,6 +90,52 @@ export function WelcomeSection() {
               className="absolute bottom-0 left-[10%] sm:-bottom-5 sm:left-25 xl:-bottom-10 xl:left-37.5 w-1/2 sm:w-62.5 z-30 neo-shadow object-cover object-top aspect-square"
             />
           </div>
+        </div>
+      </div>
+      <div className="relative h-30 mb-5 ">
+        <style>
+          {`
+    @keyframes pawAppear {
+      0% {
+        opacity: 0;
+        filter: blur(8px);
+        transform: scale(0.5) rotate(-20deg);
+        }
+        50% {
+          opacity: 0.5;
+          filter: blur(4px);
+          }
+          100% {
+            opacity: 1;
+            filter: blur(0px);
+            transform: scale(1) rotate(var(--rotation));
+            }
+            }
+            .animate-paw {
+              opacity: 0;
+              /* Using ease-in-out for a smoother clarity transition */
+              animation: pawAppear 0.6s ease-in-out forwards;
+              }
+              `}
+        </style>
+
+        <div className="absolute inset-0 z-10 pointer-events-none hidden md:block">
+          {PAW_PATH.map((step, i) => (
+            <PawPrint
+              key={i}
+              className="absolute animate-paw fill-primary"
+              style={
+                {
+                  top: step.top,
+                  left: step.left,
+                  width: `${step.scale * 48}px`,
+                  height: `${step.scale * 48}px`,
+                  animationDelay: `${i * 0.2}s`,
+                  "--rotation": step.rotate,
+                } as React.CSSProperties
+              }
+            />
+          ))}
         </div>
       </div>
     </section>
