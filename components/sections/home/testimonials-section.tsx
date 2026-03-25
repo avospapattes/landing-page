@@ -1,3 +1,4 @@
+"use client"
 import { TestimonialsCarousel } from "@/components/ui/TestimonialsCarousel";
 
 async function getReviews() {
