@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 export async function GET() {
     const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API;
     const PLACE_ID = process.env.NEXT_PUBLIC_GOOGLE_PLACE_ID;
-    const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=reviews&key=${API_KEY}`;
+    const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=reviews&language=fr&key=${API_KEY}`;
 
     try {
         const response = await fetch(url, { next: { revalidate: 86400 } });
