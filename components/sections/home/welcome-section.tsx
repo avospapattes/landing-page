@@ -65,34 +65,34 @@ export function WelcomeSection() {
         </div>
 
         {/* Image Gallery */}
-        <div className="relative w-full xl:w-1/2 flex justify-center xl:justify-center mt-4 xl:mt-0">
-          {/* Reduced max-width and min-height for a more compact cluster */}
-          <div className="relative w-full max-w-[320px] sm:max-w-[400px] min-h-[400px] sm:min-h-[500px]">
+        <div className="relative w-full xl:w-1/2 flex justify-center xl:justify-center mt-12 xl:mt-0">
+          {/* Expanded height and width to accommodate the larger, spaced diagonal */}
+          <div className="relative w-full max-w-[450px] min-h-[600px] md:min-h-[700px]">
             {/* Alfy - Top Left */}
             <Image
               src="/alfy.jpeg"
               alt="Alfy"
-              width={180}
-              height={180}
-              className="absolute top-0 left-0 w-[55%] z-10 neo-shadow object-cover aspect-square"
+              width={250}
+              height={250}
+              className="absolute top-0 left-0 w-[60%] z-10 neo-shadow object-cover aspect-square"
             />
 
-            {/* Hemy & Co - Center Right */}
+            {/* Hemy & Co - Center Middle (Increased Offset) */}
             <Image
               src="/hemy&co.jpg"
               alt="Hemy & Co"
-              width={220}
-              height={220}
-              className="absolute top-[20%] right-0 w-[60%] z-20 neo-shadow object-cover aspect-square"
+              width={280}
+              height={280}
+              className="absolute top-[25%] left-[15%] w-[60%] z-20 neo-shadow object-cover aspect-square border-4 border-background"
             />
 
-            {/* Wifille - Bottom Left */}
+            {/* Wifille - Bottom Right (Increased Offset) */}
             <Image
               src="/wifille.jpeg"
               alt="Wifille"
-              width={180}
-              height={180}
-              className="absolute bottom-0 left-[5%] w-[55%] z-30 neo-shadow object-cover aspect-square"
+              width={250}
+              height={250}
+              className="absolute top-[50%] left-[30%] w-[60%] z-30 neo-shadow object-cover aspect-square"
             />
           </div>
         </div>
