@@ -4,6 +4,8 @@ import Navbar from "@/components/ui/navbar";
 import Footer from "@/components/ui/footer";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { VacationPopup } from "@/components/ui/vacation-popup";
+import { VacationBanner } from "@/components/ui/vacation-banner";
 
 const openSans = Open_Sans({
   subsets: ["latin"],
@@ -50,10 +52,12 @@ export default function RootLayout({
       >
         <header>
           <Navbar />
+          <VacationBanner />
         </header>
         <div className="flex-1">{children}</div>
         <Footer />
         <Toaster />
+        <VacationPopup />
       </body>
     </html>
   );
