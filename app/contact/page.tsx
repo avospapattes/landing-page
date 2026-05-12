@@ -154,7 +154,7 @@ export default function PetSittingForm() {
   return (
     <div className="relative overflow-hidden flex flex-col justify-center items-center bg-foreground p-4 md:p-8 w-full">
       <PawPrint className="absolute top-10 left-10 w-32 h-32 text-orange-500 -rotate-12 pointer-events-none" />
-      <Bone className="absolute bottom-20 right-[-20px] w-40 h-40 text-primary/10 rotate-45 pointer-events-none" />
+      <Bone className="absolute bottom-20 -right-5 w-40 h-40 text-primary/10 rotate-45 pointer-events-none" />
       <PawPrint className="absolute top-1/2 right-10 w-16 h-16 text-orange-500 rotate-12 pointer-events-none hidden lg:block" />
       <div className="mb-8 md:mb-12 max-w-4xl text-center">
         <h1 className="mb-4 px-2 font-extrabold text-white text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tight text-stroke-title">
@@ -262,7 +262,9 @@ export default function PetSittingForm() {
                       </FieldLabel>
                       <Input
                         type="number"
-                        {...form.register(`animauxList.${index}.quantite`)}
+                        {...form.register(`animauxList.${index}.quantite`, {
+                          valueAsNumber: true,
+                        })}
                         className="bg-white"
                       />
                     </div>
@@ -380,10 +382,7 @@ export default function PetSittingForm() {
                 render={({ field, fieldState }) => (
                   <Field>
                     <FieldLabel>Email</FieldLabel>
-                    <Input
-                      {...field}
-                      type="email"
-                    />
+                    <Input {...field} type="email" />
                     {fieldState.error && (
                       <FieldError
                         errors={[{ message: fieldState.error.message }]}
