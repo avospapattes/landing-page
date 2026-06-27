@@ -10,7 +10,17 @@ export const contactFormSchema = z
       .min(1, "L'email est requis"),
     telephone: z
       .string()
-      .min(10, "Le numéro doit contenir au moins 10 chiffres"),
+      .regex(
+        /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/,
+        "Numéro de téléphone français invalide (ex: 0612345678, +33 6...)"
+      ),
+    ville: z.string().min(1, "La ville est requise"),
+    codePostal: z
+      .string()
+      .regex(/^[0-9]{5}$/, "Le code postal doit contenir exactement 5 chiffres"),
+    adresse: z.string().optional(),
+    numeroRue: z.string().optional(),
+    nomRue: z.string().optional(),
     animauxList: z
       .array(
         z.object({
@@ -28,9 +38,18 @@ export const contactFormSchema = z
     dateFin: z.string().min(1, "Date de fin requise"),
     message: z.string().optional(),
   })
-  .refine((data) => new Date(data.dateFin) >= new Date(data.dateDebut), {
-    message: "La date de fin doit être égale ou après la date de début",
-    path: ["dateFin"],
-  });
+  .refine(
+    (data) => {
+      if (!data.dateDebut || !data.dateFin) return true;
+      const d1 = new Date(data.dateDebut);
+      const d2 = new Date(data.dateFin);
+      if (isNaN(d1.getTime()) || isNaN(d2.getTime())) return true;
+      return d2 >= d1;
+    },
+    {
+      message: "La date de fin doit être égale ou après la date de début",
+      path: ["dateFin"],
+    },
+  );
 
 export type ContactFormValues = z.infer<typeof contactFormSchema>;

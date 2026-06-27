@@ -48,6 +48,11 @@ This file is loaded automatically by agentic platforms when working within the *
 - **Constraint**: Tailwind v4 is configured inline inside `@theme inline` block in [globals.css](file:///c:/src/projects/landing-page/web/app/globals.css).
 - **Rule**: Do not create or reference a `tailwind.config.js` file. Modify or extend theme settings directly within `@theme inline` in `globals.css`.
 
+### 3. Sanity Schema & TypeGen
+
+- **Constraint**: The Next.js application relies on type safety definitions generated from the Sanity Studio schema.
+- **Rule**: When modifying or adding any Sanity schema types (e.g. `galleryItem`), always register them in [schemaTypes/index.ts](file:///c:/src/projects/landing-page/studio/schemaTypes/index.ts) and run the `typegen` script (`npm run typegen` in the `studio/` workspace) to regenerate the TypeScript definitions in [sanity.types.ts](file:///c:/src/projects/landing-page/web/sanity.types.ts).
+
 ---
 
 ## 📄 Reference Guides

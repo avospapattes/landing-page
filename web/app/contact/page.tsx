@@ -1,39 +1,45 @@
 "use client";
-import {
-  Controller,
-  useForm,
-  SubmitHandler,
-  useWatch,
-  useFieldArray,
-} from "react-hook-form";
-import { cn } from "@/lib/utils";
+
+import { useState } from "react";
+import { FormProvider, useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
+import { ArrowRight, ArrowLeft, Bone, PawPrint } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Field, FieldLabel, FieldError } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { InputGroupTextarea } from "@/components/ui/input-group";
 import { Separator } from "@/components/ui/separator";
-import { ArrowRight, Bone, PawPrint, Plus, Trash2 } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
+import { cn } from "@/lib/utils";
+
 import {
   contactFormSchema,
   ContactFormValues,
 } from "@/lib/validations/contact";
 import { sendContactEmail } from "@/lib/services/email";
 
-export default function PetSittingForm() {
-  const now = new Date().toISOString().slice(0, 16);
+// Step components
+import { StepIndicator } from "@/components/sections/contact/step-indicator";
+import { ClientDetailsStep } from "@/components/sections/contact/client-details-step";
+import { AddressStep } from "@/components/sections/contact/address-step";
+import { DetailsStep } from "@/components/sections/contact/details-step";
 
-  const form = useForm<ContactFormValues>({
+export default function ContactPage() {
+  const [step, setStep] = useState(1);
+  const [direction, setDirection] = useState<"forward" | "backward">("forward");
+
+  const methods = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
+    mode: "onTouched",
     defaultValues: {
       nom: "",
       prenom: "",
       email: "",
       telephone: "",
+      ville: "",
+      codePostal: "",
+      adresse: "",
+      numeroRue: "",
+      nomRue: "",
       animauxList: [{ type: "", quantite: 1, autrePrecisez: "" }],
       serviceType: "30min",
       frequence: "1",
@@ -45,356 +51,138 @@ export default function PetSittingForm() {
     },
   });
 
-  const { fields, append, remove } = useFieldArray({
-    control: form.control,
-    name: "animauxList",
-  });
-  const dateDebut = useWatch({ control: form.control, name: "dateDebut" });
-  const animauxList = useWatch({ control: form.control, name: "animauxList" });
+  const nextStep = async () => {
+    let fieldsToValidate: Array<keyof ContactFormValues> = [];
+
+    if (step === 1) {
+      fieldsToValidate = ["nom", "prenom", "email", "telephone"];
+    } else if (step === 2) {
+      fieldsToValidate = [
+        "ville",
+        "codePostal",
+        "adresse",
+        "numeroRue",
+        "nomRue",
+      ];
+    }
+
+    const isStepValid = await methods.trigger(fieldsToValidate);
+    if (isStepValid) {
+      if (step === 2) {
+        methods.clearErrors(["dateDebut", "dateFin"]);
+      }
+      setDirection("forward");
+      setStep((prev) => prev + 1);
+    }
+  };
+
+  const prevStep = () => {
+    setDirection("backward");
+    setStep((prev) => prev - 1);
+  };
 
   const onSubmit: SubmitHandler<ContactFormValues> = async (data) => {
     const sendEmailPromise = sendContactEmail(data);
 
     toast.promise(sendEmailPromise, {
-      loading: "Envoi de votre demande...",
+      loading: "Envoi de votre demande de garde...",
       success: () => {
-        form.reset();
-        return "Demande envoyée ! Nathalie vous répondra bientôt.";
+        methods.reset();
+        setDirection("backward");
+        setStep(1);
+        return "Votre demande a été transmise avec succès ! Nathalie vous répondra sous peu.";
       },
-      error: () => "Une erreur est survenue lors de l'envoi.",
+      error: "Une erreur est survenue lors de la transmission de l'email.",
     });
   };
 
   return (
-    <div className="relative overflow-hidden flex flex-col justify-center items-center bg-foreground p-4 md:p-8 w-full">
-      <PawPrint className="absolute top-10 left-10 w-32 h-32 text-orange-500 -rotate-12 pointer-events-none" />
-      <Bone className="absolute bottom-20 -right-5 w-40 h-40 text-primary/10 rotate-45 pointer-events-none" />
-      <PawPrint className="absolute top-1/2 right-10 w-16 h-16 text-orange-500 rotate-12 pointer-events-none hidden lg:block" />
-      <div className="mb-8 md:mb-12 max-w-4xl text-center">
-        <h1 className="mb-4 px-2 font-extrabold text-white text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tight text-stroke-title">
-          Contactez-moi
-        </h1>
-        <p className="px-4 text-white/80 text-base md:text-xl">
-          Complétez le formulaire pour une réponse rapide
-        </p>
-      </div>
+    <FormProvider {...methods}>
+      <div className="relative min-h-[calc(100vh-5rem)] overflow-hidden flex flex-col justify-center items-center bg-foreground py-16 px-4 md:px-8 w-full">
+        {/* Playful Floating shapes */}
+        <PawPrint className="absolute top-10 left-10 w-24 h-24 md:w-32 md:h-32 text-orange-500/20 -rotate-12 pointer-events-none" />
+        <Bone className="absolute bottom-20 -right-5 w-32 h-32 md:w-40 md:h-40 text-primary/10 rotate-45 pointer-events-none" />
 
-      <Card className="relative overflow-hidden bg-white neo-shadow shadow-xl mx-auto border-0 rounded-xl w-full max-w-2xl">
-        <PawPrint className="absolute top-2 right-2 w-12 h-12 text-primary z-20 drop-shadow-md rotate-12" />
-        <Bone className="absolute bottom-4 left-2 w-10 h-10 text-primary z-20 -rotate-12" />
-        <CardHeader className="px-5 md:px-8">
-          <CardTitle className="font-bold text-xl md:text-2xl md:text-left text-center">
-            Demande de garde
-          </CardTitle>
-        </CardHeader>
-        <div className="px-5 md:px-8">
-          <Separator />
+        <div className="mb-4 max-w-4xl text-center z-10">
+          <h1 className="mb-3 px-2 font-extrabold text-white text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tight text-stroke-title">
+            Demande de réservation
+          </h1>
+          <p className="text-white/70 max-w-md mx-auto text-sm md:text-base px-4">
+            Remplissez ce formulaire en quelques étapes pour planifier la garde
+            de vos fidèles compagnons.
+          </p>
         </div>
-        <CardContent className="p-5 md:p-8 pt-0 md:pt-0">
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-5 md:space-y-6"
-          >
-            <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
-              <Controller
-                name="nom"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field>
-                    <FieldLabel>Nom</FieldLabel>
-                    <Input
-                      {...field}
-                      className={fieldState.error ? "border-destructive" : ""}
-                    />
-                    {fieldState.error && (
-                      <FieldError
-                        errors={[{ message: fieldState.error.message }]}
-                      />
-                    )}
-                  </Field>
-                )}
-              />
-              <Controller
-                name="prenom"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field>
-                    <FieldLabel>Prénom</FieldLabel>
-                    <Input
-                      {...field}
-                      className={fieldState.error ? "border-destructive" : ""}
-                    />
-                    {fieldState.error && (
-                      <FieldError
-                        errors={[{ message: fieldState.error.message }]}
-                      />
-                    )}
-                  </Field>
-                )}
-              />
-            </div>
 
-            <div className="space-y-4 py-6 border-t font-medium">
-              <div className="flex justify-between items-center">
-                <FieldLabel className="font-bold text-xl">
-                  Vos animaux
-                </FieldLabel>
-                <Button
-                  type="button"
-                  onClick={() =>
-                    append({ type: "", quantite: 1, autrePrecisez: "" })
-                  }
-                  className="h-8 bg-primary text-white hover:bg-primary/90"
-                >
-                  <Plus className="mr-1 w-4 h-4" /> Ajouter
-                </Button>
-              </div>
+        {/* Stepper progress component */}
+        <StepIndicator currentStep={step} />
 
-              {fields.map((field, index) => (
-                <div
-                  key={field.id}
-                  className="relative flex flex-col gap-3 p-4 border border-muted-foreground rounded-xl transition-colors"
-                >
-                  <div className="items-end gap-3 grid grid-cols-1 md:grid-cols-12">
-                    <div className="col-span-1 md:col-span-8">
-                      <FieldLabel className="mb-2 text-muted-foreground text-xs uppercase font-bold tracking-wide">
-                        Espèce
-                      </FieldLabel>
-                      <select
-                        {...form.register(`animauxList.${index}.type`)}
-                        className="bg-white px-3 border rounded-md w-full h-10 text-sm focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                      >
-                        <option value="">Choisir...</option>
-                        <option value="Chien">Chien</option>
-                        <option value="Chat">Chat</option>
-                        <option value="Autre">Autre</option>
-                      </select>
-                    </div>
-                    <div className="col-span-1 md:col-span-3">
-                      <FieldLabel className="mb-2 text-muted-foreground text-xs uppercase font-bold tracking-wide">
-                        Nombre
-                      </FieldLabel>
-                      <Input
-                        type="number"
-                        {...form.register(`animauxList.${index}.quantite`, {
-                          valueAsNumber: true,
-                        })}
-                        className="bg-white"
-                      />
-                    </div>
-                    <div className="flex justify-end md:justify-center col-span-1 md:col-span-1">
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => remove(index)}
-                        disabled={fields.length === 1}
-                        className={cn(
-                          "text-muted-foreground transition-colors hover:text-foreground",
-                          fields.length === 1 && "invisible",
-                        )}
-                      >
-                        <Trash2 className="w-5 h-5" />
-                      </Button>
-                    </div>
-                  </div>
+        <Card className="relative overflow-hidden bg-white neo-shadow shadow-xl mx-auto border-4 border-primary rounded-2xl w-full max-w-2xl z-10 transition-all duration-300">
+          <CardHeader className="px-6 md:px-10 pt-8 pb-2">
+            <CardTitle className="font-extrabold text-2xl md:text-3xl text-primary text-center md:text-left">
+              {step === 1 && "Vos informations"}
+              {step === 2 && "Adresse d'intervention"}
+              {step === 3 && "Détails de la prestation"}
+            </CardTitle>
+          </CardHeader>
 
-                  {animauxList[index]?.type === "Autre" && (
-                    <Input
-                      {...form.register(`animauxList.${index}.autrePrecisez`)}
-                      placeholder="Précisez (Lapin, furet...)"
-                      className="bg-white"
-                    />
-                  )}
-                </div>
-              ))}
-              {form.formState.errors.animauxList && (
-                <p className="text-destructive text-sm italic font-medium">
-                  Ajoutez au moins un animal.
-                </p>
-              )}
-            </div>
-
-            <div className="space-y-6 pt-6 border-t">
-              <div className="gap-6 grid grid-cols-1 md:grid-cols-2">
-                <Controller
-                  name="serviceType"
-                  control={form.control}
-                  render={({ field }) => (
-                    <Field>
-                      <FieldLabel className="font-bold">
-                        Durée visite
-                      </FieldLabel>
-                      <select
-                        {...field}
-                        className="bg-white px-3 border rounded-md w-full h-11 text-sm focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                      >
-                        <option value="30min">Visite 30 min</option>
-                        <option value="45min">Visite 45 min</option>
-                        <option value="1h">Visite 1 heure</option>
-                      </select>
-                    </Field>
-                  )}
-                />
-                <Controller
-                  name="frequence"
-                  control={form.control}
-                  render={({ field }) => (
-                    <Field>
-                      <FieldLabel className="font-bold">
-                        Passages / jour
-                      </FieldLabel>
-                      <select
-                        {...field}
-                        className="bg-white px-3 border rounded-md w-full h-11 text-sm focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                      >
-                        <option value="1">1 fois par jour</option>
-                        <option value="2">2 fois par jour</option>
-                        <option value="3">3 fois par jour</option>
-                      </select>
-                    </Field>
-                  )}
-                />
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-6 pt-2">
-                <label className="flex items-center gap-3 p-3 border rounded-lg hover:border-primary/50 cursor-pointer transition-all hover:bg-primary/5">
-                  <Controller
-                    name="transportToilettage"
-                    control={form.control}
-                    render={({ field }) => (
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                        className="w-5 h-5"
-                      />
-                    )}
-                  />
-                  <span className="font-medium">Transport Toilettage</span>
-                </label>
-                <label className="flex items-center gap-3 p-3 border rounded-lg hover:border-primary/50 cursor-pointer transition-all hover:bg-primary/5">
-                  <Controller
-                    name="transportVeto"
-                    control={form.control}
-                    render={({ field }) => (
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                        className="w-5 h-5"
-                      />
-                    )}
-                  />
-                  <span className="font-medium">Transport Vétérinaire</span>
-                </label>
-              </div>
-            </div>
-
-            <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
-              <Controller
-                name="email"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field>
-                    <FieldLabel>Email</FieldLabel>
-                    <Input {...field} type="email" />
-                    {fieldState.error && (
-                      <FieldError
-                        errors={[{ message: fieldState.error.message }]}
-                      />
-                    )}
-                  </Field>
-                )}
-              />
-              <Controller
-                name="telephone"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field>
-                    <FieldLabel>Téléphone</FieldLabel>
-                    <Input {...field} />
-                    {fieldState.error && (
-                      <FieldError
-                        errors={[{ message: fieldState.error.message }]}
-                      />
-                    )}
-                  </Field>
-                )}
-              />
-            </div>
-
-            <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
-              <Controller
-                name="dateDebut"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field>
-                    <FieldLabel>Du (début)</FieldLabel>
-                    <Input
-                      {...field}
-                      type="date"
-                      min={now}
-                      className="w-full text-sm"
-                    />
-                    {fieldState.error && (
-                      <FieldError
-                        errors={[{ message: fieldState.error.message }]}
-                      />
-                    )}
-                  </Field>
-                )}
-              />
-              <Controller
-                name="dateFin"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field>
-                    <FieldLabel>Au (fin)</FieldLabel>
-                    <Input
-                      {...field}
-                      type="date"
-                      min={dateDebut || now}
-                      className="w-full text-sm"
-                    />
-                    {fieldState.error && (
-                      <FieldError
-                        errors={[{ message: fieldState.error.message }]}
-                      />
-                    )}
-                  </Field>
-                )}
-              />
-            </div>
-
-            <Controller
-              name="message"
-              control={form.control}
-              render={({ field }) => (
-                <Field>
-                  <FieldLabel>Précisions (Facultatif)</FieldLabel>
-                  <InputGroupTextarea
-                    {...field}
-                    className="border rounded-md min-h-30 text-sm"
-                  />
-                </Field>
-              )}
-            />
-
-            <Button
-              type="submit"
-              disabled={form.formState.isSubmitting}
-              className="shadow-lg py-7 w-full font-bold text-lg active:scale-[0.98] transition-all"
+          <CardContent className="px-6 md:px-10 pb-6 md:pb-8">
+            <form
+              onSubmit={methods.handleSubmit(onSubmit)}
+              className="space-y-6 md:space-y-8"
             >
-              {form.formState.isSubmitting ? "Envoi..." : "Envoyer ma demande"}
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
-      <div className="mt-8 flex gap-4">
-        <PawPrint className="w-6 h-6 text-white/20 -rotate-12" />
-        <PawPrint className="w-6 h-6 text-white/20 rotate-12" />
-        <PawPrint className="w-6 h-6 text-white/20 -rotate-45" />
+              {/* Dynamic transitions based on step transition direction */}
+              <div
+                key={step}
+                className={cn(
+                  "animate-in duration-500 ease-out",
+                  direction === "forward"
+                    ? "slide-in-from-right-8 fade-in-40"
+                    : "slide-in-from-left-8 fade-in-40",
+                )}
+              >
+                {step === 1 && <ClientDetailsStep />}
+                {step === 2 && <AddressStep />}
+                {step === 3 && <DetailsStep />}
+              </div>
+
+              {/* Action Buttons Footer */}
+              <div className="flex justify-between items-center gap-4 pt-6 border-t border-primary/20">
+                {step > 1 && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={prevStep}
+                    className="py-6 px-5 font-bold border-2 border-primary text-primary hover:bg-primary/5 transition-transform active:scale-[0.98] cursor-pointer"
+                  >
+                    <ArrowLeft className="mr-2 w-4 h-4 stroke-[2.5]" /> Retour
+                  </Button>
+                )}
+
+                {step < 3 ? (
+                  <Button
+                    type="button"
+                    onClick={nextStep}
+                    className="ml-auto py-6 px-6 font-bold bg-primary text-white border-2 border-primary hover:bg-primary/95 transition-transform active:scale-[0.98] cursor-pointer"
+                  >
+                    Suivant <ArrowRight className="ml-2 w-4 h-4 stroke-[2.5]" />
+                  </Button>
+                ) : (
+                  <Button
+                    type="submit"
+                    disabled={methods.formState.isSubmitting}
+                    className="ml-auto py-6 px-6 font-bold bg-primary text-white border-2 border-primary hover:bg-primary/95 transition-transform active:scale-[0.98] cursor-pointer disabled:bg-muted disabled:text-muted-foreground"
+                  >
+                    {methods.formState.isSubmitting
+                      ? "Envoi..."
+                      : "Envoyer ma demande"}
+                    <ArrowRight className="ml-2 w-4 h-4 stroke-[2.5]" />
+                  </Button>
+                )}
+              </div>
+            </form>
+          </CardContent>
+        </Card>
       </div>
-    </div>
+    </FormProvider>
   );
 }

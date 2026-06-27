@@ -1,4 +1,4 @@
-import { Home, PawPrint, Mail } from "lucide-react";
+import { Home, PawPrint, Mail, Camera } from "lucide-react";
 
 export const siteConfig = {
   name: "À vos papattes",
@@ -22,6 +22,7 @@ export const siteConfig = {
   navLinks: [
     { href: "/", label: "Accueil", icon: Home },
     { href: "/services", label: "Services & Tarifs", icon: PawPrint },
+    { href: "/gallery", label: "Galerie", icon: Camera },
     { href: "/contact", label: "Contact", icon: Mail },
   ],
 };

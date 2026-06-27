@@ -9,6 +9,7 @@ const serviceLabels: Record<string, string> = {
 };
 
 const formatDate = (dateStr: string) => {
+  if (!dateStr) return "";
   return new Date(dateStr).toLocaleDateString("fr-FR", {
     weekday: "long",
     year: "numeric",
@@ -26,25 +27,28 @@ export const sendContactEmail = (data: ContactFormValues): Promise<unknown> => {
     return Promise.reject(new Error("Email configuration is missing."));
   }
 
+  // Chaîne de caractères pure sans aucune balise HTML
   const animauxString = data.animauxList
-    .map(
-      (a) => `${a.quantite}x ${a.type === "Autre" ? a.autrePrecisez : a.type}`,
-    )
+    .map((a) => `${a.quantite}x ${a.type === "Autre" ? (a.autrePrecisez || "Autre") : a.type}`)
     .join(", ");
 
   const emailParams = {
-    nom: data.nom,
-    prenom: data.prenom,
-    email: data.email,
-    telephone: data.telephone,
-    animaux: animauxString,
-    serviceType: serviceLabels[data.serviceType] || data.serviceType,
-    frequence: data.frequence,
+    nom: data.nom || "",
+    prenom: data.prenom || "",
+    email: data.email || "",
+    telephone: data.telephone || "",
+    ville: data.ville || "",
+    codePostal: data.codePostal || "",
+    adresseRueComplete: `${data.numeroRue || ""} ${data.nomRue || ""}`.trim() || data.adresse || "",
+    adresseComplement: "",
+    animaux: animauxString, // Variable de texte simple
+    serviceType: serviceLabels[data.serviceType] || data.serviceType || "",
+    frequence: data.frequence || "1",
     transportToilettage: data.transportToilettage ? "Oui" : "Non",
     transportVeto: data.transportVeto ? "Oui" : "Non",
-    date_debut: formatDate(data.dateDebut),
-    date_fin: formatDate(data.dateFin),
-    message: data.message || "Pas de message supplémentaire.",
+    dateDebut: formatDate(data.dateDebut),
+    dateFin: formatDate(data.dateFin),
+    messageClean: data.message || "Pas de message supplémentaire.",
   };
 
   return emailjs.send(serviceId, templateId, emailParams, publicKey);

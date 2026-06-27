@@ -36,7 +36,7 @@ The project is structured as a **Monorepo** with two workspaces: `web` (Next.js 
 │   └── AI_AGENT_GUIDE.md    # This guide
 ├── package.json             # Root monorepo package.json
 ├── studio/                  # Sanity Studio standalone workspace
-│   ├── schemaTypes/         # Document schema models (service, faq, certification)
+│   ├── schemaTypes/         # Document schema models (service, faq, certification, galleryItem)
 │   ├── package.json
 │   ├── sanity.config.ts
 │   └── sanity.cli.ts
@@ -44,6 +44,7 @@ The project is structured as a **Monorepo** with two workspaces: `web` (Next.js 
     ├── app/                 # Next.js App Router pages and API routes
     │   ├── api/reviews/     # Review proxy endpoint
     │   ├── contact/         # Booking form route
+    │   ├── gallery/         # Photo gallery page route
     │   ├── services/        # Services list & map route
     │   ├── layout.tsx
     │   └── page.tsx         # Homepage (Server Component pre-rendering reviews)

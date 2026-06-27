@@ -22,9 +22,9 @@ export type SanityImageAssetReference = {
   [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 };
 
-export type Certification = {
+export type GalleryItem = {
   _id: string;
-  _type: "certification";
+  _type: "galleryItem";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -36,7 +36,6 @@ export type Certification = {
     _type: "image";
   };
   title?: string;
-  subtitle?: string;
   description?: string;
   order?: number;
 };
@@ -55,6 +54,25 @@ export type SanityImageHotspot = {
   y?: number;
   height?: number;
   width?: number;
+};
+
+export type Certification = {
+  _id: string;
+  _type: "certification";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  order?: number;
 };
 
 export type Faq = {
@@ -192,9 +210,10 @@ export type Geopoint = {
 
 export type AllSanitySchemaTypes =
   | SanityImageAssetReference
-  | Certification
+  | GalleryItem
   | SanityImageCrop
   | SanityImageHotspot
+  | Certification
   | Faq
   | Service
   | Slug
@@ -206,6 +225,27 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageAsset
   | Geopoint;
+
+// Source: ../web/app/gallery/page.tsx
+// Variable: GALLERY_QUERY
+// Query: *[_type == "galleryItem"] | order(order asc)
+export type GALLERY_QUERY_RESULT = Array<{
+  _id: string;
+  _type: "galleryItem";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  title?: string;
+  description?: string;
+  order?: number;
+}>;
 
 // Source: ../web/app/page.tsx
 // Variable: HOME_CERTIFICATIONS_QUERY
@@ -269,6 +309,7 @@ export type SERVICES_QUERY_RESULT = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    '*[_type == "galleryItem"] | order(order asc)': GALLERY_QUERY_RESULT;
     '*[_type == "certification"] | order(order asc)': HOME_CERTIFICATIONS_QUERY_RESULT;
     '*[_type == "faq"] | order(order asc)': HOME_FAQS_QUERY_RESULT;
     '*[_type == "service"]': SERVICES_QUERY_RESULT;
