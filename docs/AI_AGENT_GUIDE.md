@@ -26,50 +26,33 @@ This document is a comprehensive onboarding and reference guide for AI agents wo
 
 ## 2. Codebase Architecture & File Structure
 
-The project follows a standard Next.js App Router structure:
+The project is structured as a **Monorepo** with two workspaces: `web` (Next.js Application) and `studio` (Sanity Studio).
 
 ```
 ├── .agents/                 # Workspace-scoped instructions for AI tools
 │   └── AGENTS.md            # Auto-loaded AI rules and constraints
-├── app/                     # Next.js App Router Pages & API Routes
-│   ├── api/
-│   │   └── reviews/
-│   │       └── route.ts     # Reviews endpoint (calls reviews helper)
-│   ├── cgv/
-│   ├── contact/             # Booking contact page route
-│   │   └── page.tsx         # Clean form rendering page
-│   ├── mentions-legales/
-│   ├── services/
-│   │   └── page.tsx         # Services list, prices, and map page
-│   ├── globals.css          # Tailwind CSS v4 directives, custom theme & utilities
-│   ├── layout.tsx           # Base HTML layout (injects LocalBusiness JSON-LD)
-│   ├── page.tsx             # Homepage (Server Component pre-rendering reviews)
-│   ├── robots.ts            # Dynamic robots.txt generator
-│   └── sitemap.ts           # Dynamic XML sitemap generator
-├── components/              # Presentation Components
-│   ├── sections/            # Feature-specific page components
-│   │   ├── home/            # Homepage sections (FAQ, Welcome, Testimonials, etc.)
-│   │   └── services/        # Services page sections (Pricing, Map, etc.)
-│   └── ui/                  # UI elements and primitives (Navbar, Footer, Card, Button, Input)
-├── config/                  # Static Content & Text Configurations (Centralized data)
-│   ├── site.ts              # Social links, phone numbers, navigation links
-│   ├── services.ts          # Text and prices for the services list
-│   └── features.ts          # Benefits/certifications list
 ├── docs/
 │   ├── archive/             # Archived legal Word and Markdown files
 │   └── AI_AGENT_GUIDE.md    # This guide
-├── lib/                     # Utilities and Shared Code helpers
-│   ├── services/
-│   │   ├── email.ts         # EmailJS client handler logic
-│   │   └── reviews.ts       # Server-side Google Places API fetcher
-│   ├── validations/
-│   │   └── contact.ts       # Contact form Zod schema definitions
-│   ├── env.ts               # Environment variables schema validation
-│   └── utils.ts             # Tailwind class name merger (clsx + tailwind-merge)
-├── public/                  # Static assets
-│   ├── icons/               # SVGs, badges, and logos
-│   └── images/              # Photo assets
-└── components.json          # Shadcn configuration mapping aliases
+├── package.json             # Root monorepo package.json
+├── studio/                  # Sanity Studio standalone workspace
+│   ├── schemaTypes/         # Document schema models (service, faq, testimonial, feature)
+│   ├── package.json
+│   ├── sanity.config.ts
+│   └── sanity.cli.ts
+└── web/                     # Next.js Application workspace
+    ├── app/                 # Next.js App Router pages and API routes
+    │   ├── api/reviews/     # Review proxy endpoint
+    │   ├── contact/         # Booking form route
+    │   ├── services/        # Services list & map route
+    │   ├── layout.tsx
+    │   └── page.tsx         # Homepage (Server Component pre-rendering reviews)
+    ├── components/          # Presentation React components
+    ├── config/              # Local data fallback configurations (site, services, features)
+    ├── lib/                 # Core logic, email services, Zod validations, env checks
+    ├── public/              # Static assets (images, icons)
+    ├── sanity/              # Sanity client fetching SDK & responsive image helper
+    └── package.json
 ```
 
 ---

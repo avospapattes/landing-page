@@ -22,13 +22,13 @@ This file is loaded automatically by agentic platforms when working within the *
     loading: () => <div className="..." />,
   });
   ```
-- **File Reference**: [intervention-map.tsx](file:///c:/src/projects/landing-page/components/sections/services/intervention-map.tsx)
+- **File Reference**: [intervention-map.tsx](file:///c:/src/projects/landing-page/web/components/sections/services/intervention-map.tsx)
 
 ### 2. Google Places API Key Security
 
 - **Constraint**: API keys must never be exposed on the frontend.
 - **Rule**: Fetch Google Reviews and other location details using the Next.js server-side route `/api/reviews`. Do not initiate client-side calls directly to google.com endpoints with the private key.
-- **File Reference**: [route.ts](file:///c:/src/projects/landing-page/app/api/reviews/route.ts)
+- **File Reference**: [route.ts](file:///c:/src/projects/landing-page/web/app/api/reviews/route.ts)
 
 ---
 
@@ -41,11 +41,11 @@ This file is loaded automatically by agentic platforms when working within the *
   - Use thick borders (`border-4`, `border-3!`) matching `border-primary` (`rgba(75, 51, 28, 1)`).
   - Apply the custom `.neo-shadow` class for cards, forms, and highlights.
   - Retain the warm color scheme (brown text, yellow background, orange accent).
-- **File Reference**: [globals.css](file:///c:/src/projects/landing-page/app/globals.css)
+- **File Reference**: [globals.css](file:///c:/src/projects/landing-page/web/app/globals.css)
 
 ### 2. Tailwind CSS v4 Theme Inline Configuration
 
-- **Constraint**: Tailwind v4 is configured inline inside `@theme inline` block in [globals.css](file:///c:/src/projects/landing-page/app/globals.css).
+- **Constraint**: Tailwind v4 is configured inline inside `@theme inline` block in [globals.css](file:///c:/src/projects/landing-page/web/app/globals.css).
 - **Rule**: Do not create or reference a `tailwind.config.js` file. Modify or extend theme settings directly within `@theme inline` in `globals.css`.
 
 ---

@@ -1,0 +1,35 @@
+import { HeroSection } from "@/components/sections/services/hero-section";
+import { ServicesListSection } from "@/components/sections/services/services-list-section";
+import { WarningSection } from "@/components/sections/services/warning-section";
+import { ZoneSection } from "@/components/sections/services/zone-section";
+import { PricingSection } from "@/components/sections/services/pricing-section";
+import { BookingProcessSection } from "@/components/sections/services/booking-process-section";
+
+export default async function ServicesPage() {
+  const isSanityConfigured =
+    !!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID &&
+    !!process.env.NEXT_PUBLIC_SANITY_DATASET;
+
+  let services: any[] | undefined = undefined;
+
+  if (isSanityConfigured) {
+    try {
+      const { client } = await import("@/sanity/lib/client");
+      services = await client.fetch(`*[_type == "service"]`);
+      if (services && services.length === 0) services = undefined;
+    } catch (e) {
+      console.error("Failed to fetch services from Sanity", e);
+    }
+  }
+
+  return (
+    <main className="min-h-screen w-full flex flex-col bg-white">
+      <HeroSection />
+      <ServicesListSection services={services} />
+      <WarningSection />
+      <PricingSection />
+      <BookingProcessSection />
+      <ZoneSection />
+    </main>
+  );
+}
