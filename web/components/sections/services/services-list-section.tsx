@@ -8,17 +8,17 @@ import {
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PawPrint } from "lucide-react";
-import { servicesConfig } from "@/config/services";
-import type { Service as LocalService } from "@/config/services";
 import { urlForImage } from "@/sanity/lib/image";
 import type { SERVICES_QUERY_RESULT } from "@/sanity.types";
 import type { Image as SanityImage } from "sanity";
 
 interface ServicesListSectionProps {
-  services?: SERVICES_QUERY_RESULT | LocalService[];
+  services?: SERVICES_QUERY_RESULT;
 }
 
-export function ServicesListSection({ services = servicesConfig }: ServicesListSectionProps) {
+export function ServicesListSection({ services }: ServicesListSectionProps) {
+  if (!services || services.length === 0) return null;
+
   const getServiceImageSrc = (img: NonNullable<SERVICES_QUERY_RESULT[number]["image"]> | string | undefined | null) => {
     if (typeof img === "string") return img;
     if (img && typeof img === "object" && "asset" in img) {
@@ -31,11 +31,11 @@ export function ServicesListSection({ services = servicesConfig }: ServicesListS
     return "";
   };
 
-  const getServiceId = (service: SERVICES_QUERY_RESULT[number] | LocalService) => {
-    if ("id" in service && service.id && typeof service.id === "object") {
+  const getServiceId = (service: SERVICES_QUERY_RESULT[number]) => {
+    if (service.id && typeof service.id === "object") {
       return service.id.current || "";
     }
-    return (service as LocalService).id || "";
+    return service._id || "";
   };
 
   return (
