@@ -28,14 +28,14 @@ export function MissionSection() {
             {/* Responsive container for images */}
             <div className="relative w-75 h-87.5 md:w-auto md:h-auto">
               <Image
-                src="/aribo.jpg"
+                src="/images/cat-aribo.jpg"
                 alt="Mon objectif"
                 width={200}
                 height={200}
                 className="absolute left-0 top-0 w-40 h-auto md:w-auto md:static md:ml-0 neo-shadow z-10"
               />
               <Image
-                src="/hemy.jpg"
+                src="/images/dog-hemy.jpg"
                 alt="Mon objectif"
                 width={200}
                 height={200}

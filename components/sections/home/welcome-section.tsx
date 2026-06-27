@@ -20,7 +20,7 @@ export function WelcomeSection() {
   return (
     <section className="flex flex-col bg-background text-foreground py-10 xl:py-20 overflow-hidden relative">
       <img
-        src="/grid.png"
+        src="/images/bg-grid.png"
         alt="Background"
         className="absolute inset-0 w-8/10 left-1/8 h-full object-cover z-0"
       />
@@ -70,7 +70,7 @@ export function WelcomeSection() {
           <div className="relative w-full max-w-[450px] min-h-[600px] md:min-h-[700px]">
             {/* Alfy - Top Left */}
             <Image
-              src="/alfy.jpeg"
+              src="/images/cat-alfy.jpeg"
               alt="Alfy"
               width={250}
               height={250}
@@ -79,7 +79,7 @@ export function WelcomeSection() {
 
             {/* Hemy & Co - Center Middle (Increased Offset) */}
             <Image
-              src="/hemy&co.jpg"
+              src="/images/dog-hemy-and-co.jpg"
               alt="Hemy & Co"
               width={280}
               height={280}
@@ -88,7 +88,7 @@ export function WelcomeSection() {
 
             {/* Wifille - Bottom Right (Increased Offset) */}
             <Image
-              src="/wifille.jpeg"
+              src="/images/cat-wifille.jpeg"
               alt="Wifille"
               width={250}
               height={250}

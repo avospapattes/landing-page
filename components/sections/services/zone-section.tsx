@@ -2,7 +2,7 @@
 import dynamic from "next/dynamic";
 import { PawPrint, Bone } from "lucide-react";
 
-const InterventionMap = dynamic(() => import("./InterventionMap"), {
+const InterventionMap = dynamic(() => import("./intervention-map"), {
   ssr: false,
   loading: () => <div className="bg-neutral-900 w-full h-full animate-pulse" />,
 });

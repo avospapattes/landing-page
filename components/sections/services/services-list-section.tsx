@@ -23,7 +23,7 @@ const SERVICES: Service[] = [
     title: "Visites à Domicile",
     description:
       "Je me déplace chez vous pour veiller sur vos compagnons dans leur environnement habituel, afin de leur éviter le stress du transport ou de la pension.",
-    image: "/rd1.jpg",
+    image: "/images/service-visit-30m.jpg",
     points: [
       "Alimentation et eau fraîche : respect strict de leur régime alimentaire.",
       "Hygiène : nettoyage des litières, cages.",
@@ -36,7 +36,7 @@ const SERVICES: Service[] = [
     title: "Promenades Canines",
     description:
       "Pour les chiens qui ont besoin de se dégourdir les pattes pendant vos journées de travail ou vos absences.",
-    image: "/rd2.png",
+    image: "/images/service-visit-45m.png",
     points: [
       "Sorties de quartier ou en pleine nature : adaptées à l’âge et au dynamisme de votre chien.",
       "Hygiène et exercice : un moment privilégié pour se dépenser et explorer.",
@@ -48,7 +48,7 @@ const SERVICES: Service[] = [
     title: 'Les "Petits Plus" de Nathalie',
     description:
       "En me confiant votre compagnon, vous bénéficiez de garanties supplémentaires :",
-    image: "/rd3.jpg",
+    image: "/images/service-visit-1h.jpg",
     points: [
       "Communication constante : vous recevez des nouvelles, des photos ou des vidéos après chaque visite ou promenade.",
       "Sécurité & Secourisme : Formée aux premiers secours, je sais réagir avec calme et efficacité en cas d'urgence.",
@@ -61,7 +61,7 @@ const SERVICES: Service[] = [
     title: "Taxi Animalier",
     description:
       "Vous manquez de temps ou vous n'êtes pas véhiculé ? A vos papattes by Nathalie s'occupe du transport de vos boules de poils pour leurs rendez-vous essentiels.",
-    image: "/rd4.png",
+    image: "/images/service-taxi.png",
     points: [
       "Les visites chez le vétérinaire : je conduis votre animal à la clinique pour ses soins, vaccins ou examens de suivi. Je peux, selon vos besoins, assurer l'attente et vous faire un compte-rendu détaillé de la consultation.",
       "Les rendez-vous de toilettage : offrez-lui une séance beauté sans stress ! Je dépose votre compagnon au salon et le ramène à votre domicile une fois qu'il est tout beau et tout propre",

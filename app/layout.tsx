@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: "À vos papattes",
   description: "À vos papattes by Nath",
   icons: {
-    icon: "/icon.svg",
+    icon: "/icons/icon.svg",
   },
   metadataBase: new URL("https://avospapattes.fr"),
   openGraph: {
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: "À vos papattes by Nath",
     images: [
       {
-        url: "/icon.png",
+        url: "/icons/icon.png",
         width: 1200,
         height: 630,
         alt: "À vos papattes",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "À vos papattes",
     description: "À vos papattes by Nath",
-    images: ["/icon.png"],
+    images: ["/icons/icon.png"],
   },
 };
 
