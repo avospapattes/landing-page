@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FormProvider, useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
@@ -8,11 +8,11 @@ import { ArrowRight, ArrowLeft, Bone, PawPrint } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
 import {
   contactFormSchema,
+  contactFormBaseSchema,
   ContactFormValues,
 } from "@/lib/validations/contact";
 import { sendContactEmail } from "@/lib/services/email";
@@ -27,8 +27,43 @@ export default function ContactPage() {
   const [step, setStep] = useState(1);
   const [direction, setDirection] = useState<"forward" | "backward">("forward");
 
+  // Keep a stable ref of the step state to avoid closures issues in the useForm resolver
+  const stepRef = useRef(step);
+  useEffect(() => {
+    stepRef.current = step;
+  }, [step]);
+
   const methods = useForm<ContactFormValues>({
-    resolver: zodResolver(contactFormSchema),
+    resolver: async (values, context, options) => {
+      let currentSchema;
+      const currentStep = stepRef.current;
+
+      if (currentStep === 1) {
+        currentSchema = contactFormBaseSchema.pick({
+          nom: true,
+          prenom: true,
+          email: true,
+          telephone: true,
+        });
+      } else if (currentStep === 2) {
+        currentSchema = contactFormBaseSchema.pick({
+          nom: true,
+          prenom: true,
+          email: true,
+          telephone: true,
+          ville: true,
+          codePostal: true,
+          adresse: true,
+          numeroRue: true,
+          nomRue: true,
+        });
+      } else {
+        currentSchema = contactFormSchema;
+      }
+
+      const result = await zodResolver(currentSchema)(values, context, options as any);
+      return result as any;
+    },
     mode: "onTouched",
     defaultValues: {
       nom: "",

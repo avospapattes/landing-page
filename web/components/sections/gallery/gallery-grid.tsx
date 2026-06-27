@@ -69,6 +69,24 @@ export function GalleryGrid({ initialPhotos }: GalleryGridProps) {
     }
   };
 
+  // Helper to extract dimensions from Sanity image asset reference ID
+  const getImageDimensions = (image: any) => {
+    if (!image || !image.asset || !image.asset._ref) return null;
+    const ref = image.asset._ref;
+    const parts = ref.split("-");
+    if (parts.length >= 3) {
+      const dimensions = parts[2].split("x");
+      if (dimensions.length === 2) {
+        const width = parseInt(dimensions[0], 10);
+        const height = parseInt(dimensions[1], 10);
+        if (!isNaN(width) && !isNaN(height)) {
+          return { width, height };
+        }
+      }
+    }
+    return null;
+  };
+
   // Render empty state if no photos are configured or returned
   if (!initialPhotos || initialPhotos.length === 0) {
     return (
@@ -97,35 +115,50 @@ export function GalleryGrid({ initialPhotos }: GalleryGridProps) {
   return (
     <section className="flex-1 w-full bg-white py-12 px-4 md:px-8">
       <div className="container mx-auto max-w-7xl">
-        {/* Photos Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        {/* CSS Masonry Gallery Grid */}
+        <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6">
           {initialPhotos.map((photo, index) => {
             const src = getPhotoSrc(photo.image);
             if (!src) return null;
+
+            const dims = getImageDimensions(photo.image);
 
             return (
               <button
                 key={photo._id}
                 onClick={() => setSelectedPhotoIndex(index)}
-                className="group text-left flex flex-col border-4 border-foreground rounded-2xl overflow-hidden bg-foreground shadow-[8px_8px_0px_rgba(255,126,0,1)] hover:shadow-[14px_14px_0px_rgba(255,126,0,1)] hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                className="break-inside-avoid w-full inline-block mb-6 group text-left flex flex-col border-4 border-foreground rounded-2xl overflow-hidden bg-foreground shadow-[8px_8px_0px_rgba(255,126,0,1)] hover:shadow-[14px_14px_0px_rgba(255,126,0,1)] hover:-translate-y-1 transition-all duration-300 cursor-pointer"
               >
-                <div className="relative aspect-square w-full overflow-hidden bg-background">
-                  <Image
-                    src={src}
-                    alt={photo.title || "Photo de la galerie"}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                <div className="relative overflow-hidden bg-background">
+                  {dims ? (
+                    <Image
+                      src={src}
+                      alt={photo.title || "Photo de la galerie"}
+                      width={dims.width}
+                      height={dims.height}
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="relative aspect-square w-full">
+                      <Image
+                        src={src}
+                        alt={photo.title || "Photo de la galerie"}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                  )}
                   {/* Subtle hover overlay */}
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
                 </div>
                 <div className="p-4 bg-white border-t-4 border-foreground rounded-b-xl flex-1 flex flex-col justify-center">
-                  <h3 className="font-bold text-foreground text-lg leading-tight line-clamp-1">
+                  <h3 className="font-bold text-foreground text-lg leading-tight line-clamp-2">
                     {photo.title || "Photo"}
                   </h3>
                   {photo.description && (
-                    <p className="text-xs text-foreground/75 mt-1 line-clamp-2 leading-relaxed">
+                    <p className="text-xs text-foreground/75 mt-1 line-clamp-3 leading-relaxed">
                       {photo.description}
                     </p>
                   )}
@@ -161,13 +194,12 @@ export function GalleryGrid({ initialPhotos }: GalleryGridProps) {
           {/* Main Content Area */}
           <div className="flex flex-col max-w-4xl max-h-[85vh] w-full items-center justify-center relative px-12">
             {currentImageSrc && (
-              <div className="relative w-full aspect-4/3 max-h-[65vh] border-4 border-foreground rounded-2xl overflow-hidden bg-background shadow-[10px_10px_0px_rgba(255,126,0,1)] animate-in zoom-in-95 duration-200">
-                <Image
+              <div className="relative border-4 border-foreground rounded-2xl overflow-hidden bg-neutral-900 shadow-[10px_10px_0px_rgba(255,126,0,1)] animate-in zoom-in-95 duration-200 max-h-[60vh] max-w-full flex items-center justify-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={currentImageSrc}
                   alt={currentPhoto.title || "Photo de la galerie"}
-                  fill
-                  priority
-                  className="object-contain bg-neutral-900"
+                  className="max-h-[60vh] max-w-full object-contain"
                 />
               </div>
             )}

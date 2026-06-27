@@ -178,6 +178,7 @@ export function DetailsStep() {
           name="dateDebut"
           control={control}
           render={({ field, fieldState }) => {
+            console.log("dateDebut fieldState:", fieldState, "isSubmitted:", isSubmitted);
             const showError = !!fieldState.error && (fieldState.isTouched || isSubmitted);
             return (
               <Field data-invalid={showError}>
