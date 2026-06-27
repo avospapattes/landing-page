@@ -6,15 +6,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { featuresConfig } from "@/config/features";
+import { certificationsConfig } from "@/config/certifications";
 import { urlForImage } from "@/sanity/lib/image";
 
 interface BenefitsSectionProps {
-  features?: any[];
+  certifications?: any[];
 }
 
-export function BenefitsSection({ features = featuresConfig }: BenefitsSectionProps) {
-  const getFeatureImageSrc = (img: any) => {
+export function BenefitsSection({
+  certifications = certificationsConfig,
+}: BenefitsSectionProps) {
+  const getCertificationImageSrc = (img: any) => {
     if (typeof img === "string") return img;
     if (img && typeof img === "object" && img.asset) {
       try {
@@ -40,8 +42,8 @@ export function BenefitsSection({ features = featuresConfig }: BenefitsSectionPr
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {features.map((feature, index) => {
-            const imageSrc = getFeatureImageSrc(feature.image);
+          {certifications.map((certification, index) => {
+            const imageSrc = getCertificationImageSrc(certification.image);
             return (
               <Card
                 key={index}
@@ -52,7 +54,7 @@ export function BenefitsSection({ features = featuresConfig }: BenefitsSectionPr
                     {imageSrc && (
                       <Image
                         src={imageSrc}
-                        alt={feature.title}
+                        alt={certification.title}
                         fill
                         sizes="48px"
                         className="object-contain"
@@ -60,15 +62,15 @@ export function BenefitsSection({ features = featuresConfig }: BenefitsSectionPr
                     )}
                   </div>
                   <CardTitle className="text-xl font-bold">
-                    {feature.title}
+                    {certification.title}
                   </CardTitle>
                   <CardDescription className="text-sm font-medium uppercase tracking-wider text-primary">
-                    {feature.subtitle}
+                    {certification.subtitle}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground text-justify leading-relaxed text-sm">
-                    {feature.description}
+                    {certification.description}
                   </p>
                 </CardContent>
               </Card>

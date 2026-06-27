@@ -14,21 +14,25 @@ export default async function Home() {
     !!process.env.NEXT_PUBLIC_SANITY_DATASET;
 
   let reviews: any[] = [];
-  let features: any[] | undefined = undefined;
+  let certifications: any[] | undefined = undefined;
+
+  try {
+    reviews = await fetchGoogleReviews();
+  } catch (e) {
+    console.error("Failed to fetch Google reviews", e);
+  }
 
   if (isSanityConfigured) {
     try {
       const { client } = await import("@/sanity/lib/client");
-      reviews = await client.fetch(`*[_type == "testimonial"]`);
-      features = await client.fetch(`*[_type == "feature"] | order(order asc)`);
-      if (features && features.length === 0) features = undefined;
+      certifications = await client.fetch(
+        `*[_type == "certification"] | order(order asc)`,
+      );
+      if (certifications && certifications.length === 0)
+        certifications = undefined;
     } catch (e) {
-      console.error("Failed to fetch from Sanity", e);
+      console.error("Failed to fetch certifications from Sanity", e);
     }
-  }
-
-  if (reviews.length === 0) {
-    reviews = await fetchGoogleReviews();
   }
 
   return (
@@ -38,7 +42,7 @@ export default async function Home() {
       <StorySection />
       <LabelsSection />
       <MissionSection />
-      <BenefitsSection features={features} />
+      <BenefitsSection certifications={certifications} />
       <TestimonialsSection reviews={reviews} />
       <FaqSection />
     </main>

@@ -1,6 +1,5 @@
 import { serviceType } from "./service";
 import { faqType } from "./faq";
-import { testimonialType } from "./testimonial";
-import { featureType } from "./feature";
+import { certificationType } from "./certification";
 
-export const schemaTypes = [serviceType, faqType, testimonialType, featureType];
+export const schemaTypes = [serviceType, faqType, certificationType];

@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity";
 
-export const featureType = defineType({
-  name: "feature",
-  title: "Certification / Avantage",
+export const certificationType = defineType({
+  name: "certification",
+  title: "Certifications / Labels",
   type: "document",
   fields: [
     defineField({
@@ -16,7 +16,7 @@ export const featureType = defineType({
     }),
     defineField({
       name: "title",
-      title: "Titre de l'avantage",
+      title: "Titre de la certification / label",
       type: "string",
       validation: (Rule) => Rule.required(),
     }),

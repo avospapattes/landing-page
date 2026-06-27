@@ -36,7 +36,7 @@ The project is structured as a **Monorepo** with two workspaces: `web` (Next.js 
 │   └── AI_AGENT_GUIDE.md    # This guide
 ├── package.json             # Root monorepo package.json
 ├── studio/                  # Sanity Studio standalone workspace
-│   ├── schemaTypes/         # Document schema models (service, faq, testimonial, feature)
+│   ├── schemaTypes/         # Document schema models (service, faq, certification)
 │   ├── package.json
 │   ├── sanity.config.ts
 │   └── sanity.cli.ts
@@ -48,7 +48,7 @@ The project is structured as a **Monorepo** with two workspaces: `web` (Next.js 
     │   ├── layout.tsx
     │   └── page.tsx         # Homepage (Server Component pre-rendering reviews)
     ├── components/          # Presentation React components
-    ├── config/              # Local data fallback configurations (site, services, features)
+    ├── config/              # Local data fallback configurations (site, services, certifications)
     ├── lib/                 # Core logic, email services, Zod validations, env checks
     ├── public/              # Static assets (images, icons)
     ├── sanity/              # Sanity client fetching SDK & responsive image helper

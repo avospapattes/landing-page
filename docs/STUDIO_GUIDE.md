@@ -27,7 +27,7 @@ npm run dev
 
 ## 2. Using the Studio (Editing Content)
 
-Once logged in, the sidebar displays 4 custom document types tailored for **À vos papattes**:
+Once logged in, the sidebar displays 3 custom document types tailored for **À vos papattes**:
 
 ### 1. Services
 *   **What it does**: Controls the list of pet sitting services, durations, and details.
@@ -38,7 +38,7 @@ Once logged in, the sidebar displays 4 custom document types tailored for **À v
     *   `Image`: Upload a cover photo (Sanity automatically crops, optimizes, and generates WebP versions).
     *   `Points Clés`: List of service details. (Format: `Titre : Contenu` or plain text).
 
-### 2. Certifications / Avantages (Features)
+### 2. Certifications / Labels
 *   **What it does**: Manages the cards in the *"Pourquoi choisir une Pet Sitter pro ?"* section.
 *   **Fields**:
     *   `Badge / Logo`: Upload the certification icon.
@@ -47,15 +47,7 @@ Once logged in, the sidebar displays 4 custom document types tailored for **À v
     *   `Description`: Detailed explanation text.
     *   `Ordre d'affichage`: A number (e.g. `1`, `2`, `3`) to control the card placement order.
 
-### 3. Témoignages (Testimonials)
-*   **What it does**: Adds user reviews to the homepage carousel.
-*   **Fields**:
-    *   `Nom de l'auteur`: Client's name.
-    *   `Note`: Numeric rating from 1 to 5 stars.
-    *   `Avis`: Client's testimonial content.
-    *   `Date relative`: E.g., *Il y a 3 semaines*.
-
-### 4. FAQ
+### 3. FAQ
 *   **What it does**: Manages questions and answers in the Accordion.
 *   **Fields**:
     *   `Question` & `Réponse`.

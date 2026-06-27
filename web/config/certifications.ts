@@ -1,11 +1,11 @@
-export type Feature = {
+export type Certification = {
   image: string;
   title: string;
   subtitle: string;
   description: string;
 };
 
-export const featuresConfig: Feature[] = [
+export const certificationsConfig: Certification[] = [
   {
     image: "/icons/badge-acaced.png",
     title: "ACACED complet (chien-chat-NAC)",
