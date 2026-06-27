@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Facebook, Instagram } from "@/components/ui/icons";
+import { siteConfig } from "@/config/site";
 
 export default function Footer() {
   return (
@@ -20,27 +21,28 @@ export default function Footer() {
           <div className="flex flex-col items-center md:items-start space-y-4">
             <Image
               src="/icons/logo.svg"
-              alt="Logo À vos papattes"
+              alt={`Logo ${siteConfig.name}`}
               width={250}
               height={250}
               className="object-contain"
             />
             <p className="text-center md:text-left text-sm leading-relaxed max-w-xs">
-              Votre Pet Sitter professionnelle, déclarée et assurée, qui garde
-              vos animaux à votre domicile
+              {siteConfig.description}
             </p>
             <div className="flex gap-4 pt-2">
               <a
-                href="https://www.instagram.com/avospapattespetsitter/"
+                href={siteConfig.socials.instagram}
                 target="_blank"
                 className="hover:scale-110 transition-transform"
+                aria-label="Instagram"
               >
                 <Instagram className="w-6 h-6 text-foreground/80 hover:text-foreground" />
               </a>
               <a
-                href="https://www.facebook.com/profile.php?id=61585780601994&locale=fr_FR"
+                href={siteConfig.socials.facebook}
                 target="_blank"
                 className="hover:scale-110 transition-transform"
+                aria-label="Facebook"
               >
                 <Facebook className="w-6 h-6 text-foreground/80 hover:text-foreground" />
               </a>
@@ -56,29 +58,29 @@ export default function Footer() {
               <li className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-foreground/80" />
                 <a
-                  href="https://www.google.com/maps/place/Oberhausbergen/"
+                  href={siteConfig.contact.addressMapLink}
                   target="_blank"
                   className="hover:underline transition-colors"
                 >
-                  Oberhausbergen, France
+                  {siteConfig.contact.address}
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-foreground/80" />
                 <a
-                  href="mailto:contact@avospapattes.fr"
+                  href={siteConfig.contact.emailHref}
                   className="hover:underline transition-colors"
                 >
-                  contact@avospapattes.fr
+                  {siteConfig.contact.email}
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-foreground/80" />
                 <a
-                  href="tel:+33615422950"
+                  href={siteConfig.contact.phoneHref}
                   className="hover:underline transition-colors"
                 >
-                  06 15 42 29 50
+                  {siteConfig.contact.phone}
                 </a>
               </li>
             </ul>
@@ -107,7 +109,7 @@ export default function Footer() {
           </div>
         </div>
         <p className="text-center text-sm w-full mt-6">
-          © {new Date().getFullYear()} À vos papattes. Tous droits réservés.
+          © {new Date().getFullYear()} {siteConfig.name}. Tous droits réservés.
         </p>
       </div>
     </footer>

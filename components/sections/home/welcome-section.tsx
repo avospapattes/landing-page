@@ -5,7 +5,6 @@ import { Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PawPrint } from "lucide-react";
 export function WelcomeSection() {
-
   const PAW_PATH = [
     { top: "65%", left: "5%", rotate: "-15deg", scale: 1 },
     { top: "87%", left: "15%", rotate: "10deg", scale: 0.9 },

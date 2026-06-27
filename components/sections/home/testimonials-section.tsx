@@ -1,5 +1,4 @@
 "use client";
-import { useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
@@ -11,28 +10,18 @@ import {
 } from "@/components/ui/dialog";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Review } from "@/lib/services/reviews";
 
-interface Review {
-  author_name: string;
-  rating: number;
-  text: string;
-  relative_time_description: string;
-}
-
-export default function TestimonialsSection() {
-  const [reviews, setReviews] = useState<Review[]>([]);
+export default function TestimonialsSection({
+  reviews = [],
+}: {
+  reviews?: Review[];
+}) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "start",
     skipSnaps: false,
   });
-
-  useEffect(() => {
-    fetch("/api/reviews")
-      .then((res) => res.json())
-      .then((data) => setReviews(Array.isArray(data) ? data : []))
-      .catch(() => setReviews([]));
-  }, []);
 
   const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
   const scrollNext = () => emblaApi && emblaApi.scrollNext();
@@ -40,10 +29,7 @@ export default function TestimonialsSection() {
   const rotations = ["-rotate-1", "rotate-1", "-rotate-2", "rotate-2"];
 
   return (
-    <section
-      className="w-full py-24 bg-white overflow-hidden"
-      id="avis"
-    >
+    <section className="w-full py-24 bg-white overflow-hidden" id="avis">
       <div className="container mx-auto max-w-6xl px-4">
         <div className="flex flex-col items-center mb-8">
           <h2 className="text-3xl md:text-5xl text-center text-stroke-title font-extrabold mb-4 uppercase">
@@ -55,10 +41,7 @@ export default function TestimonialsSection() {
             1. py-20: Provides vertical space for rotated corners.
             2. px-4: Prevents cards from hugging the screen edges on mobile.
         */}
-        <div
-          className="overflow-hidden py-20 px-4"
-          ref={emblaRef}
-        >
+        <div className="overflow-hidden py-20 px-4" ref={emblaRef}>
           <div className="flex -ml-4 md:-ml-8">
             {reviews.map((review, i) => (
               <div

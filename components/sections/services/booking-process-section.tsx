@@ -24,10 +24,7 @@ const STEPS = [
           Vous pouvez également me contacter par mail, SMS ou via Whatsapp.
         </p>
         <div className="pt-4 text-center">
-          <Button
-            asChild
-            className="w-full"
-          >
+          <Button asChild className="w-full">
             <Link href="/contact">Accéder au formulaire</Link>
           </Button>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, PawPrint, Mail, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -12,12 +12,7 @@ import {
   SheetTrigger,
   SheetTitle,
 } from "@/components/ui/sheet";
-
-const links = [
-  { href: "/", label: "Accueil", icon: Home },
-  { href: "/services", label: "Services & Tarifs", icon: PawPrint },
-  { href: "/contact", label: "Contact", icon: Mail },
-];
+import { siteConfig } from "@/config/site";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -32,12 +27,13 @@ export default function Navbar() {
           width={150} // Approximate width based on aspect ratio, adjusted for auto height
           height={60} // Approximate height to fit in h-20 (80px)
           className="h-16 w-auto" // h-16 is 64px, fits nicely in h-20
+          style={{ width: "auto" }}
           priority
         />
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex h-full font-medium">
-          {links.map((link) => {
+          {siteConfig.navLinks.map((link) => {
             const LinkIcon = link.icon;
             const isActive = pathname === link.href;
 
@@ -79,7 +75,7 @@ export default function Navbar() {
               <div className="flex flex-col mt-3">
                 <SheetTitle className="sr-only">Menu de navigation</SheetTitle>
                 <div className="flex flex-col">
-                  {links.map((link) => {
+                  {siteConfig.navLinks.map((link) => {
                     const LinkIcon = link.icon;
                     const isActive = pathname === link.href;
 
