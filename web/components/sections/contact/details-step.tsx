@@ -1,15 +1,15 @@
 import { Controller, useFormContext, useFieldArray } from "react-hook-form";
 import { Field, FieldLabel, FieldError } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { InputGroupTextarea } from "@/components/ui/input-group";
+import { InputGroup, InputGroupAddon, InputGroupInput, InputGroupTextarea } from "@/components/ui/input-group";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Plus, Trash2, PawPrint } from "lucide-react";
+import { Plus, Trash2, Calendar, MessageSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ContactFormValues } from "@/lib/validations/contact";
 
-export function DetailsStep() {
-  const { control, register, watch, formState: { isSubmitted } } = useFormContext<ContactFormValues>();
+export function DetailsStep({ hasAttemptedSubmit = false }: { hasAttemptedSubmit?: boolean }) {
+  const { control, register, watch } = useFormContext<ContactFormValues>();
   const { fields, append, remove } = useFieldArray({
     control,
     name: "animauxList",
@@ -178,18 +178,21 @@ export function DetailsStep() {
           name="dateDebut"
           control={control}
           render={({ field, fieldState }) => {
-            console.log("dateDebut fieldState:", fieldState, "isSubmitted:", isSubmitted);
-            const showError = !!fieldState.error && (fieldState.isTouched || isSubmitted);
+            const showError = !!fieldState.error && (fieldState.isDirty || hasAttemptedSubmit);
             return (
               <Field data-invalid={showError}>
                 <FieldLabel>Date de début *</FieldLabel>
-                <Input
-                  {...field}
-                  type="date"
-                  min={now}
-                  aria-invalid={showError}
-                  className={cn("w-full text-sm h-11", showError && "border-destructive focus:ring-destructive/20")}
-                />
+                <InputGroup className={cn("h-11", showError ? "border-destructive ring-destructive/20" : "")}>
+                  <InputGroupAddon>
+                    <Calendar className="w-5 h-5" />
+                  </InputGroupAddon>
+                  <InputGroupInput
+                    {...field}
+                    type="date"
+                    min={now}
+                    aria-invalid={showError}
+                  />
+                </InputGroup>
                 {showError && (
                   <FieldError errors={[{ message: fieldState.error?.message || "" }]} />
                 )}
@@ -201,17 +204,21 @@ export function DetailsStep() {
           name="dateFin"
           control={control}
           render={({ field, fieldState }) => {
-            const showError = !!fieldState.error && (fieldState.isTouched || isSubmitted);
+            const showError = !!fieldState.error && (fieldState.isDirty || hasAttemptedSubmit);
             return (
               <Field data-invalid={showError}>
                 <FieldLabel>Date de fin *</FieldLabel>
-                <Input
-                  {...field}
-                  type="date"
-                  min={dateDebut || now}
-                  aria-invalid={showError}
-                  className={cn("w-full text-sm h-11", showError && "border-destructive focus:ring-destructive/20")}
-                />
+                <InputGroup className={cn("h-11", showError ? "border-destructive ring-destructive/20" : "")}>
+                  <InputGroupAddon>
+                    <Calendar className="w-5 h-5" />
+                  </InputGroupAddon>
+                  <InputGroupInput
+                    {...field}
+                    type="date"
+                    min={dateDebut || now}
+                    aria-invalid={showError}
+                  />
+                </InputGroup>
                 {showError && (
                   <FieldError errors={[{ message: fieldState.error?.message || "" }]} />
                 )}
@@ -228,11 +235,15 @@ export function DetailsStep() {
         render={({ field }) => (
           <Field>
             <FieldLabel>Précisions complémentaires (Optionnel)</FieldLabel>
-            <InputGroupTextarea
-              {...field}
-              placeholder="Habitudes de votre animal, consignes particulières..."
-              className="border border-input rounded-md min-h-32 text-sm p-3 focus:ring-2 focus:ring-primary/20 outline-none"
-            />
+            <InputGroup className="items-start min-h-32">
+              <InputGroupAddon className="pt-3">
+                <MessageSquare className="w-5 h-5" />
+              </InputGroupAddon>
+              <InputGroupTextarea
+                {...field}
+                placeholder="Habitudes de votre animal, consignes particulières..."
+              />
+            </InputGroup>
           </Field>
         )}
       />

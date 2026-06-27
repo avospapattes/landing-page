@@ -1,7 +1,9 @@
 import { Controller, useFormContext } from "react-hook-form";
 import { Field, FieldLabel, FieldError } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { ContactFormValues } from "@/lib/validations/contact";
+import { User, Mail, Phone } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function ClientDetailsStep() {
   const { control } = useFormContext<ContactFormValues>();
@@ -15,11 +17,15 @@ export function ClientDetailsStep() {
           render={({ field, fieldState }) => (
             <Field>
               <FieldLabel>Nom *</FieldLabel>
-              <Input
-                {...field}
-                placeholder="Ex: Dupont"
-                className={fieldState.error ? "border-destructive focus:ring-destructive/20" : ""}
-              />
+              <InputGroup className={cn("h-11", fieldState.error ? "border-destructive ring-destructive/20" : "")}>
+                <InputGroupAddon>
+                  <User className="w-5 h-5" />
+                </InputGroupAddon>
+                <InputGroupInput
+                  {...field}
+                  placeholder="Ex: Dupont"
+                />
+              </InputGroup>
               {fieldState.error && (
                 <FieldError errors={[{ message: fieldState.error.message }]} />
               )}
@@ -32,11 +38,15 @@ export function ClientDetailsStep() {
           render={({ field, fieldState }) => (
             <Field>
               <FieldLabel>Prénom *</FieldLabel>
-              <Input
-                {...field}
-                placeholder="Ex: Jean"
-                className={fieldState.error ? "border-destructive focus:ring-destructive/20" : ""}
-              />
+              <InputGroup className={cn("h-11", fieldState.error ? "border-destructive ring-destructive/20" : "")}>
+                <InputGroupAddon>
+                  <User className="w-5 h-5" />
+                </InputGroupAddon>
+                <InputGroupInput
+                  {...field}
+                  placeholder="Ex: Jean"
+                />
+              </InputGroup>
               {fieldState.error && (
                 <FieldError errors={[{ message: fieldState.error.message }]} />
               )}
@@ -52,12 +62,16 @@ export function ClientDetailsStep() {
           render={({ field, fieldState }) => (
             <Field>
               <FieldLabel>Email *</FieldLabel>
-              <Input
-                {...field}
-                type="email"
-                placeholder="Ex: jean.dupont@email.com"
-                className={fieldState.error ? "border-destructive focus:ring-destructive/20" : ""}
-              />
+              <InputGroup className={cn("h-11", fieldState.error ? "border-destructive ring-destructive/20" : "")}>
+                <InputGroupAddon>
+                  <Mail className="w-5 h-5" />
+                </InputGroupAddon>
+                <InputGroupInput
+                  {...field}
+                  type="email"
+                  placeholder="Ex: jean.dupont@email.com"
+                />
+              </InputGroup>
               {fieldState.error && (
                 <FieldError errors={[{ message: fieldState.error.message }]} />
               )}
@@ -70,11 +84,16 @@ export function ClientDetailsStep() {
           render={({ field, fieldState }) => (
             <Field>
               <FieldLabel>Téléphone *</FieldLabel>
-              <Input
-                {...field}
-                placeholder="Ex: 06 12 34 56 78"
-                className={fieldState.error ? "border-destructive focus:ring-destructive/20" : ""}
-              />
+              <InputGroup className={cn("h-11", fieldState.error ? "border-destructive ring-destructive/20" : "")}>
+                <InputGroupAddon>
+                  <Phone className="w-5 h-5" />
+                </InputGroupAddon>
+                <InputGroupInput
+                  {...field}
+                  type="tel"
+                  placeholder="Ex: 06 12 34 56 78"
+                />
+              </InputGroup>
               {fieldState.error && (
                 <FieldError errors={[{ message: fieldState.error.message }]} />
               )}

@@ -26,6 +26,7 @@ import { DetailsStep } from "@/components/sections/contact/details-step";
 export default function ContactPage() {
   const [step, setStep] = useState(1);
   const [direction, setDirection] = useState<"forward" | "backward">("forward");
+  const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
 
   // Keep a stable ref of the step state to avoid closures issues in the useForm resolver
   const stepRef = useRef(step);
@@ -103,15 +104,13 @@ export default function ContactPage() {
 
     const isStepValid = await methods.trigger(fieldsToValidate);
     if (isStepValid) {
-      if (step === 2) {
-        methods.clearErrors(["dateDebut", "dateFin"]);
-      }
       setDirection("forward");
       setStep((prev) => prev + 1);
     }
   };
 
   const prevStep = () => {
+    setHasAttemptedSubmit(false);
     setDirection("backward");
     setStep((prev) => prev - 1);
   };
@@ -177,7 +176,7 @@ export default function ContactPage() {
               >
                 {step === 1 && <ClientDetailsStep />}
                 {step === 2 && <AddressStep />}
-                {step === 3 && <DetailsStep />}
+                {step === 3 && <DetailsStep hasAttemptedSubmit={hasAttemptedSubmit} />}
               </div>
 
               {/* Action Buttons Footer */}
@@ -204,6 +203,7 @@ export default function ContactPage() {
                 ) : (
                   <Button
                     type="submit"
+                    onClick={() => setHasAttemptedSubmit(true)}
                     disabled={methods.formState.isSubmitting}
                     className="ml-auto py-6 px-6 font-bold bg-primary text-white border-2 border-primary hover:bg-primary/95 transition-transform active:scale-[0.98] cursor-pointer disabled:bg-muted disabled:text-muted-foreground"
                   >

@@ -42,6 +42,7 @@ The project is structured as a **Monorepo** with two workspaces: `web` (Next.js 
 │   └── sanity.cli.ts
 └── web/                     # Next.js Application workspace
     ├── app/                 # Next.js App Router pages and API routes
+    │   ├── api/revalidate/  # Sanity cache revalidation endpoint
     │   ├── api/reviews/     # Review proxy endpoint
     │   ├── contact/         # Booking form route
     │   ├── gallery/         # Photo gallery page route

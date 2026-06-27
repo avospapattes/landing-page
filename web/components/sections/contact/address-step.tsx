@@ -1,7 +1,9 @@
 import { Controller, useFormContext } from "react-hook-form";
 import { Field, FieldLabel, FieldError } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { ContactFormValues } from "@/lib/validations/contact";
+import { MapPin, Hash, Map } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function AddressStep() {
   const { control } = useFormContext<ContactFormValues>();
@@ -17,11 +19,15 @@ export function AddressStep() {
             render={({ field, fieldState }) => (
               <Field>
                 <FieldLabel>Ville *</FieldLabel>
-                <Input
-                  {...field}
-                  placeholder="Ex: Oberhausbergen"
-                  className={fieldState.error ? "border-destructive focus:ring-destructive/20 h-11" : "h-11"}
-                />
+                <InputGroup className={cn("h-11", fieldState.error ? "border-destructive ring-destructive/20" : "")}>
+                  <InputGroupAddon>
+                    <MapPin className="w-5 h-5" />
+                  </InputGroupAddon>
+                  <InputGroupInput
+                    {...field}
+                    placeholder="Ex: Oberhausbergen"
+                  />
+                </InputGroup>
                 {fieldState.error && (
                   <FieldError errors={[{ message: fieldState.error.message }]} />
                 )}
@@ -36,12 +42,16 @@ export function AddressStep() {
             render={({ field, fieldState }) => (
               <Field>
                 <FieldLabel>Code Postal *</FieldLabel>
-                <Input
-                  {...field}
-                  maxLength={5}
-                  placeholder="Ex: 67205"
-                  className={fieldState.error ? "border-destructive focus:ring-destructive/20 h-11" : "h-11"}
-                />
+                <InputGroup className={cn("h-11", fieldState.error ? "border-destructive ring-destructive/20" : "")}>
+                  <InputGroupAddon>
+                    <Hash className="w-5 h-5" />
+                  </InputGroupAddon>
+                  <InputGroupInput
+                    {...field}
+                    maxLength={5}
+                    placeholder="Ex: 67205"
+                  />
+                </InputGroup>
                 {fieldState.error && (
                   <FieldError errors={[{ message: fieldState.error.message }]} />
                 )}
@@ -60,7 +70,12 @@ export function AddressStep() {
             render={({ field }) => (
               <Field>
                 <FieldLabel>N° de rue</FieldLabel>
-                <Input {...field} placeholder="Ex: 12B" className="h-11" />
+                <InputGroup className="h-11">
+                  <InputGroupAddon>
+                    <Hash className="w-5 h-5" />
+                  </InputGroupAddon>
+                  <InputGroupInput {...field} placeholder="Ex: 12B" />
+                </InputGroup>
               </Field>
             )}
           />
@@ -72,7 +87,12 @@ export function AddressStep() {
             render={({ field }) => (
               <Field>
                 <FieldLabel>Nom de rue</FieldLabel>
-                <Input {...field} placeholder="Ex: Rue des Mouettes" className="h-11" />
+                <InputGroup className="h-11">
+                  <InputGroupAddon>
+                    <Map className="w-5 h-5" />
+                  </InputGroupAddon>
+                  <InputGroupInput {...field} placeholder="Ex: Rue des Mouettes" />
+                </InputGroup>
               </Field>
             )}
           />
