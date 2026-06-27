@@ -9,8 +9,6 @@ import {
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import * as z from "zod";
-import emailjs from "@emailjs/browser";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -20,48 +18,17 @@ import { InputGroupTextarea } from "@/components/ui/input-group";
 import { Separator } from "@/components/ui/separator";
 import { ArrowRight, Bone, PawPrint, Plus, Trash2 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
-
-const formSchema = z
-  .object({
-    nom: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
-    prenom: z.string().min(2, "Le prénom doit contenir au moins 2 caractères"),
-    email: z
-      .string()
-      .email("Adresse email invalide")
-      .min(1, "L'email est requis"),
-    telephone: z
-      .string()
-      .min(10, "Le numéro doit contenir au moins 10 chiffres"),
-    animauxList: z
-      .array(
-        z.object({
-          type: z.string().min(1, "Requis"),
-          autrePrecisez: z.string().optional(),
-          quantite: z.number().min(1, "Doit être au moins 1"),
-        }),
-      )
-      .min(1, "Ajoutez au moins un animal"),
-
-    serviceType: z.string().min(1, "Requis"),
-    frequence: z.string().min(1, "Requis"),
-    transportToilettage: z.boolean(),
-    transportVeto: z.boolean(),
-    dateDebut: z.string().min(1, "Date de début requise"),
-    dateFin: z.string().min(1, "Date de fin requise"),
-    message: z.string().optional(),
-  })
-  .refine((data) => new Date(data.dateFin) >= new Date(data.dateDebut), {
-    message: "La date de fin doit être égale ou après la date de début",
-    path: ["dateFin"],
-  });
-
-type FormValues = z.infer<typeof formSchema>;
+import {
+  contactFormSchema,
+  ContactFormValues,
+} from "@/lib/validations/contact";
+import { sendContactEmail } from "@/lib/services/email";
 
 export default function PetSittingForm() {
   const now = new Date().toISOString().slice(0, 16);
 
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactFormSchema),
     defaultValues: {
       nom: "",
       prenom: "",
@@ -85,61 +52,8 @@ export default function PetSittingForm() {
   const dateDebut = useWatch({ control: form.control, name: "dateDebut" });
   const animauxList = useWatch({ control: form.control, name: "animauxList" });
 
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    const SERVICE_ID =
-      process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID || "your_service_id";
-    const TEMPLATE_ID =
-      process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID || "your_template_id";
-    const PUBLIC_KEY =
-      process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY || "your_public_key";
-
-    if (SERVICE_ID === "your_service_id") {
-      toast.error("Configuration EmailJS manquante.");
-      return;
-    }
-
-    const formatDate = (dateStr: string) => {
-      return new Date(dateStr).toLocaleDateString("fr-FR", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
-    };
-    const animauxString = data.animauxList
-      .map(
-        (a) =>
-          `${a.quantite}x ${a.type === "Autre" ? a.autrePrecisez : a.type}`,
-      )
-      .join(", ");
-
-    const serviceLabels: Record<string, string> = {
-      "30min": "Visite de 30 minutes",
-      "45min": "Visite de 45 minutes",
-      "1h": "Visite de 1 heure",
-    };
-
-    const emailParams = {
-      nom: data.nom,
-      prenom: data.prenom,
-      email: data.email,
-      telephone: data.telephone,
-      animaux: animauxString,
-      serviceType: serviceLabels[data.serviceType] || data.serviceType,
-      frequence: data.frequence,
-      transportToilettage: data.transportToilettage ? "Oui" : "Non",
-      transportVeto: data.transportVeto ? "Oui" : "Non",
-      date_debut: formatDate(data.dateDebut),
-      date_fin: formatDate(data.dateFin),
-      message: data.message || "Pas de message supplémentaire.",
-    };
-
-    const sendEmailPromise = emailjs.send(
-      SERVICE_ID,
-      TEMPLATE_ID,
-      emailParams,
-      PUBLIC_KEY,
-    );
+  const onSubmit: SubmitHandler<ContactFormValues> = async (data) => {
+    const sendEmailPromise = sendContactEmail(data);
 
     toast.promise(sendEmailPromise, {
       loading: "Envoi de votre demande...",
