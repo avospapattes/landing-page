@@ -27,8 +27,8 @@ export function StorySection() {
           </div>
           <div className="shrink-0 w-full md:w-auto flex justify-center">
             <Image
-              src="/nathalie&alfy.jpg"
-              alt="Nathalie avec un chien"
+              src="/images/nathalie-and-alfy.jpg"
+              alt="Nathalie avec son chat Alfy"
               width={350}
               height={350}
               className="neo-shadow w-62.5 md:w-87.5 h-auto object-cover"

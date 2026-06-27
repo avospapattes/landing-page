@@ -6,7 +6,7 @@ export function LabelsSection() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-center max-w-5xl mx-auto">
         <div className="col-span-1 flex justify-center">
           <Image
-            src="acaced.svg"
+            src="/icons/badge-acaced.svg"
             alt="Label Pet Sitter Professionnelle"
             width={300}
             height={300}

@@ -27,7 +27,7 @@ export default function Navbar() {
     <nav className="bg-background border-b border-b-foreground">
       <div className="container mx-auto flex flex-row justify-between items-center h-20 px-4">
         <Image
-          src="logo.svg"
+          src="/icons/logo.svg"
           alt="Logo"
           width={150} // Approximate width based on aspect ratio, adjusted for auto height
           height={60} // Approximate height to fit in h-20 (80px)

@@ -9,7 +9,7 @@ export default function Footer() {
       <div
         className="w-full h-2"
         style={{
-          backgroundImage: "url('/footerlines.png')",
+          backgroundImage: "url('/images/footer-lines.png')",
           backgroundRepeat: "repeat-x",
           backgroundSize: "contain",
         }}
@@ -19,7 +19,7 @@ export default function Footer() {
           {/* Brand & Tagline */}
           <div className="flex flex-col items-center md:items-start space-y-4">
             <Image
-              src="/logo.svg"
+              src="/icons/logo.svg"
               alt="Logo À vos papattes"
               width={250}
               height={250}
