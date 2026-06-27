@@ -17,6 +17,8 @@ const HOME_CERTIFICATIONS_QUERY = defineQuery(
 
 const HOME_FAQS_QUERY = defineQuery(`*[_type == "faq"] | order(order asc)`);
 
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
+
 export default async function Home() {
   const isSanityConfigured =
     !!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID &&
@@ -49,13 +51,34 @@ export default async function Home() {
   return (
     <main className="min-h-screen w-full flex flex-col">
       <WelcomeSection />
-      <StatsSection />
-      <StorySection />
-      <LabelsSection />
-      <MissionSection />
-      <BenefitsSection certifications={certifications} />
-      <TestimonialsSection reviews={reviews} />
-      <FaqSection faqs={faqs} />
+      
+      <ScrollReveal>
+        <StatsSection />
+      </ScrollReveal>
+      
+      <ScrollReveal>
+        <StorySection />
+      </ScrollReveal>
+      
+      <ScrollReveal>
+        <LabelsSection />
+      </ScrollReveal>
+      
+      <ScrollReveal>
+        <MissionSection />
+      </ScrollReveal>
+      
+      <ScrollReveal>
+        <BenefitsSection certifications={certifications} />
+      </ScrollReveal>
+      
+      <ScrollReveal>
+        <TestimonialsSection reviews={reviews} />
+      </ScrollReveal>
+      
+      <ScrollReveal>
+        <FaqSection faqs={faqs} />
+      </ScrollReveal>
     </main>
   );
 }
