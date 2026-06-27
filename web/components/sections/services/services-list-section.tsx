@@ -9,10 +9,12 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PawPrint } from "lucide-react";
 import { servicesConfig } from "@/config/services";
+import type { Service as LocalService } from "@/config/services";
 import { urlForImage } from "@/sanity/lib/image";
+import type { SERVICES_QUERY_RESULT } from "@/sanity.types";
 
 interface ServicesListSectionProps {
-  services?: any[];
+  services?: SERVICES_QUERY_RESULT | LocalService[];
 }
 
 export function ServicesListSection({ services = servicesConfig }: ServicesListSectionProps) {
@@ -56,7 +58,7 @@ export function ServicesListSection({ services = servicesConfig }: ServicesListS
                   {imageSrc && (
                     <Image
                       src={imageSrc}
-                      alt={service.title}
+                      alt={service.title || "Image de service"}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover"
@@ -91,7 +93,7 @@ export function ServicesListSection({ services = servicesConfig }: ServicesListS
                       </DialogHeader>
                       <div className="mt-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                          {service.points.map((point: string, idx: number) => {
+                          {service.points?.map((point: string, idx: number) => {
                             const parts = point.split(" : ");
                             const hasKey = parts.length > 1;
                             return (

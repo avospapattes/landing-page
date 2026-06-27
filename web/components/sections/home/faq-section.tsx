@@ -8,6 +8,7 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
+import type { HOME_FAQS_QUERY_RESULT } from "@/sanity.types";
 
 const FAQ_ITEMS = [
   {
@@ -175,7 +176,11 @@ const FAQ_ITEMS = [
   },
 ];
 
-export function FaqSection() {
+interface FaqSectionProps {
+  faqs?: HOME_FAQS_QUERY_RESULT | typeof FAQ_ITEMS;
+}
+
+export function FaqSection({ faqs = FAQ_ITEMS }: FaqSectionProps) {
   return (
     <section className="w-full py-16 px-4 md:px-8 bg-foreground" id="faq">
       <div className="container mx-auto max-w-6xl">
@@ -189,13 +194,17 @@ export function FaqSection() {
               collapsible
               className="w-full bg-white p-5 rounded-xl neo-shadow space-y-4"
             >
-              {FAQ_ITEMS.map((item, index) => (
+              {faqs.map((item, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
                   <AccordionTrigger className="text-base md:text-lg font-bold cursor-pointer text-left">
                     {item.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-sm text-justify md:text-base text-muted-foreground leading-relaxed">
-                    {item.answer}
+                    {typeof item.answer === "string" ? (
+                      <p className="whitespace-pre-line">{item.answer}</p>
+                    ) : (
+                      item.answer
+                    )}
                   </AccordionContent>
                 </AccordionItem>
               ))}

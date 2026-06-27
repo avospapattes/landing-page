@@ -4,6 +4,9 @@ import { WarningSection } from "@/components/sections/services/warning-section";
 import { ZoneSection } from "@/components/sections/services/zone-section";
 import { PricingSection } from "@/components/sections/services/pricing-section";
 import { BookingProcessSection } from "@/components/sections/services/booking-process-section";
+import { defineQuery } from "next-sanity";
+
+const SERVICES_QUERY = defineQuery(`*[_type == "service"]`);
 
 export default async function ServicesPage() {
   const isSanityConfigured =
@@ -15,7 +18,7 @@ export default async function ServicesPage() {
   if (isSanityConfigured) {
     try {
       const { client } = await import("@/sanity/lib/client");
-      services = await client.fetch(`*[_type == "service"]`);
+      services = await client.fetch(SERVICES_QUERY);
       if (services && services.length === 0) services = undefined;
     } catch (e) {
       console.error("Failed to fetch services from Sanity", e);

@@ -7,6 +7,13 @@ import { StatsSection } from "@/components/sections/home/stats-section";
 import { FaqSection } from "@/components/sections/home/faq-section";
 import TestimonialsSection from "@/components/sections/home/testimonials-section";
 import { fetchGoogleReviews } from "@/lib/services/reviews";
+import { defineQuery } from "next-sanity";
+
+const HOME_CERTIFICATIONS_QUERY = defineQuery(
+  `*[_type == "certification"] | order(order asc)`,
+);
+
+const HOME_FAQS_QUERY = defineQuery(`*[_type == "faq"] | order(order asc)`);
 
 export default async function Home() {
   const isSanityConfigured =
@@ -15,6 +22,7 @@ export default async function Home() {
 
   let reviews: any[] = [];
   let certifications: any[] | undefined = undefined;
+  let faqs: any[] | undefined = undefined;
 
   try {
     reviews = await fetchGoogleReviews();
@@ -25,11 +33,12 @@ export default async function Home() {
   if (isSanityConfigured) {
     try {
       const { client } = await import("@/sanity/lib/client");
-      certifications = await client.fetch(
-        `*[_type == "certification"] | order(order asc)`,
-      );
+      certifications = await client.fetch(HOME_CERTIFICATIONS_QUERY);
       if (certifications && certifications.length === 0)
         certifications = undefined;
+
+      faqs = await client.fetch(HOME_FAQS_QUERY);
+      if (faqs && faqs.length === 0) faqs = undefined;
     } catch (e) {
       console.error("Failed to fetch certifications from Sanity", e);
     }
@@ -44,7 +53,7 @@ export default async function Home() {
       <MissionSection />
       <BenefitsSection certifications={certifications} />
       <TestimonialsSection reviews={reviews} />
-      <FaqSection />
+      <FaqSection faqs={faqs} />
     </main>
   );
 }

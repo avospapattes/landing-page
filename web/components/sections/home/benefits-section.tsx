@@ -7,10 +7,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { certificationsConfig } from "@/config/certifications";
+import type { Certification as LocalCertification } from "@/config/certifications";
 import { urlForImage } from "@/sanity/lib/image";
+import type { HOME_CERTIFICATIONS_QUERY_RESULT } from "@/sanity.types";
 
 interface BenefitsSectionProps {
-  certifications?: any[];
+  certifications?: HOME_CERTIFICATIONS_QUERY_RESULT | LocalCertification[];
 }
 
 export function BenefitsSection({
@@ -54,7 +56,7 @@ export function BenefitsSection({
                     {imageSrc && (
                       <Image
                         src={imageSrc}
-                        alt={certification.title}
+                        alt={certification.title || "Badge de certification"}
                         fill
                         sizes="48px"
                         className="object-contain"
