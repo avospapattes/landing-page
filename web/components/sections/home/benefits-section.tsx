@@ -10,6 +10,7 @@ import { certificationsConfig } from "@/config/certifications";
 import type { Certification as LocalCertification } from "@/config/certifications";
 import { urlForImage } from "@/sanity/lib/image";
 import type { HOME_CERTIFICATIONS_QUERY_RESULT } from "@/sanity.types";
+import type { Image as SanityImage } from "sanity";
 
 interface BenefitsSectionProps {
   certifications?: HOME_CERTIFICATIONS_QUERY_RESULT | LocalCertification[];
@@ -18,11 +19,11 @@ interface BenefitsSectionProps {
 export function BenefitsSection({
   certifications = certificationsConfig,
 }: BenefitsSectionProps) {
-  const getCertificationImageSrc = (img: any) => {
+  const getCertificationImageSrc = (img: NonNullable<HOME_CERTIFICATIONS_QUERY_RESULT[number]["image"]> | string | undefined | null) => {
     if (typeof img === "string") return img;
-    if (img && typeof img === "object" && img.asset) {
+    if (img && typeof img === "object" && "asset" in img) {
       try {
-        return urlForImage(img).url();
+        return urlForImage(img as SanityImage).url();
       } catch (e) {
         return "";
       }

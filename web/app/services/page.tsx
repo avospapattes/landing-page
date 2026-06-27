@@ -5,6 +5,7 @@ import { ZoneSection } from "@/components/sections/services/zone-section";
 import { PricingSection } from "@/components/sections/services/pricing-section";
 import { BookingProcessSection } from "@/components/sections/services/booking-process-section";
 import { defineQuery } from "next-sanity";
+import type { SERVICES_QUERY_RESULT } from "@/sanity.types";
 
 const SERVICES_QUERY = defineQuery(`*[_type == "service"]`);
 
@@ -13,7 +14,7 @@ export default async function ServicesPage() {
     !!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID &&
     !!process.env.NEXT_PUBLIC_SANITY_DATASET;
 
-  let services: any[] | undefined = undefined;
+  let services: SERVICES_QUERY_RESULT | undefined = undefined;
 
   if (isSanityConfigured) {
     try {

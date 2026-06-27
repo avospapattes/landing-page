@@ -12,17 +12,18 @@ import { servicesConfig } from "@/config/services";
 import type { Service as LocalService } from "@/config/services";
 import { urlForImage } from "@/sanity/lib/image";
 import type { SERVICES_QUERY_RESULT } from "@/sanity.types";
+import type { Image as SanityImage } from "sanity";
 
 interface ServicesListSectionProps {
   services?: SERVICES_QUERY_RESULT | LocalService[];
 }
 
 export function ServicesListSection({ services = servicesConfig }: ServicesListSectionProps) {
-  const getServiceImageSrc = (img: any) => {
+  const getServiceImageSrc = (img: NonNullable<SERVICES_QUERY_RESULT[number]["image"]> | string | undefined | null) => {
     if (typeof img === "string") return img;
-    if (img && typeof img === "object" && img.asset) {
+    if (img && typeof img === "object" && "asset" in img) {
       try {
-        return urlForImage(img).url();
+        return urlForImage(img as SanityImage).url();
       } catch (e) {
         return "";
       }
@@ -30,11 +31,11 @@ export function ServicesListSection({ services = servicesConfig }: ServicesListS
     return "";
   };
 
-  const getServiceId = (service: any) => {
-    if (service.id && typeof service.id === "object") {
+  const getServiceId = (service: SERVICES_QUERY_RESULT[number] | LocalService) => {
+    if ("id" in service && service.id && typeof service.id === "object") {
       return service.id.current || "";
     }
-    return service.id || "";
+    return (service as LocalService).id || "";
   };
 
   return (
