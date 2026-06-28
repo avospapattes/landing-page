@@ -1,6 +1,4 @@
 import { BenefitsSection } from "@/components/sections/home/benefits-section";
-import { LabelsSection } from "@/components/sections/home/labels-section";
-import { MissionSection } from "@/components/sections/home/mission-section";
 import { StorySection } from "@/components/sections/home/story-section";
 import { WelcomeSection } from "@/components/sections/home/welcome-section";
 import { StatsSection } from "@/components/sections/home/stats-section";
@@ -58,14 +56,6 @@ export default async function Home() {
       
       <ScrollReveal>
         <StorySection />
-      </ScrollReveal>
-      
-      <ScrollReveal>
-        <LabelsSection />
-      </ScrollReveal>
-      
-      <ScrollReveal>
-        <MissionSection />
       </ScrollReveal>
       
       <ScrollReveal>

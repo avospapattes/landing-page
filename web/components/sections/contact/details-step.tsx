@@ -30,7 +30,7 @@ export function DetailsStep({ hasAttemptedSubmit = false }: { hasAttemptedSubmit
           <Button
             type="button"
             onClick={() => append({ type: "", quantite: 1, autrePrecisez: "" })}
-            className="h-9 bg-primary text-white hover:bg-primary/90 flex items-center gap-1 cursor-pointer"
+            className="h-9 px-4 font-bold flex items-center gap-1 cursor-pointer"
           >
             <Plus className="w-4 h-4" /> Ajouter
           </Button>

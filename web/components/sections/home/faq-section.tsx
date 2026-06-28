@@ -84,7 +84,7 @@ export function FaqSection({ faqs }: FaqSectionProps) {
                   <a href="mailto:contact@avospapattes.fr">Envoyer un email</a>
                 </Button>
                 <p className="text-caption text-muted-foreground">
-                  Ou via le{" "}
+                  Ou via le {" "}
                   <Link
                     href="/contact"
                     className="underline hover:text-primary font-medium"

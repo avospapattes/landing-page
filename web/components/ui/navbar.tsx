@@ -19,33 +19,43 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-primary border-b-2 border-b-secondary">
-      <div className="container mx-auto flex flex-row justify-between items-center h-20 px-4">
-        <Image
-          src="/icons/logo.svg"
-          alt="Logo"
-          width={150} // Approximate width based on aspect ratio, adjusted for auto height
-          height={60} // Approximate height to fit in h-20 (80px)
-          className="h-16 w-auto" // h-16 is 64px, fits nicely in h-20
-          style={{ width: "auto", height: "auto" }}
-          priority
-        />
+    <header className="sticky top-0 w-full z-50 bg-primary/95 backdrop-blur-md border-b-2 border-b-secondary">
+      <nav className="container mx-auto flex items-center justify-between h-20 px-4">
+        {/* Logo Link */}
+        <Link
+          href="/"
+          className="flex items-center cursor-pointer transition-transform hover:scale-[1.03] active:scale-[0.97]"
+        >
+          <Image
+            src="/icons/logo.svg"
+            alt="Logo"
+            width={150}
+            height={60}
+            className="h-14 w-auto"
+            style={{ width: "auto", height: "auto" }}
+            priority
+          />
+        </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex h-full font-medium">
+        <ul className="hidden md:flex h-full items-center font-medium">
           {siteConfig.navLinks.map((link) => {
             const LinkIcon = link.icon;
             const isActive = pathname === link.href;
 
             return (
-              <li key={link.href} className="h-full">
+              <li
+                key={link.href}
+                className="relative flex items-center h-full overflow-hidden"
+              >
                 <Link
                   href={link.href}
                   className={cn(
-                    "flex items-center space-x-2 px-6 h-full transition-colors text-label-bold",
+                    "relative z-10 flex items-center space-x-2 px-6 h-full transition-all text-label-bold text-secondary select-none",
+                    "before:absolute before:inset-0 before:bg-secondary/10 before:translate-y-full hover:before:translate-y-0 before:transition-transform before:duration-200 before:ease-out before:-z-10",
                     isActive
-                      ? "bg-secondary text-white"
-                      : "text-secondary hover:bg-secondary/10",
+                      ? "bg-secondary text-white hover:bg-secondary"
+                      : "hover:text-secondary"
                   )}
                 >
                   {LinkIcon && <LinkIcon className="h-5 w-5" />}
@@ -57,11 +67,11 @@ export default function Navbar() {
         </ul>
 
         {/* Mobile Menu */}
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <button
-                className="p-2 text-secondary hover:bg-secondary/10 rounded-md focus:outline-none"
+                className="p-2 text-secondary hover:bg-secondary/10 rounded-sm focus:outline-none cursor-pointer"
                 aria-label="Open menu"
               >
                 <Menu className="h-8 w-8" />
@@ -74,7 +84,7 @@ export default function Navbar() {
             >
               <div className="flex flex-col mt-3">
                 <SheetTitle className="sr-only">Menu de navigation</SheetTitle>
-                <div className="flex flex-col">
+                <div className="flex flex-col gap-1">
                   {siteConfig.navLinks.map((link) => {
                     const LinkIcon = link.icon;
                     const isActive = pathname === link.href;
@@ -85,9 +95,9 @@ export default function Navbar() {
                         href={link.href}
                         onClick={() => setIsOpen(false)}
                         className={cn(
-                          "flex items-center space-x-4 p-3 transition-colors text-lg font-medium rounded-md",
+                          "flex items-center space-x-4 p-3 transition-colors text-lg font-medium rounded-sm",
                           isActive
-                            ? "bg-primary text-primary-foreground"
+                            ? "bg-primary text-primary-foreground font-bold"
                             : "text-foreground/80 hover:bg-muted hover:text-foreground",
                         )}
                       >
@@ -101,7 +111,7 @@ export default function Navbar() {
             </SheetContent>
           </Sheet>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 }

@@ -29,7 +29,7 @@ export default function TestimonialsSection({
   const rotations = ["-rotate-1", "rotate-1", "-rotate-2", "rotate-2"];
 
   return (
-    <section className="w-full py-24 bg-background overflow-hidden" id="avis">
+    <section className="w-full py-24 bg-transparent overflow-hidden" id="avis">
       <div className="container mx-auto max-w-6xl px-4">
         <div className="flex flex-col items-center mb-8">
           <h2 className="text-headline-lg text-center mb-4">

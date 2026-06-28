@@ -16,7 +16,7 @@ export function StepIndicator({ currentStep }: StepIndicatorProps) {
     <div className="w-full max-w-lg mx-auto mb-6 px-4">
       <div className="relative flex justify-between items-center">
         {/* Progress Line Background & Active Filler */}
-        <div className="absolute top-1/3 left-6 right-6 h-1 bg-white/20 -translate-y-1/2 rounded-full pointer-events-none">
+        <div className="absolute top-1/3 left-6 right-6 h-1 bg-secondary/20 -translate-y-1/2 rounded-full pointer-events-none">
           <div
             className="h-full bg-orange-400 rounded-full transition-all duration-500 ease-out"
             style={{
@@ -45,7 +45,7 @@ export function StepIndicator({ currentStep }: StepIndicatorProps) {
                     "border-orange-400 ring-4 ring-orange-400/20 text-orange-400 font-bold scale-105",
                   !isActive &&
                     !isCompleted &&
-                    "border-white/20 bg-background text-white/50",
+                    "border-secondary/20 bg-white text-secondary/40",
                 )}
               >
                 {isCompleted ? (
@@ -59,7 +59,7 @@ export function StepIndicator({ currentStep }: StepIndicatorProps) {
                   "text-xs md:text-sm font-semibold tracking-wide transition-colors duration-300",
                   isActive && "text-orange-400 font-bold",
                   isCompleted && "text-orange-400/80",
-                  !isActive && !isCompleted && "text-white/40",
+                  !isActive && !isCompleted && "text-secondary/50",
                 )}
               >
                 {step.label}

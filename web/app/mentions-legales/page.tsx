@@ -64,7 +64,7 @@ export default function MentionsLegalesPage() {
               (RC Pro) souscrite auprès de ORUS (Contrat n° RCPH278507216).
             </li>
             <li>
-              <strong>Certification</strong> : Titulaire de l&apos;ACACED
+              <strong>Certification</strong> : Titulaire de  l&apos;ACACED
               (Attestation de Connaissances pour les Animaux de Compagnie
               d&apos;Espèces Domestiques) n° 2025/b58a-64dc.
             </li>

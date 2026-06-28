@@ -45,7 +45,7 @@ export default async function ServicesPage() {
   }
 
   return (
-    <main className="min-h-screen w-full flex flex-col bg-white">
+    <main className="min-h-screen w-full flex flex-col">
       <HeroSection />
       <ServicesListSection services={services} />
       <WarningSection />

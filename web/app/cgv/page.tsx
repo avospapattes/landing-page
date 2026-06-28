@@ -358,7 +358,7 @@ export default function CGVPage() {
             Disponibles sur le SITE. Un devis personnalisé est établi.
           </p>
           <p className="mb-4">
-            La réservation est ferme et définitive uniquement après{" "}
+            La réservation est ferme et définitive uniquement après
             <strong>versement de l&apos;acompte de 50%</strong> ou paiement
             total.
           </p>
@@ -476,12 +476,12 @@ export default function CGVPage() {
             16. MÉDIATEUR ET LITIGES
           </h2>
           <p className="mb-2">
-            En cas de litige, contacter d&apos;abord{" "}
+            En cas de litige, contacter d&apos;abord
             <code>contact@avospapattes.fr</code>.
           </p>
           <ul className="list-disc pl-5 space-y-2">
             <li>
-              Médiateur de la consommation : <strong>Mediavet</strong>{" "}
+              Médiateur de la consommation : <strong>Mediavet</strong>
               (https://mediavet.net).
             </li>
             <li>Tribunaux compétents : France.</li>

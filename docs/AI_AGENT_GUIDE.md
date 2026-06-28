@@ -50,7 +50,7 @@ The project is structured as a **Monorepo** with two workspaces: `web` (Next.js 
     │   ├── layout.tsx
     │   └── page.tsx         # Homepage (Server Component pre-rendering reviews)
     ├── components/          # Presentation React components
-    ├── config/              # Local data fallback configurations (site, services, certifications)
+    ├── config/              # Local site metadata configuration (site.ts)
     ├── lib/                 # Core logic, email services, Zod validations, env checks
     ├── public/              # Static assets (images, icons)
     ├── sanity/              # Sanity client fetching SDK & responsive image helper

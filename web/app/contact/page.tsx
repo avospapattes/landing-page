@@ -132,16 +132,16 @@ export default function ContactPage() {
 
   return (
     <FormProvider {...methods}>
-      <div className="relative min-h-[calc(100vh-5rem)] overflow-hidden flex flex-col justify-center items-center bg-foreground py-16 px-4 md:px-8 w-full">
+      <div className="relative min-h-[calc(100vh-5rem)] overflow-hidden flex flex-col justify-center items-center py-16 px-4 md:px-8 w-full">
         {/* Playful Floating shapes */}
         <PawPrint className="absolute top-10 left-10 w-24 h-24 md:w-32 md:h-32 text-orange-500/20 -rotate-12 pointer-events-none" />
         <Bone className="absolute bottom-20 -right-5 w-32 h-32 md:w-40 md:h-40 text-primary/10 rotate-45 pointer-events-none" />
 
         <div className="mb-4 max-w-4xl text-center z-10">
-          <h1 className="mb-3 px-2 font-extrabold text-white text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tight text-stroke-title">
+          <h1 className="mb-3 px-2 font-extrabold text-secondary text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tight text-stroke-title">
             Demande de réservation
           </h1>
-          <p className="text-white/70 max-w-md mx-auto text-sm md:text-base px-4">
+          <p className="text-secondary/80 max-w-md mx-auto text-sm md:text-base px-4">
             Remplissez ce formulaire en quelques étapes pour planifier la garde
             de vos fidèles compagnons.
           </p>
@@ -186,7 +186,7 @@ export default function ContactPage() {
                     type="button"
                     variant="outline"
                     onClick={prevStep}
-                    className="py-6 px-5 font-bold border-2 border-primary text-primary hover:bg-primary/5 transition-transform active:scale-[0.98] cursor-pointer"
+                    className="h-12 px-5 font-bold text-base cursor-pointer"
                   >
                     <ArrowLeft className="mr-2 w-4 h-4 stroke-[2.5]" /> Retour
                   </Button>
@@ -196,7 +196,7 @@ export default function ContactPage() {
                   <Button
                     type="button"
                     onClick={nextStep}
-                    className="ml-auto py-6 px-6 font-bold bg-primary text-white border-2 border-primary hover:bg-primary/95 transition-transform active:scale-[0.98] cursor-pointer"
+                    className="ml-auto h-12 px-6 font-bold text-base cursor-pointer"
                   >
                     Suivant <ArrowRight className="ml-2 w-4 h-4 stroke-[2.5]" />
                   </Button>
@@ -205,7 +205,7 @@ export default function ContactPage() {
                     type="submit"
                     onClick={() => setHasAttemptedSubmit(true)}
                     disabled={methods.formState.isSubmitting}
-                    className="ml-auto py-6 px-6 font-bold bg-primary text-white border-2 border-primary hover:bg-primary/95 transition-transform active:scale-[0.98] cursor-pointer disabled:bg-muted disabled:text-muted-foreground"
+                    className="ml-auto h-12 px-6 font-bold text-base cursor-pointer disabled:bg-muted disabled:text-muted-foreground"
                   >
                     {methods.formState.isSubmitting
                       ? "Envoi..."

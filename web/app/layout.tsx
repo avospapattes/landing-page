@@ -106,9 +106,7 @@ export default function RootLayout({
         className={`${libreCaslon.variable} ${workSans.variable} font-sans min-h-screen flex flex-col`}
         suppressHydrationWarning
       >
-        <header>
-          <Navbar />
-        </header>
+        <Navbar />
         <div className="flex-1">{children}</div>
         <Footer />
         <Toaster />

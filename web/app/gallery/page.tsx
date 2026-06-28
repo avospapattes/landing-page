@@ -29,9 +29,9 @@ export default async function GalleryPage() {
   }
 
   return (
-    <main className="min-h-screen w-full flex flex-col bg-white">
+    <main className="min-h-screen w-full flex flex-col">
       {/* Hero Section */}
-      <section className="w-full p-8 md:p-12 bg-background border-b border-b-secondary">
+      <section className="w-full p-8 md:p-12 border-b border-b-secondary">
         <div className="container mx-auto text-center space-y-4">
           <h1 className="text-display-lg leading-tight">
             Galerie Photos
