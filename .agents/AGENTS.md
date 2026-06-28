@@ -34,13 +34,14 @@ This file is loaded automatically by agentic platforms when working within the *
 
 ## 🎨 Design & Aesthetic Style Guidelines
 
-### 1. Neo-Brutalist Styling
+### 1. Modern-Tactile Styling
 
-- **Constraint**: The project implements a playful Neo-Brutalist style.
+- **Constraint**: The project implements a warm, modern-tactile editorial style.
 - **Rule**:
-  - Use thick borders (`border-4`, `border-3!`) matching `border-primary` (`rgba(75, 51, 28, 1)`).
-  - Apply the custom `.neo-shadow` class for cards, forms, and highlights.
-  - Retain the warm color scheme (brown text, yellow background, orange accent).
+  - Use 2px borders (`border-2`) matching `border-secondary` (Bark Brown `#745945`).
+  - Apply `.neo-shadow` or `.neo-shadow-interactive` for offset cards, process steps, and pricing items (2px Bark Brown border and 6px Paw Orange offset shadow).
+  - Use pill-shaped rounded-full buttons for CTAs.
+  - Headlines use **Libre Caslon Text** (serif) and body uses **Work Sans** (sans-serif), without outline text-stroke borders.
 - **File Reference**: [globals.css](file:///c:/src/projects/landing-page/web/app/globals.css)
 
 ### 2. Tailwind CSS v4 Theme Inline Configuration

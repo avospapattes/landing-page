@@ -31,12 +31,12 @@ export default async function GalleryPage() {
   return (
     <main className="min-h-screen w-full flex flex-col bg-white">
       {/* Hero Section */}
-      <section className="w-full p-8 md:p-12 bg-background border-b border-b-foreground">
+      <section className="w-full p-8 md:p-12 bg-background border-b border-b-secondary">
         <div className="container mx-auto text-center space-y-4">
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-stroke-title">
+          <h1 className="text-display-lg leading-tight">
             Galerie Photos
           </h1>
-          <p className="text-foreground text-base md:text-lg max-w-2xl mx-auto font-medium">
+          <p className="text-body-lg text-foreground max-w-2xl mx-auto font-medium">
             Quelques moments de complicité, de jeux et de tendresse partagés avec vos adorables compagnons lors de mes visites et gardes.
           </p>
         </div>

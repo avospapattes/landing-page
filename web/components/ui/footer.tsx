@@ -6,7 +6,7 @@ import { siteConfig } from "@/config/site";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-background text-foreground flex flex-col">
+    <footer className="w-full bg-primary text-secondary border-t-2 border-secondary flex flex-col">
       <div
         className="w-full h-2"
         style={{
@@ -37,7 +37,7 @@ export default function Footer() {
                 className="hover:scale-110 transition-transform"
                 aria-label="Instagram"
               >
-                <Instagram className="w-6 h-6 text-foreground/80 hover:text-foreground" />
+                <Instagram className="w-6 h-6 text-secondary/85 hover:text-secondary" />
               </a>
               <a
                 href={siteConfig.socials.facebook}
@@ -45,19 +45,19 @@ export default function Footer() {
                 className="hover:scale-110 transition-transform"
                 aria-label="Facebook"
               >
-                <Facebook className="w-6 h-6 text-foreground/80 hover:text-foreground" />
+                <Facebook className="w-6 h-6 text-secondary/85 hover:text-secondary" />
               </a>
             </div>
           </div>
 
           {/* Contact Info */}
           <div className="flex flex-col items-center md:items-start space-y-4">
-            <h3 className="text-xl font-bold uppercase text-stroke-title">
+            <h3 className="text-xl font-bold uppercase text-secondary">
               Contact
             </h3>
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-foreground/80" />
+                <MapPin className="w-4 h-4 text-secondary/85" />
                 <a
                   href={siteConfig.contact.addressMapLink}
                   target="_blank"
@@ -67,7 +67,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-foreground/80" />
+                <Mail className="w-4 h-4 text-secondary/85" />
                 <a
                   href={siteConfig.contact.emailHref}
                   className="hover:underline transition-colors"
@@ -76,7 +76,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-foreground/80" />
+                <Phone className="w-4 h-4 text-secondary/85" />
                 <a
                   href={siteConfig.contact.phoneHref}
                   className="hover:underline transition-colors"
@@ -89,7 +89,7 @@ export default function Footer() {
 
           {/* Legal Links */}
           <div className="flex flex-col items-center md:items-start space-y-4">
-            <h3 className="text-xl font-bold uppercase text-stroke-title">
+            <h3 className="text-xl font-bold uppercase text-secondary">
               Informations
             </h3>
             <ul className="space-y-3 text-sm">
@@ -109,7 +109,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <p className="text-center text-sm w-full mt-6">
+        <p className="text-center text-sm w-full mt-6 text-secondary/90">
           © {new Date().getFullYear()} {siteConfig.name}. Tous droits réservés.
         </p>
       </div>

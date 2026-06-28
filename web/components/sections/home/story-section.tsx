@@ -4,11 +4,11 @@ export function StorySection() {
   return (
     <section className="w-full py-16 px-4 md:px-8 bg-white text-foreground">
       <div className="container mx-auto max-w-7xl">
-        <h2 className="text-4xl md:text-5xl lg:text-7xl text-center mb-8 md:mb-12 text-stroke-title font-extrabold">
+        <h2 className="text-display-lg text-center mb-8 md:mb-12">
           Mon histoire
         </h2>
         <div className="flex flex-col-reverse md:flex-row gap-8 md:gap-12 items-center">
-          <div className="flex-1 space-y-4 md:space-y-6 text-base md:text-lg leading-relaxed text-center md:text-left">
+          <div className="flex-1 space-y-4 md:space-y-6 text-body-lg text-center md:text-left">
             <p className="text-justify">
               Je m’appelle <strong>Nathalie</strong>. Après 25 ans de carrière
               dans le secteur financier, j&apos;ai choisi de me consacrer
@@ -31,7 +31,7 @@ export function StorySection() {
               alt="Nathalie avec son chat Alfy"
               width={350}
               height={350}
-              className="neo-shadow w-62.5 md:w-87.5 h-auto object-cover"
+              className="neo-shadow rounded-2xl w-62.5 md:w-87.5 h-auto object-cover"
             />
           </div>
         </div>

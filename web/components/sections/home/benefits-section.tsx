@@ -32,13 +32,13 @@ export function BenefitsSection({
   };
 
   return (
-    <section className="w-full py-20 px-4 md:px-8 bg-background text-white">
+    <section className="w-full py-20 px-4 md:px-8 bg-background text-foreground">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-12 md:mb-16 space-y-4">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl text-stroke-title font-extrabold px-2">
+          <h2 className="text-headline-lg px-2">
             Pourquoi choisir une Pet Sitter pro ?
           </h2>
-          <p className="text-lg md:text-xl text-foreground max-w-2xl mx-auto px-4">
+          <p className="text-body-lg max-w-2xl mx-auto px-4">
             Faire appel à une professionnelle, c&apos;est l&apos;assurance de
             partir l&apos;esprit tranquille en sachant votre animal entre de
             bonnes mains.
@@ -50,7 +50,7 @@ export function BenefitsSection({
             return (
               <Card
                 key={index}
-                className="flex flex-col border-2 border-transparent hover:border-primary/20 transition-colors duration-300 shadow-lg overflow-hidden bg-white"
+                className="flex flex-col neo-shadow-interactive bg-white"
               >
                 <CardHeader>
                   <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4 relative overflow-hidden">
@@ -64,15 +64,15 @@ export function BenefitsSection({
                       />
                     )}
                   </div>
-                  <CardTitle className="text-xl font-bold">
+                  <CardTitle className="font-serif text-xl font-bold text-foreground">
                     {certification.title}
                   </CardTitle>
-                  <CardDescription className="text-sm font-medium uppercase tracking-wider text-primary">
+                  <CardDescription className="text-label-bold text-primary">
                     {certification.subtitle}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground text-justify leading-relaxed text-sm">
+                  <p className="text-body-md text-justify leading-relaxed">
                     {certification.description}
                   </p>
                 </CardContent>

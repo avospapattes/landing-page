@@ -17,6 +17,8 @@ export function DetailsStep({ hasAttemptedSubmit = false }: { hasAttemptedSubmit
 
   const dateDebut = watch("dateDebut");
   const animauxList = watch("animauxList") || [];
+  const transportToilettage = watch("transportToilettage");
+  const transportVeto = watch("transportVeto");
   const now = new Date().toISOString().slice(0, 10); // get YYYY-MM-DD for date input min
 
   return (
@@ -49,7 +51,7 @@ export function DetailsStep({ hasAttemptedSubmit = false }: { hasAttemptedSubmit
                     </FieldLabel>
                     <select
                       {...register(`animauxList.${index}.type` as const)}
-                      className="bg-white px-3 border border-input rounded-md w-full h-11 text-sm focus:ring-2 focus:ring-primary/20 outline-none"
+                      className="bg-white px-3 border-2 border-secondary rounded-lg w-full h-11 text-sm focus:ring-2 focus:ring-primary/20 outline-none"
                     >
                       <option value="">Choisir...</option>
                       <option value="Chien">Chien</option>
@@ -112,7 +114,7 @@ export function DetailsStep({ hasAttemptedSubmit = false }: { hasAttemptedSubmit
               <FieldLabel className="font-bold">Durée de la visite</FieldLabel>
               <select
                 {...field}
-                className="bg-white px-3 border border-input rounded-md w-full h-11 text-sm focus:ring-2 focus:ring-primary/20 outline-none"
+                className="bg-white px-3 border-2 border-secondary rounded-lg w-full h-11 text-sm focus:ring-2 focus:ring-primary/20 outline-none"
               >
                 <option value="30min">Visite de 30 minutes</option>
                 <option value="45min">Visite de 45 minutes</option>
@@ -129,7 +131,7 @@ export function DetailsStep({ hasAttemptedSubmit = false }: { hasAttemptedSubmit
               <FieldLabel className="font-bold">Nombre de passages par jour</FieldLabel>
               <select
                 {...field}
-                className="bg-white px-3 border border-input rounded-md w-full h-11 text-sm focus:ring-2 focus:ring-primary/20 outline-none"
+                className="bg-white px-3 border-2 border-secondary rounded-lg w-full h-11 text-sm focus:ring-2 focus:ring-primary/20 outline-none"
               >
                 <option value="1">1 fois par jour</option>
                 <option value="2">2 fois par jour</option>
@@ -142,7 +144,14 @@ export function DetailsStep({ hasAttemptedSubmit = false }: { hasAttemptedSubmit
 
       {/* Optional Transport options */}
       <div className="flex flex-col sm:flex-row gap-5 pt-2">
-        <label className="flex-1 flex items-center gap-3 p-3.5 border border-input rounded-lg hover:border-primary/50 cursor-pointer hover:bg-primary/5 transition-colors">
+        <label
+          className={cn(
+            "flex-1 flex items-center gap-3 p-4 border rounded-lg cursor-pointer transition-all duration-200 select-none",
+            transportToilettage
+              ? "bg-secondary-container border-tertiary text-on-secondary-container shadow-[3px_3px_0px_var(--tertiary)]"
+              : "bg-white border-secondary hover:border-tertiary hover:bg-tertiary-container/10"
+          )}
+        >
           <Controller
             name="transportToilettage"
             control={control}
@@ -150,13 +159,20 @@ export function DetailsStep({ hasAttemptedSubmit = false }: { hasAttemptedSubmit
               <Checkbox
                 checked={field.value}
                 onCheckedChange={field.onChange}
-                className="w-5 h-5"
+                className="w-5 h-5 data-[state=checked]:bg-tertiary data-[state=checked]:border-tertiary"
               />
             )}
           />
-          <span className="font-medium text-sm text-foreground">Transport Toilettage</span>
+          <span className="font-semibold text-sm text-foreground">Transport Toilettage</span>
         </label>
-        <label className="flex-1 flex items-center gap-3 p-3.5 border border-input rounded-lg hover:border-primary/50 cursor-pointer hover:bg-primary/5 transition-colors">
+        <label
+          className={cn(
+            "flex-1 flex items-center gap-3 p-4 border rounded-lg cursor-pointer transition-all duration-200 select-none",
+            transportVeto
+              ? "bg-secondary-container border-tertiary text-on-secondary-container shadow-[3px_3px_0px_var(--tertiary)]"
+              : "bg-white border-secondary hover:border-tertiary hover:bg-tertiary-container/10"
+          )}
+        >
           <Controller
             name="transportVeto"
             control={control}
@@ -164,11 +180,11 @@ export function DetailsStep({ hasAttemptedSubmit = false }: { hasAttemptedSubmit
               <Checkbox
                 checked={field.value}
                 onCheckedChange={field.onChange}
-                className="w-5 h-5"
+                className="w-5 h-5 data-[state=checked]:bg-tertiary data-[state=checked]:border-tertiary"
               />
             )}
           />
-          <span className="font-medium text-sm text-foreground">Transport Vétérinaire</span>
+          <span className="font-semibold text-sm text-foreground">Transport Vétérinaire</span>
         </label>
       </div>
 

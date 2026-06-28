@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
+import { Libre_Caslon_Text, Work_Sans } from "next/font/google";
 import Navbar from "@/components/ui/navbar";
 import Footer from "@/components/ui/footer";
 import "./globals.css";
@@ -7,10 +7,16 @@ import { Toaster } from "@/components/ui/sonner";
 
 import { siteConfig } from "@/config/site";
 
-const openSans = Open_Sans({
+const libreCaslon = Libre_Caslon_Text({
   subsets: ["latin"],
-  weight: ["800"],
-  variable: "--font-open-sans",
+  weight: ["400", "700"],
+  variable: "--font-libre-caslon",
+});
+
+const workSans = Work_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-work-sans",
 });
 
 export const metadata: Metadata = {
@@ -97,7 +103,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${openSans.variable} font-sans min-h-screen flex flex-col`}
+        className={`${libreCaslon.variable} ${workSans.variable} font-sans min-h-screen flex flex-col`}
         suppressHydrationWarning
       >
         <header>

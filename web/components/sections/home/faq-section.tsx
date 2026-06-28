@@ -32,13 +32,13 @@ export function FaqSection({ faqs }: FaqSectionProps) {
   };
 
   return (
-    <section className="w-full py-16 px-4 md:px-8 bg-foreground" id="faq">
+    <section className="w-full py-16 px-4 md:px-8 bg-secondary" id="faq">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="container mx-auto max-w-6xl">
-        <h2 className="text-3xl md:text-5xl text-center mb-8 md:mb-12 text-stroke-title font-extrabold">
+        <h2 className="text-headline-lg text-white text-center mb-8 md:mb-12">
           Questions Fréquentes
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
@@ -46,14 +46,14 @@ export function FaqSection({ faqs }: FaqSectionProps) {
             <Accordion
               type="single"
               collapsible
-              className="w-full bg-white p-5 rounded-xl neo-shadow space-y-4"
+              className="w-full bg-white p-5 neo-shadow space-y-4"
             >
               {faqs.map((item, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-base md:text-lg font-bold cursor-pointer text-left">
+                  <AccordionTrigger className="font-serif text-lg md:text-xl font-bold cursor-pointer text-left">
                     {item.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-sm text-justify md:text-base text-muted-foreground leading-relaxed">
+                  <AccordionContent className="text-body-md text-justify text-muted-foreground leading-relaxed">
                     {typeof item.answer === "string" ? (
                       <p className="whitespace-pre-line">{item.answer}</p>
                     ) : (
@@ -66,24 +66,24 @@ export function FaqSection({ faqs }: FaqSectionProps) {
           </div>
 
           <div className="lg:col-span-1 mb-8 lg:mb-0">
-            <Card className="bg-white neo-shadow border-4 border-white">
+            <Card className="bg-white neo-shadow">
               <CardHeader className="text-center pb-2">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Mail className="w-6 h-6 text-primary" />
                 </div>
-                <CardTitle className="text-xl font-bold">
+                <CardTitle className="font-serif text-xl font-bold">
                   Une autre question ?
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-center space-y-6 pt-4">
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-body-md text-muted-foreground leading-relaxed">
                   Vous n&apos;avez pas trouvé la réponse que vous cherchiez ?
                   N&apos;hésitez pas à me contacter directement !
                 </p>
                 <Button asChild className="w-full">
                   <a href="mailto:contact@avospapattes.fr">Envoyer un email</a>
                 </Button>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-caption text-muted-foreground">
                   Ou via le{" "}
                   <Link
                     href="/contact"

@@ -61,28 +61,37 @@ The project is structured as a **Monorepo** with two workspaces: `web` (Next.js 
 
 ## 3. Styling & Custom Design System
 
-The site implements a custom **Neo-Brutalist** aesthetic combined with playful pet-centric elements (paw prints, bones).
+The site implements a custom **"Warm Professionalism" (Modern-Tactile)** design system combining clean, contemporary layouts with physical paper/card metaphors and playful paw/bone motifs.
 
-### Neo-Brutalist Design Tokens
+### Modern-Tactile Design Tokens
 
-- **Borders**: Thick, solid borders. Checkbox, card, and button elements use explicit border widths with `border-primary` (e.g., `border-4` or `border-3!`).
-- **Shadows**: Custom hard drop-shadows without blur.
-  - Utility `.neo-shadow` is defined in [globals.css](file:///c:/src/projects/landing-page/app/globals.css#L54-L58):
-    ```css
-    .neo-shadow {
-      @apply border-4 border-white shadow-[12px_12px_0px_rgba(255,126,0,1)];
-    }
-    ```
-- **Colors**: Curated warm palette inspired by dogs/pets (yellow, orange, brown).
-  - Background: Warm Gold-Yellow (`rgba(239, 191, 46, 1)`)
-  - Foreground / Primary / Secondary / Border: Rich Dark Brown (`rgba(75, 51, 28, 1)`)
-  - Accents: Bright Orange (`rgba(255, 126, 0, 1)`) and Green/Teal.
-- **Typography**: The custom font is **Open Sans** (defined in [layout.tsx](file:///c:/src/projects/landing-page/app/layout.tsx#L8-L12) as `--font-open-sans`). Headlines use `--font-opensans` with `font-extrabold` and custom text-stroke styling:
-  ```css
-  .text-stroke-title {
-    -webkit-text-stroke: 0.03em rgba(96, 49, 2, 1);
-  }
-  ```
+- **Borders**: Elements use 2px borders matching `border-secondary` (Bark Brown).
+- **Physical Elevation / Offset Shadow**:
+  - Cards, selections, and CTAs feature the `.neo-shadow` or `.neo-shadow-interactive` custom utility.
+  - Border is 2px Bark Brown, offset by a 6px Paw Orange solid shadow.
+  - On hover/active, interactive elements shift translate and shadow from 6px down to 3px (or 0px) to simulate a physical button press.
+- **Corner Rounding**:
+  - Buttons: Pill-shaped (`rounded-full`) for CTA links/triggers.
+  - Containers/Cards/Form Inputs: 0.5rem (`rounded-lg` / 8px) corner radius.
+  - Large Image Containers: 1rem (`rounded-2xl` / 16px) corner radius.
+- **Colors**: Curated warm "earth & sun" palette.
+  - Canvas Background: Soft Clean Grey/White (`#f9f9f9`)
+  - Text / Content Foreground: Charcoal/Black (`#1a1c1c`)
+  - Primary Highlight (Sunlit Yellow): Deep gold (`#775a00` / `#f2c037`)
+  - Secondary Container Backgrounds / Primary Buttons: Bark Brown (`#745945`)
+  - Accent Shadows / Hovers (Paw Orange): Deep Orange (`#9f4200`)
+- **Typography Pairing**:
+  - Headlines & Titles (Libre Caslon Text): Editorial, high-end serif font providing tradition and authority.
+  - Body & UI Text (Work Sans): Modern, highly legible sans-serif for service details and input forms.
+  - Typography Utilities defined in [globals.css](file:///c:/src/projects/landing-page/web/app/globals.css):
+    - `.text-display-lg` (56px serif display)
+    - `.text-headline-lg` (40px serif headline)
+    - `.text-headline-md` (28px serif title)
+    - `.text-body-lg` (18px sans body)
+    - `.text-body-md` (16px sans body)
+    - `.text-label-bold` (14px sans bold label)
+    - `.text-caption` (12px sans caption)
+  - Headings do not use border/text-stroke outlines. Clean typography is preferred.
 
 ---
 

@@ -19,7 +19,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-background border-b border-b-foreground">
+    <nav className="bg-primary border-b-2 border-b-secondary">
       <div className="container mx-auto flex flex-row justify-between items-center h-20 px-4">
         <Image
           src="/icons/logo.svg"
@@ -42,10 +42,10 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   className={cn(
-                    "flex items-center space-x-2 px-6 h-full transition-colors",
+                    "flex items-center space-x-2 px-6 h-full transition-colors text-label-bold",
                     isActive
-                      ? "bg-primary text-white"
-                      : "text-foreground hover:underline",
+                      ? "bg-secondary text-white"
+                      : "text-secondary hover:bg-secondary/10",
                   )}
                 >
                   {LinkIcon && <LinkIcon className="h-5 w-5" />}
@@ -61,7 +61,7 @@ export default function Navbar() {
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <button
-                className="p-2 text-foreground/80 hover:text-foreground focus:outline-none"
+                className="p-2 text-secondary hover:bg-secondary/10 rounded-md focus:outline-none"
                 aria-label="Open menu"
               >
                 <Menu className="h-8 w-8" />
@@ -85,7 +85,7 @@ export default function Navbar() {
                         href={link.href}
                         onClick={() => setIsOpen(false)}
                         className={cn(
-                          "flex items-center space-x-4 p-3 transition-colors text-lg font-medium",
+                          "flex items-center space-x-4 p-3 transition-colors text-lg font-medium rounded-md",
                           isActive
                             ? "bg-primary text-primary-foreground"
                             : "text-foreground/80 hover:bg-muted hover:text-foreground",

@@ -93,7 +93,7 @@ export function BookingProcessSection() {
       />
 
       <div className="container mx-auto max-w-6xl relative z-10">
-        <h2 className="text-3xl md:text-5xl text-stroke-title text-center mb-8 md:mb-12 font-extrabold">
+        <h2 className="text-headline-lg text-center mb-8 md:mb-12">
           Déroulement d’une réservation
         </h2>
 
@@ -101,26 +101,26 @@ export function BookingProcessSection() {
           {STEPS.map((step, index) => (
             <Card
               key={index}
-              className="flex flex-col border-2 border-transparent shadow-lg bg-white neo-shadow h-full relative"
+              className="flex flex-col bg-white neo-shadow h-full relative"
             >
               {/* Individual card paw prints */}
               {step.paws.map((paw, pawIndex) => (
                 <PawPrint
                   key={pawIndex}
-                  className={`absolute w-6 h-6 text-primary/20 pointer-events-none ${paw.position}`}
+                  className={`absolute w-6 h-6 text-primary/10 pointer-events-none ${paw.position}`}
                   style={{ transform: `rotate(${paw.rotate})` }}
                 />
               ))}
 
               <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-foreground rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-white neo-shadow-sm">
+                <div className="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
                   <step.icon className="w-8 h-8 text-white" />
                 </div>
-                <CardTitle className="text-xl font-bold uppercase italic tracking-tight">
+                <CardTitle className="text-headline-md text-foreground">
                   {step.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-justify space-y-4 flex-1 flex flex-col relative z-10">
+              <CardContent className="text-body-md text-justify space-y-4 flex-1 flex flex-col relative z-10">
                 {step.content}
               </CardContent>
             </Card>

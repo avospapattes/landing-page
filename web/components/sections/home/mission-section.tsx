@@ -4,11 +4,11 @@ export function MissionSection() {
   return (
     <section className="w-full py-16 px-4 md:px-8 bg-white">
       <div className="container mx-auto max-w-7xl">
-        <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold text-center mb-8 md:mb-12 flex items-center justify-center gap-3 text-stroke-title">
+        <h2 className="text-display-lg text-center mb-8 md:mb-12">
           Mon objectif ?
         </h2>
         <div className="flex flex-col md:flex-row gap-12 items-center">
-          <div className="flex-1 space-y-6 text-base md:text-lg leading-relaxed text-center md:text-left">
+          <div className="flex-1 space-y-6 text-body-lg text-center md:text-left">
             <p className="text-justify">
               Que votre absence soit la plus <strong>sereine</strong> possible
               pour eux comme pour vous.
@@ -32,14 +32,14 @@ export function MissionSection() {
                 alt="Mon objectif"
                 width={200}
                 height={200}
-                className="absolute left-0 top-0 w-40 h-auto md:w-auto md:static md:ml-0 neo-shadow z-10"
+                className="absolute left-0 top-0 w-40 h-auto md:w-auto md:static md:ml-0 neo-shadow rounded-2xl z-10"
               />
               <Image
                 src="/images/dog-hemy.jpg"
                 alt="Mon objectif"
                 width={200}
                 height={200}
-                className="absolute right-0 bottom-0 w-40 h-auto md:w-auto md:static md:ml-45 md:-mt-60 neo-shadow z-20"
+                className="absolute right-0 bottom-0 w-40 h-auto md:w-auto md:static md:ml-45 md:-mt-60 neo-shadow rounded-2xl z-20"
               />
             </div>
           </div>

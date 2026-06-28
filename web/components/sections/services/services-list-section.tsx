@@ -50,7 +50,7 @@ export function ServicesListSection({ services }: ServicesListSectionProps) {
             return (
               <div
                 key={serviceId}
-                className={`flex flex-col md:flex-row neo-shadow rounded-2xl overflow-hidden bg-foreground max-w-5xl mx-auto ${
+                className={`flex flex-col md:flex-row neo-shadow rounded-lg overflow-hidden bg-secondary max-w-5xl mx-auto ${
                   !isEven ? "md:flex-row-reverse" : ""
                 }`}
               >
@@ -69,10 +69,10 @@ export function ServicesListSection({ services }: ServicesListSectionProps) {
 
                 {/* Text Section */}
                 <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-center space-y-4 md:space-y-6">
-                  <h2 className="text-2xl md:text-3xl font-bold text-white">
+                  <h2 className="text-headline-md text-white">
                     {service.title}
                   </h2>
-                  <p className="text-base text-justify md:text-lg leading-relaxed text-white">
+                  <p className="text-body-md text-justify leading-relaxed text-white">
                     {service.description}
                   </p>
 
@@ -86,9 +86,9 @@ export function ServicesListSection({ services }: ServicesListSectionProps) {
                         Voir les détails
                       </Button>
                     </DialogTrigger>
-                    <DialogContent className="w-[95%] sm:max-w-4xl mx-auto bg-white border border-gray-200 shadow-sm rounded-2xl p-6 md:p-8 max-h-[90vh] overflow-y-auto">
+                    <DialogContent className="w-[95%] sm:max-w-4xl mx-auto bg-white neo-shadow p-6 md:p-8 max-h-[90vh] overflow-y-auto">
                       <DialogHeader>
-                        <DialogTitle className="text-xl md:text-2xl font-bold text-primary mb-4">
+                        <DialogTitle className="font-serif text-xl md:text-2xl font-bold text-primary mb-4">
                           {service.title}
                         </DialogTitle>
                       </DialogHeader>
@@ -98,7 +98,10 @@ export function ServicesListSection({ services }: ServicesListSectionProps) {
                             const parts = point.split(" : ");
                             const hasKey = parts.length > 1;
                             return (
-                              <div key={idx} className="flex items-start gap-3">
+                              <div
+                                key={idx}
+                                className="flex items-start gap-3"
+                              >
                                 <PawPrint className="w-5 h-5 text-primary shrink-0 mt-1" />
                                 <div className="text-muted-foreground text-sm md:text-lg">
                                   {hasKey ? (

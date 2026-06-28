@@ -1,9 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import Link from "next/link";
-import { Info } from "lucide-react";
+import { Info, PawPrint, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PawPrint } from "lucide-react";
 export function WelcomeSection() {
   const PAW_PATH = [
     { top: "65%", left: "5%", rotate: "-15deg", scale: 1 },
@@ -18,20 +16,22 @@ export function WelcomeSection() {
   ];
   return (
     <section className="flex flex-col bg-background text-foreground py-10 xl:py-20 overflow-hidden relative">
-      <img
-        src="/images/bg-grid.png"
-        alt="Background"
-        className="absolute inset-0 w-8/10 left-1/8 h-full object-cover z-0"
+      {/* Repeating Dot Grid (Notebook style) */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-20"
+        style={{
+          backgroundImage: "radial-gradient(#4b331c 1.5px, transparent 1.5px)",
+          backgroundSize: "24px 24px",
+        }}
       />
       <div className="container mx-auto flex flex-col xl:flex-row items-center xl:items-start gap-12 xl:gap-8 px-4">
         {/* Text Content */}
         <div className="flex flex-col justify-center items-center xl:items-start text-center xl:text-left w-full xl:w-1/2 z-40">
-          <h1 className="mb-6 text-4xl md:text-5xl lg:text-7xl font-extrabold text-stroke-title leading-tight">
+          <h1 className="mb-6 text-display-lg leading-tight">
             Nathalie, <br />
-            votre Pet Sitter <br />
-            professionnelle
+            votre Pet Sitter <br />à Strasbourg & Oberhausbergen
           </h1>
-          <p className="mb-8 max-w-2xl text-lg md:text-xl lg:text-2xl leading-relaxed">
+          <p className="mb-8 max-w-2xl text-body-lg">
             Service professionnel de{" "}
             <strong>garde d&apos;animaux à domicile</strong>. Pet Sitter{" "}
             <strong>déclarée</strong>, <strong>assurée</strong> et certifiée{" "}
@@ -40,19 +40,21 @@ export function WelcomeSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto ">
             <Button
+              variant="default"
               asChild
               size="lg"
-              className="w-full sm:w-auto shadow-[5px_5px_0px_rgba(255,126,0,1)] border-2 border-white rounded-none text-white text-lg h-14"
+              className="w-full sm:w-auto text-lg h-14"
             >
               <Link href="/contact">
                 Contactez-moi
-                <Info className="ml-2 w-5 h-5" />
+                <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
             </Button>
             <Button
               asChild
+              variant="outline"
               size="lg"
-              className="w-full sm:w-auto bg-white hover:bg-white/90 shadow-[5px_5px_0px_rgba(255,126,0,1)] border-2 border-white rounded-none text-black text-lg h-14"
+              className="w-full sm:w-auto text-lg h-14"
             >
               <Link href="/services">
                 Voir les services
@@ -62,35 +64,15 @@ export function WelcomeSection() {
           </div>
         </div>
 
-        {/* Image Gallery */}
-        <div className="relative w-full xl:w-1/2 flex justify-center xl:justify-center mt-12 xl:mt-0">
-          {/* Expanded height and width to accommodate the larger, spaced diagonal */}
-          <div className="relative w-full max-w-[450px] min-h-[600px] md:min-h-[700px]">
-            {/* Alfy - Top Left */}
+        {/* Hero Image */}
+        <div className="w-full xl:w-1/2 mt-12 xl:mt-0 flex justify-center z-20">
+          <div className="relative w-full max-w-[550px] aspect-[3/4]">
             <Image
-              src="/images/cat-alfy.jpeg"
-              alt="Garde de chat à Strasbourg - Alfy"
-              width={250}
-              height={250}
-              className="absolute top-0 left-0 w-[60%] z-10 neo-shadow object-cover aspect-square"
-            />
-
-            {/* Hemy & Co - Center Middle (Increased Offset) */}
-            <Image
-              src="/images/dog-hemy-and-co.jpg"
-              alt="Garde de chien à Strasbourg - Hemy & Co"
-              width={280}
-              height={280}
-              className="absolute top-[25%] left-[15%] w-[60%] z-20 neo-shadow object-cover aspect-square border-4 border-background"
-            />
-
-            {/* Wifille - Bottom Right (Increased Offset) */}
-            <Image
-              src="/images/cat-wifille.jpeg"
-              alt="Visite de chat à domicile à Strasbourg - Wifille"
-              width={250}
-              height={250}
-              className="absolute top-[50%] left-[30%] w-[60%] z-30 neo-shadow object-cover aspect-square"
+              src="/images/hero/hero-1.jpg"
+              alt="Nathalie - Pet Sitter à Strasbourg"
+              fill
+              priority
+              className="object-cover"
             />
           </div>
         </div>
