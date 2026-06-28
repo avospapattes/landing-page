@@ -9,6 +9,8 @@ import { BookingProcessSection } from "@/components/sections/services/booking-pr
 import { defineQuery } from "next-sanity";
 import type { SERVICES_QUERY_RESULT } from "@/sanity.types";
 
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
+
 export const metadata: Metadata = {
   title: "Services & Tarifs | Pet Sitter à Strasbourg & Oberhausbergen",
   description: "Découvrez nos prestations de garde d'animaux à domicile (visites de chats, promenades de chiens, taxi animalier) et nos tarifs à Strasbourg et alentours dans le Bas-Rhin.",
@@ -47,11 +49,21 @@ export default async function ServicesPage() {
   return (
     <main className="min-h-screen w-full flex flex-col">
       <HeroSection />
-      <ServicesListSection services={services} />
-      <WarningSection />
-      <PricingSection />
-      <BookingProcessSection />
-      <ZoneSection />
+      <ScrollReveal>
+        <ServicesListSection services={services} />
+      </ScrollReveal>
+      <ScrollReveal>
+        <WarningSection />
+      </ScrollReveal>
+      <ScrollReveal>
+        <PricingSection />
+      </ScrollReveal>
+      <ScrollReveal>
+        <BookingProcessSection />
+      </ScrollReveal>
+      <ScrollReveal>
+        <ZoneSection />
+      </ScrollReveal>
     </main>
   );
 }

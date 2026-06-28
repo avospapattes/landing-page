@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 export const metadata: Metadata = {
   title: "Mentions Légales | À vos papattes",
@@ -12,10 +13,13 @@ export const metadata: Metadata = {
 export default function MentionsLegalesPage() {
   return (
     <main className="container mx-auto px-4 py-12 max-w-4xl">
-      <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center text-stroke-title">
-        Mentions Légales
-      </h1>
-      <div className="bg-white p-8 rounded-2xl neo-shadow prose max-w-none">
+      <ScrollReveal delay={0.1}>
+        <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center text-stroke-title">
+          Mentions Légales
+        </h1>
+      </ScrollReveal>
+      <ScrollReveal delay={0.25}>
+        <div className="bg-white p-8 rounded-2xl neo-shadow prose max-w-none">
         <section className="mb-8">
           <h2 className="text-2xl font-bold mb-4 text-foreground">
             1. INFORMATIONS LÉGALES
@@ -122,6 +126,7 @@ export default function MentionsLegalesPage() {
           </p>
         </section>
       </div>
+      </ScrollReveal>
     </main>
   );
 }

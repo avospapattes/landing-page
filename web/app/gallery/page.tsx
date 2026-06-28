@@ -6,6 +6,8 @@ const GALLERY_QUERY = defineQuery(
   `*[_type == "galleryItem"] | order(order asc)`
 );
 
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
+
 export const metadata = {
   title: "Galerie Photos - À vos papattes",
   description: "Découvrez notre galerie de photos de gardes d'animaux, chiens, chats et autres compagnons à Oberhausbergen.",
@@ -30,20 +32,10 @@ export default async function GalleryPage() {
 
   return (
     <main className="min-h-screen w-full flex flex-col">
-      {/* Hero Section */}
-      <section className="w-full p-8 md:p-12 border-b border-b-secondary">
-        <div className="container mx-auto text-center space-y-4">
-          <h1 className="text-display-lg leading-tight">
-            Galerie Photos
-          </h1>
-          <p className="text-body-lg text-foreground max-w-2xl mx-auto font-medium">
-            Quelques moments de complicité, de jeux et de tendresse partagés avec vos adorables compagnons lors de mes visites et gardes.
-          </p>
-        </div>
-      </section>
-
       {/* Grid Section */}
-      <GalleryGrid initialPhotos={photos} />
+      <ScrollReveal className="flex-1 w-full">
+        <GalleryGrid initialPhotos={photos} />
+      </ScrollReveal>
     </main>
   );
 }

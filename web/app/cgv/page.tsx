@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 export const metadata: Metadata = {
   title: "Conditions Générales de Vente | À vos papattes",
@@ -12,10 +13,13 @@ export const metadata: Metadata = {
 export default function CGVPage() {
   return (
     <main className="container mx-auto px-4 py-12 max-w-4xl">
-      <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center text-stroke-title">
-        Conditions Générales de Vente
-      </h1>
-      <div className="bg-white p-8 rounded-2xl neo-shadow prose max-w-none text-muted-foreground">
+      <ScrollReveal delay={0.1}>
+        <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center text-stroke-title">
+          Conditions Générales de Vente
+        </h1>
+      </ScrollReveal>
+      <ScrollReveal delay={0.25}>
+        <div className="bg-white p-8 rounded-2xl neo-shadow prose max-w-none text-muted-foreground">
         <p className="italic mb-8">Dernière mise à jour : 01/01/2026</p>
 
         <section className="mb-8">
@@ -520,6 +524,7 @@ export default function CGVPage() {
           </p>
         </section>
       </div>
+      </ScrollReveal>
     </main>
   );
 }

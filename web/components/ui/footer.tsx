@@ -52,7 +52,7 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div className="flex flex-col items-center md:items-start space-y-4">
-            <h3 className="text-xl font-bold uppercase text-secondary">
+            <h3 className="text-lg font-bold uppercase tracking-wider text-secondary font-sans">
               Contact
             </h3>
             <ul className="space-y-3 text-sm">
@@ -89,7 +89,7 @@ export default function Footer() {
 
           {/* Legal Links */}
           <div className="flex flex-col items-center md:items-start space-y-4">
-            <h3 className="text-xl font-bold uppercase text-secondary">
+            <h3 className="text-lg font-bold uppercase tracking-wider text-secondary font-sans">
               Informations
             </h3>
             <ul className="space-y-3 text-sm">

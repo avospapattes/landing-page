@@ -22,6 +22,7 @@ import { StepIndicator } from "@/components/sections/contact/step-indicator";
 import { ClientDetailsStep } from "@/components/sections/contact/client-details-step";
 import { AddressStep } from "@/components/sections/contact/address-step";
 import { DetailsStep } from "@/components/sections/contact/details-step";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 export default function ContactPage() {
   const [step, setStep] = useState(1);
@@ -137,86 +138,90 @@ export default function ContactPage() {
         <PawPrint className="absolute top-10 left-10 w-24 h-24 md:w-32 md:h-32 text-orange-500/20 -rotate-12 pointer-events-none" />
         <Bone className="absolute bottom-20 -right-5 w-32 h-32 md:w-40 md:h-40 text-primary/10 rotate-45 pointer-events-none" />
 
-        <div className="mb-4 max-w-4xl text-center z-10">
-          <h1 className="mb-3 px-2 font-extrabold text-secondary text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tight text-stroke-title">
-            Demande de réservation
-          </h1>
-          <p className="text-secondary/80 max-w-md mx-auto text-sm md:text-base px-4">
-            Remplissez ce formulaire en quelques étapes pour planifier la garde
-            de vos fidèles compagnons.
-          </p>
-        </div>
+        <ScrollReveal delay={0.1} className="w-full max-w-4xl flex flex-col items-center z-10">
+          <div className="mb-4 text-center">
+            <h1 className="mb-3 px-2 font-extrabold text-secondary text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tight text-stroke-title">
+              Demande de réservation
+            </h1>
+            <p className="text-secondary/80 max-w-md mx-auto text-sm md:text-base px-4">
+              Remplissez ce formulaire en quelques étapes pour planifier la garde
+              de vos fidèles compagnons.
+            </p>
+          </div>
 
-        {/* Stepper progress component */}
-        <StepIndicator currentStep={step} />
+          {/* Stepper progress component */}
+          <StepIndicator currentStep={step} />
+        </ScrollReveal>
 
-        <Card className="relative overflow-hidden bg-white neo-shadow shadow-xl mx-auto border-4 border-primary rounded-2xl w-full max-w-2xl z-10 transition-all duration-300">
-          <CardHeader className="px-6 md:px-10 pt-8 pb-2">
-            <CardTitle className="font-extrabold text-2xl md:text-3xl text-primary text-center md:text-left">
-              {step === 1 && "Vos informations"}
-              {step === 2 && "Adresse d'intervention"}
-              {step === 3 && "Détails de la prestation"}
-            </CardTitle>
-          </CardHeader>
+        <ScrollReveal delay={0.25} className="w-full max-w-2xl z-10">
+          <Card className="relative overflow-hidden bg-white neo-shadow shadow-xl mx-auto border-4 border-primary rounded-2xl w-full transition-all duration-300">
+            <CardHeader className="px-6 md:px-10 pt-8 pb-2">
+              <CardTitle className="font-extrabold text-2xl md:text-3xl text-primary text-center md:text-left">
+                {step === 1 && "Vos informations"}
+                {step === 2 && "Adresse d'intervention"}
+                {step === 3 && "Détails de la prestation"}
+              </CardTitle>
+            </CardHeader>
 
-          <CardContent className="px-6 md:px-10 pb-6 md:pb-8">
-            <form
-              onSubmit={methods.handleSubmit(onSubmit)}
-              className="space-y-6 md:space-y-8"
-            >
-              {/* Dynamic transitions based on step transition direction */}
-              <div
-                key={step}
-                className={cn(
-                  "animate-in duration-500 ease-out",
-                  direction === "forward"
-                    ? "slide-in-from-right-8 fade-in-40"
-                    : "slide-in-from-left-8 fade-in-40",
-                )}
+            <CardContent className="px-6 md:px-10 pb-6 md:pb-8">
+              <form
+                onSubmit={methods.handleSubmit(onSubmit)}
+                className="space-y-6 md:space-y-8"
               >
-                {step === 1 && <ClientDetailsStep />}
-                {step === 2 && <AddressStep />}
-                {step === 3 && <DetailsStep hasAttemptedSubmit={hasAttemptedSubmit} />}
-              </div>
+                {/* Dynamic transitions based on step transition direction */}
+                <div
+                  key={step}
+                  className={cn(
+                    "animate-in duration-500 ease-out",
+                    direction === "forward"
+                      ? "slide-in-from-right-8 fade-in-40"
+                      : "slide-in-from-left-8 fade-in-40",
+                  )}
+                >
+                  {step === 1 && <ClientDetailsStep />}
+                  {step === 2 && <AddressStep />}
+                  {step === 3 && <DetailsStep hasAttemptedSubmit={hasAttemptedSubmit} />}
+                </div>
 
-              {/* Action Buttons Footer */}
-              <div className="flex justify-between items-center gap-4 pt-6 border-t border-primary/20">
-                {step > 1 && (
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={prevStep}
-                    className="h-12 px-5 font-bold text-base cursor-pointer"
-                  >
-                    <ArrowLeft className="mr-2 w-4 h-4 stroke-[2.5]" /> Retour
-                  </Button>
-                )}
+                {/* Action Buttons Footer */}
+                <div className="flex justify-between items-center gap-4 pt-6 border-t border-primary/20">
+                  {step > 1 && (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={prevStep}
+                      className="h-12 px-5 font-bold text-base cursor-pointer"
+                    >
+                      <ArrowLeft className="mr-2 w-4 h-4 stroke-[2.5]" /> Retour
+                    </Button>
+                  )}
 
-                {step < 3 ? (
-                  <Button
-                    type="button"
-                    onClick={nextStep}
-                    className="ml-auto h-12 px-6 font-bold text-base cursor-pointer"
-                  >
-                    Suivant <ArrowRight className="ml-2 w-4 h-4 stroke-[2.5]" />
-                  </Button>
-                ) : (
-                  <Button
-                    type="submit"
-                    onClick={() => setHasAttemptedSubmit(true)}
-                    disabled={methods.formState.isSubmitting}
-                    className="ml-auto h-12 px-6 font-bold text-base cursor-pointer disabled:bg-muted disabled:text-muted-foreground"
-                  >
-                    {methods.formState.isSubmitting
-                      ? "Envoi..."
-                      : "Envoyer ma demande"}
-                    <ArrowRight className="ml-2 w-4 h-4 stroke-[2.5]" />
-                  </Button>
-                )}
-              </div>
-            </form>
-          </CardContent>
-        </Card>
+                  {step < 3 ? (
+                    <Button
+                      type="button"
+                      onClick={nextStep}
+                      className="ml-auto h-12 px-6 font-bold text-base cursor-pointer"
+                    >
+                      Suivant <ArrowRight className="ml-2 w-4 h-4 stroke-[2.5]" />
+                    </Button>
+                  ) : (
+                    <Button
+                      type="submit"
+                      onClick={() => setHasAttemptedSubmit(true)}
+                      disabled={methods.formState.isSubmitting}
+                      className="ml-auto h-12 px-6 font-bold text-base cursor-pointer disabled:bg-muted disabled:text-muted-foreground"
+                    >
+                      {methods.formState.isSubmitting
+                        ? "Envoi..."
+                        : "Envoyer ma demande"}
+                      <ArrowRight className="ml-2 w-4 h-4 stroke-[2.5]" />
+                    </Button>
+                  )}
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+        </ScrollReveal>
       </div>
     </FormProvider>
   );

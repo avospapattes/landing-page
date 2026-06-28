@@ -6,9 +6,6 @@ export function StorySection() {
       <div className="container mx-auto max-w-6xl">
         {/* Section Header for SEO */}
         <div className="text-center mb-12 md:mb-16">
-          <div className="inline-flex items-center border border-secondary/30 rounded-full px-4 py-1 bg-secondary/5 text-secondary font-medium text-xs uppercase tracking-wider mb-4">
-            <span>Nathalie Pet Sitter</span>
-          </div>
           <h2 className="text-display-lg mb-4 text-stroke-title">
             Qui suis-je ?
           </h2>

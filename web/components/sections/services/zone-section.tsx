@@ -10,7 +10,7 @@ const InterventionMap = dynamic(() => import("./intervention-map"), {
 export function ZoneSection() {
   return (
     <section
-      className="bg-foreground px-4 md:px-8 py-20 w-full text-white relative overflow-hidden"
+      className="bg-secondary px-4 md:px-8 py-20 w-full text-white relative overflow-hidden"
       id="zone"
     >
       <Bone
@@ -28,12 +28,12 @@ export function ZoneSection() {
       <Bone className="absolute top-1/2 left-10 w-12 h-12 text-teal-500/10 rotate-12 pointer-events-none hidden xl:block" />
 
       <div className="flex flex-col items-center gap-8 md:gap-12 mx-auto max-w-6xl container relative z-10">
-        <h2 className="text-stroke-title text-3xl md:text-5xl text-center font-extrabold uppercase">
+        <h2 className="text-display-lg text-white text-center">
           Zone d’intervention
         </h2>
 
         {/* --- MAP CONTAINER --- */}
-        <div className="z-0 relative shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-4 border-white neo-shadow-lg w-full max-w-4xl aspect-square md:aspect-video overflow-hidden bg-neutral-900">
+        <div className="z-0 relative shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-4 border-white w-full max-w-4xl aspect-square md:aspect-video overflow-hidden bg-neutral-900">
           {/* --- INTERNAL DECORATIONS (Map Framing) --- */}
           {/* Paw in Top Left */}
           <PawPrint className="absolute top-4 left-4 w-6 h-6 text-primary z-20 -rotate-12" />
@@ -57,7 +57,7 @@ export function ZoneSection() {
             vert autour d&apos;Oberhausbergen, couvrant notamment <strong>Strasbourg (quartiers Ouest, Hautepierre & Cronenbourg)</strong>, <strong>Mittelhausbergen</strong>, <strong>Niederhausbergen</strong>, <strong>Schiltigheim</strong>, <strong>Bischheim</strong>, <strong>Hœnheim</strong>, <strong>Eckbolsheim</strong>, <strong>Wolfisheim</strong> et le <strong>Kochersberg</strong>.
           </p>
 
-          <p className="text-neutral-400 text-xs md:text-sm uppercase tracking-widest font-bold">
+          <p className="text-white/70 text-xs md:text-sm uppercase tracking-widest font-bold">
             Au-delà, un tarif de <span className="text-white">0,50€ / km</span>{" "}
             supplémentaire est appliqué.
           </p>
