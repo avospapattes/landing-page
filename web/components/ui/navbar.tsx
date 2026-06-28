@@ -19,7 +19,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 w-full z-50 bg-primary/95 backdrop-blur-md border-b-2 border-b-secondary">
+    <header className="sticky top-0 w-full z-50 bg-primary backdrop-blur-md border-b-2 border-b-secondary">
       <nav className="container mx-auto flex items-center justify-between h-20 px-4">
         {/* Logo Link */}
         <Link
@@ -38,7 +38,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex h-full items-center font-medium">
+        <ul className="hidden md:flex items-center font-medium gap-2">
           {siteConfig.navLinks.map((link) => {
             const LinkIcon = link.icon;
             const isActive = pathname === link.href;
@@ -46,16 +46,15 @@ export default function Navbar() {
             return (
               <li
                 key={link.href}
-                className="relative flex items-center h-full overflow-hidden"
+                className="relative flex items-center"
               >
                 <Link
                   href={link.href}
                   className={cn(
-                    "relative z-10 flex items-center space-x-2 px-6 h-full transition-all text-label-bold text-secondary select-none",
-                    "before:absolute before:inset-0 before:bg-secondary/10 before:translate-y-full hover:before:translate-y-0 before:transition-transform before:duration-200 before:ease-out before:-z-10",
+                    "flex items-center space-x-2 px-5 h-14 transition-all text-label-bold text-secondary select-none rounded-full border-2",
                     isActive
-                      ? "bg-secondary text-white hover:bg-secondary"
-                      : "hover:text-secondary"
+                      ? "bg-secondary text-white border-secondary"
+                      : "hover:bg-secondary/10 border-transparent"
                   )}
                 >
                   {LinkIcon && <LinkIcon className="h-5 w-5" />}
