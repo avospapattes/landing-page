@@ -32,12 +32,11 @@ export function WelcomeSection() {
             professionnelle
           </h1>
           <p className="mb-8 max-w-2xl text-lg md:text-xl lg:text-2xl leading-relaxed">
-            <strong>déclarée</strong> et <strong>assurée</strong>, qui garde vos
-            animaux à votre <strong>domicile</strong>. <br />
-            Confiez-moi vos précieux compagnons en toute{" "}
-            <strong>sécurité</strong> ! <br />
-            J&apos;assure leur quotidien avec bienveillance, tendresse et
-            professionnalisme.
+            Service professionnel de{" "}
+            <strong>garde d&apos;animaux à domicile</strong>. Pet Sitter{" "}
+            <strong>déclarée</strong>, <strong>assurée</strong> et certifiée{" "}
+            <strong>ACACED</strong>, je prends soin de vos fidèles compagnons
+            (chiens, chats, NAC) à Strasbourg, Oberhausbergen et alentours.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto ">
             <Button
@@ -70,7 +69,7 @@ export function WelcomeSection() {
             {/* Alfy - Top Left */}
             <Image
               src="/images/cat-alfy.jpeg"
-              alt="Alfy"
+              alt="Garde de chat à Strasbourg - Alfy"
               width={250}
               height={250}
               className="absolute top-0 left-0 w-[60%] z-10 neo-shadow object-cover aspect-square"
@@ -79,7 +78,7 @@ export function WelcomeSection() {
             {/* Hemy & Co - Center Middle (Increased Offset) */}
             <Image
               src="/images/dog-hemy-and-co.jpg"
-              alt="Hemy & Co"
+              alt="Garde de chien à Strasbourg - Hemy & Co"
               width={280}
               height={280}
               className="absolute top-[25%] left-[15%] w-[60%] z-20 neo-shadow object-cover aspect-square border-4 border-background"
@@ -88,7 +87,7 @@ export function WelcomeSection() {
             {/* Wifille - Bottom Right (Increased Offset) */}
             <Image
               src="/images/cat-wifille.jpeg"
-              alt="Wifille"
+              alt="Visite de chat à domicile à Strasbourg - Wifille"
               width={250}
               height={250}
               className="absolute top-[50%] left-[30%] w-[60%] z-30 neo-shadow object-cover aspect-square"

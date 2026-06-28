@@ -17,8 +17,26 @@ interface FaqSectionProps {
 export function FaqSection({ faqs }: FaqSectionProps) {
   if (!faqs || faqs.length === 0) return null;
 
+  const validFaqs = faqs.filter((faq) => faq.question && typeof faq.answer === "string");
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: validFaqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer as string,
+      },
+    })),
+  };
+
   return (
     <section className="w-full py-16 px-4 md:px-8 bg-foreground" id="faq">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="container mx-auto max-w-6xl">
         <h2 className="text-3xl md:text-5xl text-center mb-8 md:mb-12 text-stroke-title font-extrabold">
           Questions Fréquentes

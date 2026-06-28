@@ -16,10 +16,14 @@ const openSans = Open_Sans({
 export const metadata: Metadata = {
   title: siteConfig.name,
   description: siteConfig.description,
+  keywords: siteConfig.keywords,
   icons: {
     icon: "/icons/icon.svg",
   },
   metadataBase: new URL(siteConfig.url),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: siteConfig.name,
     description: siteConfig.description,
@@ -54,7 +58,10 @@ export default function RootLayout({
     email: siteConfig.contact.email,
     address: {
       "@type": "PostalAddress",
+      streetAddress: "7 rue Pierre de Coubertin",
       addressLocality: "Oberhausbergen",
+      addressRegion: "Bas-Rhin",
+      postalCode: "67205",
       addressCountry: "FR",
     },
     geo: {
@@ -63,7 +70,22 @@ export default function RootLayout({
       longitude: 7.6853,
     },
     url: siteConfig.url,
-    priceRange: "$$",
+    priceRange: "€€",
+    sameAs: [
+      siteConfig.socials.instagram,
+      siteConfig.socials.facebook
+    ],
+    areaServed: [
+      { "@type": "AdministrativeArea", "name": "Strasbourg" },
+      { "@type": "AdministrativeArea", "name": "Oberhausbergen" },
+      { "@type": "AdministrativeArea", "name": "Mittelhausbergen" },
+      { "@type": "AdministrativeArea", "name": "Niederhausbergen" },
+      { "@type": "AdministrativeArea", "name": "Schiltigheim" },
+      { "@type": "AdministrativeArea", "name": "Bischheim" },
+      { "@type": "AdministrativeArea", "name": "Hœnheim" },
+      { "@type": "AdministrativeArea", "name": "Eckbolsheim" },
+      { "@type": "AdministrativeArea", "name": "Wolfisheim" }
+    ]
   };
 
   return (

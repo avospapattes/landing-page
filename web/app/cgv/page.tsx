@@ -1,3 +1,14 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Conditions Générales de Vente | À vos papattes",
+  description: "Conditions Générales de Vente (CGV) de À vos papattes by Nath, service de pet-sitting et garde d'animaux à Strasbourg et Oberhausbergen.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
+
 export default function CGVPage() {
   return (
     <main className="container mx-auto px-4 py-12 max-w-4xl">

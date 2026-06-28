@@ -55,6 +55,17 @@ This file is loaded automatically by agentic platforms when working within the *
 
 ---
 
+## 🔍 SEO & Local Targeting Rule
+
+- **Rule**:
+  - Target keyphrase is "Pet Sitter Strasbourg" and served municipalities (Strasbourg, Oberhausbergen, Mittelhausbergen, Niederhausbergen, Schiltigheim, Bischheim, Hœnheim, Eckbolsheim, Wolfisheim, Kochersberg).
+  - Do not use more than one `<h1>` per page.
+  - Include canonical tags on all core pages.
+  - Set `robots: { index: false, follow: true }` on legal pages.
+  - Inject structured JSON-LD schemas (LocalBusiness in layout, FAQPage on FAQ pages).
+
+---
+
 ## 📄 Reference Guides
 
 For a comprehensive overview of the architecture, dependencies, directory tree, form parameters, and integration details, consult the [AI Agent Developer Guide](file:///c:/src/projects/landing-page/docs/AI_AGENT_GUIDE.md).

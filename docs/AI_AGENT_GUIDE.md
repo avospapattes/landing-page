@@ -128,3 +128,27 @@ The site implements a custom **Neo-Brutalist** aesthetic combined with playful p
 3. **Optimizing Images**:
    - Always supply the `sizes` prop when using `fill` layouts on `<Image />` to optimize size loading.
    - Set `style={{ width: "auto" }}` when overriding dimensions to prevent ratio warnings.
+
+---
+
+## 6. SEO Best Practices & Geolocation Targets
+
+To maintain search engine visibility (specifically for local queries like "pet sitter strasbourg"), the project enforces the following SEO guidelines:
+
+1. **Metadata Configuration**:
+   - Global config is maintained in [web/config/site.ts](file:///c:/src/projects/landing-page/web/config/site.ts).
+   - Any page-specific metadata overrides must include canonical alternate URLs using Next.js Metadata alternates API.
+   - Client pages (e.g., `/contact`) must have a server-side `layout.tsx` to handle page metadata cleanly.
+   - Legal pages (e.g., `/cgv`, `/mentions-legales`) must have `robots: { index: false, follow: true }` to conserve search engine crawl budget.
+
+2. **Semantic Hierarchy**:
+   - Every page **must have exactly one `<h1>` tag** (usually located in the welcome or hero section) containing primary target keywords (e.g., "Pet Sitter à Strasbourg").
+   - Subsequent section headers must use `<h2>` or lower.
+
+3. **Structured Data**:
+   - The root layout injects `LocalBusiness` JSON-LD schema with coordinates, street address, and social links.
+   - Dynamic sections like `FaqSection` should generate and inject their own context-specific structured data (e.g. `FAQPage` JSON-LD) when their data is loaded.
+
+4. **On-Page Geo-Targeting**:
+   - Naturally mention served locations (Strasbourg, Oberhausbergen, Mittelhausbergen, Schiltigheim, etc.) in body text, specifically inside the zone sections.
+

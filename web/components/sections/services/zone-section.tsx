@@ -52,9 +52,9 @@ export function ZoneSection() {
 
           <Bone className="hidden md:block absolute -right-16 bottom-0 w-12 h-12 text-teal-500 -rotate-12 opacity-80" />
 
-          <p className="font-light text-lg md:text-2xl leading-relaxed">
+          <p className="font-light text-lg md:text-xl leading-relaxed">
             J’interviens sans frais supplémentaires dans la zone indiquée en
-            vert autour d&apos;Oberhausbergen.
+            vert autour d&apos;Oberhausbergen, couvrant notamment <strong>Strasbourg (quartiers Ouest, Hautepierre & Cronenbourg)</strong>, <strong>Mittelhausbergen</strong>, <strong>Niederhausbergen</strong>, <strong>Schiltigheim</strong>, <strong>Bischheim</strong>, <strong>Hœnheim</strong>, <strong>Eckbolsheim</strong>, <strong>Wolfisheim</strong> et le <strong>Kochersberg</strong>.
           </p>
 
           <p className="text-neutral-400 text-xs md:text-sm uppercase tracking-widest font-bold">

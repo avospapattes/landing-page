@@ -1,3 +1,14 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Mentions Légales | À vos papattes",
+  description: "Mentions légales et informations de contact de À vos papattes by Nath, entreprise de pet-sitting à Strasbourg & Oberhausbergen.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
+
 export default function MentionsLegalesPage() {
   return (
     <main className="container mx-auto px-4 py-12 max-w-4xl">
