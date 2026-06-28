@@ -137,7 +137,6 @@ export function PricingSection() {
                     </span>
                   </div>
                   <Badge
-                    variant="secondary"
                     className="w-fit text-caption"
                   >
                     + 5€ par 1/4 d’heure supplémentaire

@@ -225,7 +225,5 @@
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    background-image: radial-gradient(rgba(75, 51, 28, 0.2) 1.5px, transparent 1.5px);
-    background-size: 24px 24px;
   }
 }

@@ -5,6 +5,14 @@ import { Button } from "@/components/ui/button";
 export function WelcomeSection() {
   return (
     <section className="flex flex-col text-foreground py-10 xl:py-20 overflow-hidden relative">
+      {/* Repeating Dot Grid (Notebook style) */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-15"
+        style={{
+          backgroundImage: "radial-gradient(#4b331c 1.5px, transparent 1.5px)",
+          backgroundSize: "24px 24px",
+        }}
+      />
       <div className="container mx-auto flex flex-col xl:flex-row items-center xl:items-stretch gap-12 xl:gap-8 px-4">
         {/* Text Content */}
         <div className="flex flex-col justify-center items-center xl:items-start text-center xl:text-left w-full xl:w-1/2 z-40">

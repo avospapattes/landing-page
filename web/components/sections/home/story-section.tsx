@@ -6,6 +6,9 @@ export function StorySection() {
       <div className="container mx-auto max-w-6xl">
         {/* Section Header for SEO */}
         <div className="text-center mb-12 md:mb-16">
+          <div className="inline-flex items-center border border-secondary/30 rounded-full px-4 py-1 bg-secondary/5 text-secondary font-medium text-xs uppercase tracking-wider mb-4">
+            <span>Nathalie Pet Sitter</span>
+          </div>
           <h2 className="text-display-lg mb-4 text-stroke-title">
             Qui suis-je ?
           </h2>
@@ -16,9 +19,10 @@ export function StorySection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-16 items-start">
           {/* Left Column: Narrative (Story & Goal) */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-12">
+            {/* Mon histoire */}
             <div className="space-y-4 text-body-lg text-justify text-secondary/90">
-              <h3 className="font-serif text-2xl font-bold text-secondary mb-4">
+              <h3 className="font-serif text-2xl font-bold text-secondary mb-2">
                 Mon histoire
               </h3>
               <p>
@@ -38,10 +42,9 @@ export function StorySection() {
               </p>
             </div>
 
-            <hr className="border-t border-secondary/20 my-6" />
-
+            {/* Mon objectif */}
             <div className="space-y-4 text-body-lg text-justify text-secondary/90">
-              <h3 className="font-serif text-2xl font-bold text-secondary mb-4">
+              <h3 className="font-serif text-2xl font-bold text-secondary mb-2">
                 Mon objectif ?
               </h3>
               <p>
@@ -50,7 +53,8 @@ export function StorySection() {
               </p>
 
               {/* Editorial Quote Callout */}
-              <div className="bg-primary/10 border-l-4 border-primary p-6 rounded-r-sm italic text-secondary font-serif text-xl my-6 leading-relaxed">
+              <div className="relative bg-primary/5 border-l-4 border-primary p-6 rounded-r-sm italic text-secondary font-serif text-xl my-6 leading-relaxed">
+                <span className="absolute -top-4 -left-2 text-6xl text-primary/30 pointer-events-none">“</span>
                 « S’occuper de vos compagnons n’est pas un simple travail, c’est une responsabilité que j’assume avec dévouement et tendresse. »
               </div>
 
@@ -65,32 +69,63 @@ export function StorySection() {
                 <strong>détente</strong> et de confort physique.
               </p>
             </div>
+
+            {/* Professional Badges */}
+            <div className="space-y-3">
+              <h4 className="font-serif text-lg font-bold text-secondary">
+                Mes garanties professionnelles
+              </h4>
+              <div className="flex flex-wrap gap-2.5">
+                <span className="border border-secondary/30 rounded-full px-4 py-1.5 text-secondary text-sm font-medium bg-secondary/5">
+                  ACACED Certifiée
+                </span>
+                <span className="border border-secondary/30 rounded-full px-4 py-1.5 text-secondary text-sm font-medium bg-secondary/5">
+                  Premiers Secours Canins
+                </span>
+                <span className="border border-secondary/30 rounded-full px-4 py-1.5 text-secondary text-sm font-medium bg-secondary/5">
+                  Assurée & Déclarée (RC Pro)
+                </span>
+              </div>
+            </div>
           </div>
 
-          {/* Right Column: Visual Proof (Staggered Gallery & Credentials Card) */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
-            {/* Magazine Layout Gallery */}
-            <div className="flex flex-col gap-4">
-              {/* Featured Large Photo */}
-              <div className="relative w-full aspect-[16/10] rounded-sm overflow-hidden border-2 border-secondary shadow-sm">
-                <Image
-                  src="/images/nathalie-and-alfy.jpg"
-                  alt="Nathalie avec son chat Alfy"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              {/* Staggered Row */}
-              <div className="flex flex-row gap-4">
-                <div className="relative flex-1 aspect-[3/4] rounded-sm overflow-hidden border-2 border-secondary shadow-sm">
+          {/* Right Column: Visual Proof (Polaroid Gallery & Credentials Card) */}
+          <div className="lg:col-span-5 flex flex-col gap-8">
+            {/* Magazine Layout Gallery (Polaroids) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Featured Large Polaroid */}
+              <div className="sm:col-span-2 bg-white p-3 pb-5 border-2 border-secondary rounded-sm shadow-[4px_4px_0px_var(--secondary)] rotate-1 transition-all duration-300 hover:scale-[1.02] hover:rotate-0 hover:shadow-[6px_6px_0px_var(--primary)] cursor-pointer">
+                <div className="relative w-full aspect-[16/10] overflow-hidden rounded-sm border border-secondary/20">
                   <Image
-                    src="/images/hero/hero-3.jpg"
-                    alt="Un chien regardant Strasbourg"
+                    src="/images/nathalie-and-alfy.jpg"
+                    alt="Nathalie avec son chat Alfy"
                     fill
                     className="object-cover"
                   />
                 </div>
-                <div className="relative flex-1 aspect-[3/4] rounded-sm overflow-hidden border-2 border-secondary shadow-sm">
+                <p className="font-serif italic text-secondary text-center mt-3 text-lg font-bold">
+                  Nathalie & Alfy
+                </p>
+              </div>
+
+              {/* Polaroid 2 */}
+              <div className="bg-white p-3 pb-5 border-2 border-secondary rounded-sm shadow-[4px_4px_0px_var(--secondary)] -rotate-2 transition-all duration-300 hover:scale-[1.03] hover:rotate-0 hover:shadow-[6px_6px_0px_var(--primary)] cursor-pointer">
+                <div className="relative w-full aspect-[3/4] overflow-hidden rounded-sm border border-secondary/20">
+                  <Image
+                    src="/images/dog-hemy.jpg"
+                    alt="Le chien Hemy à Strasbourg"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <p className="font-serif italic text-secondary text-center mt-3 text-base font-bold">
+                  Strasbourg
+                </p>
+              </div>
+
+              {/* Polaroid 3 */}
+              <div className="bg-white p-3 pb-5 border-2 border-secondary rounded-sm shadow-[4px_4px_0px_var(--secondary)] rotate-2 transition-all duration-300 hover:scale-[1.03] hover:rotate-0 hover:shadow-[6px_6px_0px_var(--primary)] cursor-pointer">
+                <div className="relative w-full aspect-[3/4] overflow-hidden rounded-sm border border-secondary/20">
                   <Image
                     src="/images/hero/hero-4.jpg"
                     alt="Une femme cajolant un chien"
@@ -98,6 +133,9 @@ export function StorySection() {
                     className="object-cover"
                   />
                 </div>
+                <p className="font-serif italic text-secondary text-center mt-3 text-base font-bold">
+                  Complicité
+                </p>
               </div>
             </div>
 
@@ -111,7 +149,7 @@ export function StorySection() {
                   className="object-contain"
                 />
               </div>
-              <div className="space-y-2 text-justify">
+              <div className="space-y-2">
                 <h4 className="font-serif text-lg font-bold text-secondary">
                   Sécurité & Professionnalisme
                 </h4>
