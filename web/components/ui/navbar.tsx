@@ -24,7 +24,7 @@ export default function Navbar() {
         {/* Logo Link */}
         <Link
           href="/"
-          className="flex items-center cursor-pointer transition-transform hover:scale-[1.03] active:scale-[0.97]"
+          className="flex items-center h-full overflow-hidden cursor-pointer transition-transform hover:scale-[1.03] active:scale-[0.97]"
         >
           <Image
             src="/icons/logo.svg"
@@ -32,7 +32,6 @@ export default function Navbar() {
             width={150}
             height={60}
             className="h-14 w-auto"
-            style={{ width: "auto", height: "100%" }}
             priority
           />
         </Link>
