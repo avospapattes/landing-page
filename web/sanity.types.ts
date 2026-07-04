@@ -15,6 +15,20 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: schema.json
+export type Alert = {
+  _id: string;
+  _type: "alert";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  message?: string;
+  active?: boolean;
+  type?: "banner" | "popup" | "both";
+  severity?: "info" | "warning" | "urgent";
+  linkLabel?: string;
+  linkUrl?: string;
+};
+
 export type SanityImageAssetReference = {
   _ref: string;
   _type: "reference";
@@ -103,6 +117,7 @@ export type Service = {
     _type: "image";
   };
   points?: Array<string>;
+  order?: number;
 };
 
 export type Slug = {
@@ -209,6 +224,7 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+  | Alert
   | SanityImageAssetReference
   | GalleryItem
   | SanityImageCrop
@@ -285,7 +301,7 @@ export type HOME_FAQS_QUERY_RESULT = Array<{
 
 // Source: ../web/app/services/page.tsx
 // Variable: SERVICES_QUERY
-// Query: *[_type == "service"]
+// Query: *[_type == "service"] | order(order asc)
 export type SERVICES_QUERY_RESULT = Array<{
   _id: string;
   _type: "service";
@@ -303,6 +319,7 @@ export type SERVICES_QUERY_RESULT = Array<{
     _type: "image";
   };
   points?: Array<string>;
+  order?: number;
 }>;
 
 // Query TypeMap
@@ -312,6 +329,6 @@ declare module "@sanity/client" {
     '*[_type == "galleryItem"] | order(order asc)': GALLERY_QUERY_RESULT;
     '*[_type == "certification"] | order(order asc)': HOME_CERTIFICATIONS_QUERY_RESULT;
     '*[_type == "faq"] | order(order asc)': HOME_FAQS_QUERY_RESULT;
-    '*[_type == "service"]': SERVICES_QUERY_RESULT;
+    '*[_type == "service"] | order(order asc)': SERVICES_QUERY_RESULT;
   }
 }

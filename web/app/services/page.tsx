@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
 };
 
-const SERVICES_QUERY = defineQuery(`*[_type == "service"]`);
+const SERVICES_QUERY = defineQuery(`*[_type == "service"] | order(order asc)`);
 
 export default async function ServicesPage() {
   const isSanityConfigured =

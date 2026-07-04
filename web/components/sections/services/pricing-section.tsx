@@ -80,7 +80,7 @@ export function PricingSection() {
                 <ul className="space-y-2 text-caption text-white">
                   <li className="flex items-start gap-2">
                     <span className="min-w-1.5 h-1.5 rounded-full bg-white mt-2" />
-                    Frais kilométriques selon la zone d’intervention
+                    Frais kilométriques dans la zone d’intervention
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="min-w-1.5 h-1.5 rounded-full bg-white mt-2" />
@@ -95,6 +95,48 @@ export function PricingSection() {
             </CardContent>
           </Card>
 
+
+        {/* Suppléments */}
+        <Card className="flex flex-col bg-white neo-shadow border-none">
+          <CardHeader>
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                <Plus className="w-6 h-6 text-primary" />
+              </div>
+              <CardTitle className="font-serif text-xl md:text-2xl font-bold">
+                Suppléments
+              </CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-4 bg-white border-2 border-secondary rounded-lg">
+              <p className="text-label-bold text-secondary">
+                À partir du 3ème animal :
+                <span className="block text-lg font-bold text-primary mt-1">
+                  + 3€ / visite
+                </span>
+              </p>
+            </div>
+
+            <div className="p-4 bg-white border-2 border-secondary rounded-lg">
+              <p className="text-label-bold text-secondary">
+                Dimanches et jours fériés :
+                <span className="block text-lg font-bold text-primary mt-1">
+                  + 3€ / visite
+                </span>
+              </p>
+            </div>
+
+            <div className="p-4 bg-white border-2 border-secondary rounded-lg">
+              <p className="text-label-bold text-secondary">
+                Au-delà de la zone d’intervention :
+                <span className="block text-lg font-bold text-primary mt-1">
+                  0,50 cts / km
+                </span>
+              </p>
+            </div>
+          </CardContent>
+        </Card>
           {/* Taxi Animalier */}
           <Card className="flex flex-col bg-white neo-shadow border-none">
             <CardHeader>
@@ -146,48 +188,6 @@ export function PricingSection() {
             </CardContent>
           </Card>
         </div>
-
-        {/* Suppléments */}
-        <Card className="flex flex-col bg-white neo-shadow border-none">
-          <CardHeader>
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                <Plus className="w-6 h-6 text-primary" />
-              </div>
-              <CardTitle className="font-serif text-xl md:text-2xl font-bold">
-                Suppléments
-              </CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-4 bg-white border-2 border-secondary rounded-lg">
-              <p className="text-label-bold text-secondary">
-                À partir du 3ème animal :
-                <span className="block text-lg font-bold text-primary mt-1">
-                  + 3€ / visite
-                </span>
-              </p>
-            </div>
-
-            <div className="p-4 bg-white border-2 border-secondary rounded-lg">
-              <p className="text-label-bold text-secondary">
-                Dimanches et jours fériés :
-                <span className="block text-lg font-bold text-primary mt-1">
-                  + 3€ / visite
-                </span>
-              </p>
-            </div>
-
-            <div className="p-4 bg-white border-2 border-secondary rounded-lg">
-              <p className="text-label-bold text-secondary">
-                Au-delà de la zone d’intervention :
-                <span className="block text-lg font-bold text-primary mt-1">
-                  0,50 cts / km
-                </span>
-              </p>
-            </div>
-          </CardContent>
-        </Card>
 
         <div className="text-center pt-8 border-t border-white/20 max-w-2xl mx-auto">
           <p className="text-body-lg text-white">
