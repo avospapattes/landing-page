@@ -116,7 +116,7 @@ export function StorySection() {
                   />
                 </div>
                 <p className="font-serif italic text-secondary text-center mt-3 text-base font-bold">
-                  Strasbourg
+                  Promenades canines
                 </p>
               </div>
 
@@ -131,29 +131,7 @@ export function StorySection() {
                   />
                 </div>
                 <p className="font-serif italic text-secondary text-center mt-3 text-base font-bold">
-                  Complicité
-                </p>
-              </div>
-            </div>
-
-            {/* Credentials Card (Cependant...) */}
-            <div className="bg-white border-2 border-secondary neo-shadow p-6 rounded-sm flex flex-col sm:flex-row items-center gap-6">
-              <div className="shrink-0 w-24 h-24 relative">
-                <Image
-                  src="/icons/badge-acaced.svg"
-                  alt="Badge ACACED Professionnel"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="space-y-2">
-                <h4 className="font-serif text-lg font-bold text-secondary">
-                  Sécurité & Professionnalisme
-                </h4>
-                <p className="text-body-md text-secondary/80 leading-relaxed">
-                  Parce que l&apos;amour des animaux ne suffit pas, je suis titulaire de{" "}
-                  <strong>l&apos;ACACED complet (Chien/Chat/NAC)</strong>, formée aux
-                  premiers secours canins et certifiée pour le <strong>métier de Pet-Sitter</strong>.
+                  Visites à domicile
                 </p>
               </div>
             </div>

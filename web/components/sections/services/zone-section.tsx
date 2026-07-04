@@ -54,7 +54,7 @@ export function ZoneSection() {
 
           <p className="font-light text-lg md:text-xl leading-relaxed">
             J’interviens sans frais supplémentaires dans la zone indiquée en
-            vert autour d&apos;Oberhausbergen, couvrant notamment <strong>Strasbourg (quartiers Ouest, Hautepierre & Cronenbourg)</strong>, <strong>Mittelhausbergen</strong>, <strong>Niederhausbergen</strong>, <strong>Schiltigheim</strong>, <strong>Bischheim</strong>, <strong>Hœnheim</strong>, <strong>Eckbolsheim</strong>, <strong>Wolfisheim</strong> et le <strong>Kochersberg</strong>.
+            vert autour d&apos;Oberhausbergen, couvrant notamment <strong>Strasbourg (et Eurométropole Ouest)</strong>, <strong>Mittelhausbergen</strong>, <strong>Niederhausbergen</strong>, <strong>Schiltigheim</strong>, <strong>Bischheim</strong>, <strong>Hœnheim</strong>, <strong>Eckbolsheim</strong>, <strong>Wolfisheim</strong> et le <strong>Kochersberg Est</strong>.
           </p>
 
           <p className="text-white/70 text-xs md:text-sm uppercase tracking-widest font-bold">
