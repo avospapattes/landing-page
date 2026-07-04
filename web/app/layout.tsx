@@ -4,6 +4,9 @@ import Navbar from "@/components/ui/navbar";
 import Footer from "@/components/ui/footer";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { AlertBanner } from "@/components/ui/alert-banner";
+import { AlertPopup } from "@/components/ui/alert-popup";
+import type { AlertData } from "@/components/ui/alert-banner";
 
 import { siteConfig } from "@/config/site";
 
@@ -50,11 +53,34 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+async function getActiveAlerts(): Promise<AlertData[]> {
+  const isSanityConfigured =
+    !!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID &&
+    !!process.env.NEXT_PUBLIC_SANITY_DATASET;
+
+  if (!isSanityConfigured) return [];
+
+  try {
+    const { client } = await import("@/sanity/lib/client");
+    const alerts = await client.fetch<AlertData[]>(
+      `*[_type == "alert" && active == true] | order(_createdAt desc)[0...5]`
+    );
+    return alerts ?? [];
+  } catch (e) {
+    console.error("Failed to fetch alerts from Sanity", e);
+    return [];
+  }
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const alerts = await getActiveAlerts();
+  const bannerAlerts = alerts.filter((a) => a.type === "banner" || a.type === "both");
+  const popupAlert = alerts.find((a) => a.type === "popup" || a.type === "both") ?? null;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -107,9 +133,24 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <Navbar />
+
+        {/* Alert banners — below the navbar */}
+        {bannerAlerts.map((alert) => (
+          <AlertBanner key={alert._id} alert={alert} />
+        ))}
+
         <div className="flex-1">{children}</div>
+
+        {/* Alert banners — above the footer */}
+        {bannerAlerts.map((alert) => (
+          <AlertBanner key={`footer-${alert._id}`} alert={alert} />
+        ))}
+
         <Footer />
         <Toaster />
+
+        {/* Alert popup — rendered once per session */}
+        {popupAlert && <AlertPopup alert={popupAlert} />}
       </body>
     </html>
   );
