@@ -126,6 +126,8 @@ The site implements a custom **"Warm Professionalism" (Modern-Tactile)** design 
   });
   ```
 
+- **Tiles & Authentication**: The map uses CARTO Basemaps light_all (`https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png`). CARTO requires an API key passed via query parameter `?key=...`, configured via the `NEXT_PUBLIC_CARTO_API_KEY` environment variable. If the key is not defined, it automatically falls back to OpenStreetMap standard tiles to avoid the "API KEY REQUIRED" watermark.
+
 ---
 
 ## 5. Performance Guidelines for AI Agents

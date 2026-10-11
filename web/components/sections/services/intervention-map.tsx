@@ -3,6 +3,16 @@
 import { MapContainer, TileLayer, Polygon, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import { env } from "@/lib/env";
+
+const cartoKey = env.NEXT_PUBLIC_CARTO_API_KEY;
+const tileUrl = cartoKey
+  ? `https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=${cartoKey}`
+  : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+
+const tileAttribution = cartoKey
+  ? '&copy; <a href="https://carto.com/attributions">CARTO</a>'
+  : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
 const iconSVG = `
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#22c55e" width="36" height="36">
@@ -42,8 +52,8 @@ export default function InterventionMap() {
       className="w-full h-full"
     >
       <TileLayer
-        attribution='&copy; <a href="https://carto.com/attributions">CARTO</a>'
-        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+        attribution={tileAttribution}
+        url={tileUrl}
       />
 
       <Polygon
