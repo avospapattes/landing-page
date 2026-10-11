@@ -26,6 +26,9 @@ export async function POST(req: NextRequest) {
       revalidatePath("/");
     } else if (body._type === "galleryItem") {
       revalidatePath("/gallery");
+    } else if (body._type === "alert") {
+      // Les alertes sont affichées dans le RootLayout (bannière & popup), on revalide le layout racine
+      revalidatePath("/", "layout");
     }
 
     return NextResponse.json({ revalidated: true, now: Date.now(), body });
